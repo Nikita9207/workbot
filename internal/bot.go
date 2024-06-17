@@ -5,7 +5,10 @@ import (
 )
 
 type Bot struct {
-	bot *tgbotapi.BotAPI
+	bot     *tgbotapi.BotAPI
+	update  *tgbotapi.Update
+	updates *tgbotapi.UpdatesChannel
+	message *tgbotapi.Message
 }
 
 func NewBot(bot *tgbotapi.BotAPI) *Bot {
@@ -33,7 +36,7 @@ func (b *Bot) handelUpdates(updates tgbotapi.UpdatesChannel) {
 			continue
 		}
 
-		b.handelMessage(update.Message)
+		b.handelMessage(update.Message, update, b.bot, updates)
 	}
 }
 
