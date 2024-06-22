@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"database/sql"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
 
@@ -9,10 +10,11 @@ type Bot struct {
 	update  *tgbotapi.Update
 	updates *tgbotapi.UpdatesChannel
 	message *tgbotapi.Message
+	db      *sql.DB
 }
 
-func NewBot(bot *tgbotapi.BotAPI) *Bot {
-	return &Bot{bot: bot}
+func NewBot(bot *tgbotapi.BotAPI, db *sql.DB) *Bot {
+	return &Bot{bot: bot, db: db}
 }
 
 func (b *Bot) Start() error {
@@ -32,7 +34,7 @@ func (b *Bot) handelUpdates(updates tgbotapi.UpdatesChannel) {
 		}
 
 		if update.Message.IsCommand() {
-			b.handelCommand(update.Message)
+			b.handelCommand(update.Message, update, b.bot, b.db)
 			continue
 		}
 

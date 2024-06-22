@@ -2,16 +2,29 @@ package internal
 
 import (
 	"database/sql"
+	"fmt"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"log"
+	"strings"
+	"time"
 )
+
+type Clients struct {
+	Id        int
+	Name      string
+	Surname   string
+	Phone     int
+	CreatedAt *time.Time
+}
 
 const (
 	commandStart = "start"
 	commandInfo  = "info"
 )
 
-func (b *Bot) handelCommand(message *tgbotapi.Message) {
+func (b *Bot) handelCommand(message *tgbotapi.Message, update tgbotapi.Update, bot *tgbotapi.BotAPI, db *sql.DB) {
+	cs := make([]Clients, 0)
+	s := make([]string, 0)
 	switch message.Command() {
 	case commandStart:
 		msg := tgbotapi.NewMessage(message.Chat.ID, "Добро пожаловать!")
@@ -28,9 +41,24 @@ func (b *Bot) handelCommand(message *tgbotapi.Message) {
 			panic(err)
 		}
 	case commandInfo:
-		msg := tgbotapi.NewMessage(message.Chat.ID, "Здесь будет таблица всех!")
-		if _, err := b.bot.Send(msg); err != nil {
-			panic(err)
+		result, err := b.db.Query("select id, name, surname, phone from public.clients")
+		if err != nil {
+			log.Fatal(err)
+		}
+		for result.Next() {
+			var c Clients
+			err = result.Scan(&c.Id, &c.Name, &c.Surname, &c.Phone)
+			if err != nil {
+				log.Fatal(err)
+			}
+			cs = append(cs, c)
+			s = append(s, fmt.Sprintf("ID: %d\nИмя: %s\nФамилия: %s\nТелефон: %d\n", c.Id, c.Name, c.Surname, c.Phone))
+		}
+
+		msg := tgbotapi.NewMessage(update.Message.Chat.ID, strings.Join(s, ""))
+		_, err = bot.Send(msg)
+		if err != nil {
+			log.Fatalf("Failed to send message: %v", err)
 		}
 	default:
 		msg := tgbotapi.NewMessage(message.Chat.ID, "Пока я такого не умею =(")
@@ -69,13 +97,6 @@ func (b *Bot) handelMessage(message *tgbotapi.Message, update tgbotapi.Update, b
 
 func (b *Bot) handleRegistration(update tgbotapi.Update, bot *tgbotapi.BotAPI, updates tgbotapi.UpdatesChannel) {
 
-	db, err := sql.Open("postgres", "user=postgres password=simplepassword dbname=postgres sslmode=disable")
-	if err != nil {
-		log.Println("Ошибка при открытии соединения с базой данных:", err)
-		log.Panic(err)
-	}
-	defer db.Close()
-
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, "Введите ваше имя:")
 	bot.Send(msg)
 
@@ -113,7 +134,7 @@ func (b *Bot) handleRegistration(update tgbotapi.Update, bot *tgbotapi.BotAPI, u
 		}
 	}
 
-	_, err = db.Exec("INSERT INTO public.clients (name, surname, phone, created_at, updated_at) VALUES ($1, $2, $3, NOW(), NOW())", name, surname, phone)
+	_, err := b.db.Exec("INSERT INTO public.clients (name, surname, phone, created_at, updated_at) VALUES ($1, $2, $3, NOW(), NOW())", name, surname, phone)
 	if err != nil {
 		log.Panic(err)
 	}

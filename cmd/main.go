@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	_ "github.com/lib/pq"
 	"log"
@@ -14,8 +15,16 @@ func main() {
 	}
 	bot.Debug = true
 
-	telegramBot := telegram.NewBot(bot)
+	db, err := sql.Open("postgres", "user=postgres password=simplepassword dbname=postgres sslmode=disable")
+	if err != nil {
+		log.Println("Ошибка при открытии соединения с базой данных:", err)
+		log.Panic(err)
+	}
+	defer db.Close()
+
+	telegramBot := telegram.NewBot(bot, db)
 	if err := telegramBot.Start(); err != nil {
 		log.Fatal(err)
 	}
+
 }
