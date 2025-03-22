@@ -15,7 +15,7 @@ func main() {
 	}
 	bot.Debug = true
 
-	db, err := sql.Open("postgres", "user=postgres password=simplepassword dbname=postgres sslmode=disable")
+	db, err := sql.Open("postgres", "user=postgres password=gospel dbname=postgres sslmode=disable")
 	if err != nil {
 		log.Println("Ошибка при открытии соединения с базой данных:", err)
 		log.Panic(err)

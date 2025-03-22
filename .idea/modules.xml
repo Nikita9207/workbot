@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../BinarySearch/.idea/BinarySearch.iml" filepath="$PROJECT_DIR$/../BinarySearch/.idea/BinarySearch.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../RestAPI/.idea/RestAPI.iml" filepath="$PROJECT_DIR$/../RestAPI/.idea/RestAPI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../stepik/.idea/stepik.iml" filepath="$PROJECT_DIR$/../stepik/.idea/stepik.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/workbot.iml" filepath="$PROJECT_DIR$/.idea/workbot.iml" />
+    </modules>
+  </component>
+</project>
