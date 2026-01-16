@@ -1,11 +1,58 @@
-version: "3"
 services:
-  db:
-    image: "postgres:13"
-    container_name: "my_postgres"
+  # PostgreSQL база данных
+  postgres:
+    image: postgres:15-alpine
+    container_name: workbot_postgres
+    restart: unless-stopped
     environment:
-      POSTGRES_PASSWORD: "my_password"
-    ports:
-      - "54320:5432"
+      POSTGRES_USER: ${DB_USER:-workbot}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME:-workbot}
+      TZ: Europe/Moscow
     volumes:
-      - my_dbdata:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-workbot} -d ${DB_NAME:-workbot}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - workbot_net
+
+  # Telegram бот
+  workbot:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    container_name: workbot_bot
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      BOT_TOKEN: ${BOT_TOKEN}
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: ${DB_USER:-workbot}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME:-workbot}
+      GROQ_API_KEY: ${GROQ_API_KEY}
+      WORK_DIR: /data
+      GOOGLE_CREDENTIALS_PATH: /app/google-credentials.json
+      GOOGLE_DRIVE_FOLDER_ID: ${GOOGLE_DRIVE_FOLDER_ID}
+      TZ: Europe/Moscow
+    volumes:
+      - workbot_data:/data
+      - ../google-credentials.json:/app/google-credentials.json:ro
+    networks:
+      - workbot_net
+
+volumes:
+  postgres_data:
+    driver: local
+  workbot_data:
+    driver: local
+
+networks:
+  workbot_net:
+    driver: bridge

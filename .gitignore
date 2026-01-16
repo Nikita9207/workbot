@@ -1,0 +1,41 @@
+# Environment variables
+.env
+
+# Google credentials (secret!)
+google-credentials.json
+
+# Binaries
+workbot
+main
+createexcel
+
+# IDE
+.idea/
+
+# OS files
+.DS_Store
+
+# Excel temp files
+~$*.xlsx
+
+# Compiled files
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Test binary
+*.test
+
+# Go workspace
+go.work
+
+# Docker volumes data (local)
+data/
+
+# Backup files
+*_backups/
+
+# Excel files (created at runtime)
+*.xlsx
+!.env.example

@@ -1,0 +1,23 @@
+# Используем готовый бинарник
+FROM alpine:3.19
+
+WORKDIR /app
+
+# Устанавливаем необходимые пакеты
+RUN apk add --no-cache ca-certificates tzdata
+
+# Копируем готовый бинарник
+COPY workbot-arm64 /app/workbot
+RUN chmod +x /app/workbot
+
+# Копируем миграции
+COPY migrations /app/migrations
+
+# Создаём директорию для данных
+RUN mkdir -p /data/Клиенты
+
+# Устанавливаем timezone
+ENV TZ=Europe/Moscow
+
+# Запускаем бота
+CMD ["/app/workbot"]
