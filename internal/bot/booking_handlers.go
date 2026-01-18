@@ -14,9 +14,11 @@ import (
 
 // BookingData хранит данные бронирования
 type BookingData struct {
-	Date     time.Time
-	TimeSlot string
-	Step     int // 0=date, 1=time
+	Date      time.Time
+	TimeSlot  string
+	Step      int // 0=date, 1=time, 2=confirm
+	MessageID int // ID сообщения с календарём для редактирования
+	Calendar  *CalendarWidget
 }
 
 var bookingStore = struct {
@@ -26,8 +28,9 @@ var bookingStore = struct {
 
 // Константы состояний бронирования
 const (
-	stateBookingDate = "booking_date"
-	stateBookingTime = "booking_time"
+	stateBookingDate    = "booking_date"
+	stateBookingTime    = "booking_time"
+	stateBookingConfirm = "booking_confirm"
 )
 
 // handleBookTraining начинает процесс записи на тренировку
@@ -47,46 +50,329 @@ func (b *Bot) handleBookTraining(message *tgbotapi.Message) {
 	b.showAvailableDates(chatID)
 }
 
-// showAvailableDates показывает доступные даты для записи
+// showAvailableDates показывает визуальный календарь для записи
 func (b *Bot) showAvailableDates(chatID int64) {
+	// Создаём виджет календаря
+	cal := NewCalendarWidget()
+
+	// Получаем полностью занятые даты (опционально)
+	bookedDates := b.getFullyBookedDates()
+	cal.SetBookedDates(bookedDates)
+
 	// Инициализируем данные бронирования
 	bookingStore.Lock()
-	bookingStore.data[chatID] = &BookingData{Step: 0}
+	bookingStore.data[chatID] = &BookingData{
+		Step:     0,
+		Calendar: cal,
+	}
 	bookingStore.Unlock()
 
 	userStates.Lock()
 	userStates.states[chatID] = stateBookingDate
 	userStates.Unlock()
 
-	// Генерируем кнопки с датами на 14 дней вперёд
-	var rows [][]tgbotapi.KeyboardButton
-	now := time.Now()
+	// Убираем Reply клавиатуру
+	hideKeyboard := tgbotapi.NewRemoveKeyboard(true)
+	hideMsg := tgbotapi.NewMessage(chatID, "📅 Выберите дату тренировки:")
+	hideMsg.ReplyMarkup = hideKeyboard
+	b.api.Send(hideMsg)
 
-	for i := 1; i <= 14; i++ {
-		date := now.AddDate(0, 0, i)
-		dayName := russianWeekday(date.Weekday())
-		dateStr := date.Format("02.01.2006")
-		buttonText := fmt.Sprintf("%s (%s)", dateStr, dayName)
+	// Отправляем календарь
+	msg := tgbotapi.NewMessage(chatID, "Выберите удобную дату:")
+	msg.ReplyMarkup = cal.GenerateCalendar()
+	sentMsg, err := b.api.Send(msg)
+	if err == nil {
+		// Сохраняем ID сообщения для последующего редактирования
+		bookingStore.Lock()
+		if data, ok := bookingStore.data[chatID]; ok {
+			data.MessageID = sentMsg.MessageID
+		}
+		bookingStore.Unlock()
+	}
+}
 
-		// По 2 даты в ряд
-		if i%2 == 1 {
-			rows = append(rows, tgbotapi.NewKeyboardButtonRow(
-				tgbotapi.NewKeyboardButton(buttonText),
-			))
-		} else {
-			rows[len(rows)-1] = append(rows[len(rows)-1],
-				tgbotapi.NewKeyboardButton(buttonText),
-			)
+// getFullyBookedDates возвращает даты где все слоты заняты
+func (b *Bot) getFullyBookedDates() []string {
+	// Упрощённая реализация - можно расширить
+	return nil
+}
+
+// handleCallbackQuery обрабатывает нажатия на inline-кнопки
+func (b *Bot) handleCallbackQuery(callback *tgbotapi.CallbackQuery) {
+	chatID := callback.Message.Chat.ID
+	data := callback.Data
+
+	// Отвечаем на callback чтобы убрать "часики"
+	callbackResponse := tgbotapi.NewCallback(callback.ID, "")
+	b.api.Request(callbackResponse)
+
+	// Обрабатываем разные типы callback
+	switch {
+	case data == "cal_ignore" || data == "time_ignore":
+		// Игнорируем
+		return
+
+	case data == "cal_cancel":
+		b.cancelBookingWithInline(chatID, callback.Message.MessageID)
+		return
+
+	case strings.HasPrefix(data, "cal_prev_"):
+		b.handleCalendarNavigation(chatID, callback.Message.MessageID, data, -1)
+		return
+
+	case strings.HasPrefix(data, "cal_next_"):
+		b.handleCalendarNavigation(chatID, callback.Message.MessageID, data, 1)
+		return
+
+	case strings.HasPrefix(data, "cal_day_"):
+		dateStr := strings.TrimPrefix(data, "cal_day_")
+		b.handleDateSelection(chatID, callback.Message.MessageID, dateStr)
+		return
+
+	case strings.HasPrefix(data, "time_slot_"):
+		parts := strings.TrimPrefix(data, "time_slot_")
+		b.handleTimeSlotSelection(chatID, callback.Message.MessageID, parts)
+		return
+
+	case data == "time_back":
+		b.handleBackToCalendar(chatID, callback.Message.MessageID)
+		return
+
+	case strings.HasPrefix(data, "change_time_"):
+		dateStr := strings.TrimPrefix(data, "change_time_")
+		b.handleDateSelection(chatID, callback.Message.MessageID, dateStr)
+		return
+
+	case data == "change_date":
+		b.handleBackToCalendar(chatID, callback.Message.MessageID)
+		return
+
+	case strings.HasPrefix(data, "confirm_"):
+		parts := strings.TrimPrefix(data, "confirm_")
+		b.handleBookingConfirmation(chatID, callback.Message.MessageID, parts)
+		return
+	}
+}
+
+// handleCalendarNavigation обрабатывает навигацию по месяцам
+func (b *Bot) handleCalendarNavigation(chatID int64, messageID int, data string, direction int) {
+	bookingStore.Lock()
+	bookData := bookingStore.data[chatID]
+	if bookData == nil || bookData.Calendar == nil {
+		bookingStore.Unlock()
+		return
+	}
+
+	cal := bookData.Calendar
+	// Переходим на месяц вперёд/назад
+	newMonth := time.Date(cal.Year, cal.Month, 1, 0, 0, 0, 0, time.Local).AddDate(0, direction, 0)
+	cal.Year = newMonth.Year()
+	cal.Month = newMonth.Month()
+	bookingStore.Unlock()
+
+	// Обновляем сообщение с новым календарём
+	edit := tgbotapi.NewEditMessageReplyMarkup(chatID, messageID, cal.GenerateCalendar())
+	b.api.Send(edit)
+}
+
+// handleDateSelection обрабатывает выбор даты
+func (b *Bot) handleDateSelection(chatID int64, messageID int, dateStr string) {
+	date, err := time.Parse("02.01.2006", dateStr)
+	if err != nil {
+		return
+	}
+
+	bookingStore.Lock()
+	bookData := bookingStore.data[chatID]
+	if bookData == nil {
+		bookingStore.Unlock()
+		return
+	}
+	bookData.Date = date
+	bookData.Step = 1
+	bookingStore.Unlock()
+
+	// Получаем доступные слоты
+	availableSlots := b.getAvailableTimeSlotsForDate(date)
+	if len(availableSlots) == 0 {
+		// Нет свободных слотов
+		text := fmt.Sprintf("❌ На %s нет свободных слотов.\nВыберите другую дату:", dateStr)
+		edit := tgbotapi.NewEditMessageText(chatID, messageID, text)
+		bookingStore.RLock()
+		if bookData.Calendar != nil {
+			edit.ReplyMarkup = &[]tgbotapi.InlineKeyboardMarkup{bookData.Calendar.GenerateCalendar()}[0]
+		}
+		bookingStore.RUnlock()
+		b.api.Send(edit)
+		return
+	}
+
+	// Показываем слоты времени
+	text := fmt.Sprintf("🕐 Выберите время на %s:", dateStr)
+	keyboard := GenerateTimeSlots(date, availableSlots)
+	edit := tgbotapi.NewEditMessageText(chatID, messageID, text)
+	edit.ReplyMarkup = &keyboard
+	b.api.Send(edit)
+}
+
+// handleTimeSlotSelection обрабатывает выбор времени
+func (b *Bot) handleTimeSlotSelection(chatID int64, messageID int, data string) {
+	// data формат: "02.01.2006_15:00"
+	parts := strings.Split(data, "_")
+	if len(parts) != 2 {
+		return
+	}
+	dateStr, timeSlot := parts[0], parts[1]
+
+	date, err := time.Parse("02.01.2006", dateStr)
+	if err != nil {
+		return
+	}
+
+	bookingStore.Lock()
+	bookData := bookingStore.data[chatID]
+	if bookData == nil {
+		bookingStore.Unlock()
+		return
+	}
+	bookData.Date = date
+	bookData.TimeSlot = timeSlot
+	bookData.Step = 2
+	bookingStore.Unlock()
+
+	// Показываем подтверждение
+	dayName := russianWeekdayFull(date.Weekday())
+	text := fmt.Sprintf(
+		"📋 Подтвердите запись:\n\n"+
+			"📅 Дата: %s (%s)\n"+
+			"🕐 Время: %s\n\n"+
+			"Подтвердить запись?",
+		dateStr, dayName, timeSlot)
+
+	keyboard := GenerateConfirmation(date, timeSlot)
+	edit := tgbotapi.NewEditMessageText(chatID, messageID, text)
+	edit.ReplyMarkup = &keyboard
+	b.api.Send(edit)
+}
+
+// handleBookingConfirmation обрабатывает подтверждение записи
+func (b *Bot) handleBookingConfirmation(chatID int64, messageID int, data string) {
+	// data формат: "02.01.2006_15:00"
+	parts := strings.Split(data, "_")
+	if len(parts) != 2 {
+		return
+	}
+	dateStr, timeSlot := parts[0], parts[1]
+
+	date, err := time.Parse("02.01.2006", dateStr)
+	if err != nil {
+		return
+	}
+
+	hour, minute, err := calendar.ParseTime(timeSlot)
+	if err != nil {
+		return
+	}
+
+	// Удаляем inline-клавиатуру
+	edit := tgbotapi.NewEditMessageText(chatID, messageID, "⏳ Создаю запись...")
+	b.api.Send(edit)
+
+	// Очищаем состояние
+	bookingStore.Lock()
+	delete(bookingStore.data, chatID)
+	bookingStore.Unlock()
+
+	userStates.Lock()
+	delete(userStates.states, chatID)
+	userStates.Unlock()
+
+	// Создаём запись
+	b.createAppointment(chatID, date, hour, minute)
+}
+
+// handleBackToCalendar возвращает к календарю
+func (b *Bot) handleBackToCalendar(chatID int64, messageID int) {
+	bookingStore.Lock()
+	bookData := bookingStore.data[chatID]
+	if bookData == nil {
+		bookingStore.Unlock()
+		return
+	}
+
+	if bookData.Calendar == nil {
+		bookData.Calendar = NewCalendarWidget()
+	}
+	bookData.Step = 0
+	bookingStore.Unlock()
+
+	text := "📅 Выберите дату тренировки:"
+	bookingStore.RLock()
+	keyboard := bookData.Calendar.GenerateCalendar()
+	bookingStore.RUnlock()
+
+	edit := tgbotapi.NewEditMessageText(chatID, messageID, text)
+	edit.ReplyMarkup = &keyboard
+	b.api.Send(edit)
+}
+
+// cancelBookingWithInline отменяет бронирование и удаляет inline-сообщение
+func (b *Bot) cancelBookingWithInline(chatID int64, messageID int) {
+	bookingStore.Lock()
+	delete(bookingStore.data, chatID)
+	bookingStore.Unlock()
+
+	userStates.Lock()
+	delete(userStates.states, chatID)
+	userStates.Unlock()
+
+	// Удаляем сообщение с календарём
+	deleteMsg := tgbotapi.NewDeleteMessage(chatID, messageID)
+	b.api.Request(deleteMsg)
+
+	msg := tgbotapi.NewMessage(chatID, "❌ Запись отменена")
+	b.api.Send(msg)
+	b.restoreMainMenu(chatID)
+}
+
+// getAvailableTimeSlotsForDate возвращает доступные слоты для даты
+func (b *Bot) getAvailableTimeSlotsForDate(date time.Time) []string {
+	dayOfWeek := int(date.Weekday())
+
+	// Получаем расписание тренера
+	rows, err := b.db.Query(`
+		SELECT start_time, end_time, slot_duration
+		FROM public.trainer_schedule
+		WHERE day_of_week = $1 AND is_active = true
+		ORDER BY start_time`, dayOfWeek)
+
+	var timeSlots []string
+
+	if err == nil {
+		defer rows.Close()
+		for rows.Next() {
+			var startTime, endTime string
+			var slotDuration int
+			if err := rows.Scan(&startTime, &endTime, &slotDuration); err != nil {
+				continue
+			}
+			slots := generateTimeSlots(startTime, endTime, slotDuration)
+			timeSlots = append(timeSlots, slots...)
 		}
 	}
 
-	rows = append(rows, tgbotapi.NewKeyboardButtonRow(
-		tgbotapi.NewKeyboardButton("Отмена"),
-	))
+	// Стандартные слоты если расписания нет
+	if len(timeSlots) == 0 {
+		timeSlots = []string{
+			"09:00", "10:00", "11:00", "12:00",
+			"14:00", "15:00", "16:00", "17:00",
+			"18:00", "19:00", "20:00",
+		}
+	}
 
-	msg := tgbotapi.NewMessage(chatID, "Выберите дату тренировки:")
-	msg.ReplyMarkup = tgbotapi.NewReplyKeyboard(rows...)
-	b.api.Send(msg)
+	// Фильтруем занятые
+	bookedSlots, _ := b.getBookedSlots(date)
+	return filterBookedSlots(timeSlots, bookedSlots)
 }
 
 // processBooking обрабатывает шаги бронирования
@@ -283,16 +569,16 @@ func (b *Bot) createAppointment(chatID int64, date time.Time, hour, minute int) 
 		return
 	}
 
-	startTime := fmt.Sprintf("%02d:%02d:00", hour, minute)
-	endTime := fmt.Sprintf("%02d:%02d:00", hour+1, minute) // +1 час
+	startTimeStr := fmt.Sprintf("%02d:%02d:00", hour, minute)
+	endTimeStr := fmt.Sprintf("%02d:%02d:00", hour+1, minute) // +1 час
 
-	// Создаём запись
+	// Создаём запись в БД
 	var appointmentID int
 	err = b.db.QueryRow(`
 		INSERT INTO public.appointments (client_id, trainer_id, appointment_date, start_time, end_time, status)
 		VALUES ($1, $2, $3, $4, $5, 'scheduled')
 		RETURNING id`,
-		clientID, trainerID, date.Format("2006-01-02"), startTime, endTime).Scan(&appointmentID)
+		clientID, trainerID, date.Format("2006-01-02"), startTimeStr, endTimeStr).Scan(&appointmentID)
 
 	if err != nil {
 		log.Printf("Ошибка создания записи: %v", err)
@@ -302,10 +588,9 @@ func (b *Bot) createAppointment(chatID int64, date time.Time, hour, minute int) 
 		return
 	}
 
-	// Формируем событие для календаря
+	// Формируем событие для ICS файла
 	eventStart := calendar.CombineDateTime(date, hour, minute)
 	eventEnd := eventStart.Add(time.Hour)
-
 	event := calendar.Event{
 		UID:         fmt.Sprintf("training-%d@workbot", appointmentID),
 		Summary:     "Тренировка",
@@ -314,21 +599,19 @@ func (b *Bot) createAppointment(chatID int64, date time.Time, hour, minute int) 
 		EndTime:     eventEnd,
 		Reminder:    60, // напоминание за 1 час
 	}
-
 	icsContent := calendar.GenerateICS(event)
 
-	// Отправляем подтверждение
+	// Формируем сообщение подтверждения
 	confirmMsg := fmt.Sprintf(
-		"Вы записаны на тренировку!\n\n"+
-			"Дата: %s\n"+
-			"Время: %02d:%02d\n\n"+
-			"Добавьте событие в календарь iPhone:",
+		"✅ Вы записаны на тренировку!\n\n"+
+			"📅 Дата: %s\n"+
+			"🕐 Время: %02d:%02d",
 		date.Format("02.01.2006"), hour, minute)
 
 	msg := tgbotapi.NewMessage(chatID, confirmMsg)
 	b.api.Send(msg)
 
-	// Отправляем .ics файл
+	// Отправляем .ics файл для добавления в календарь
 	fileName := fmt.Sprintf("training_%s_%02d%02d.ics", date.Format("02-01-2006"), hour, minute)
 	doc := tgbotapi.NewDocument(chatID, tgbotapi.FileBytes{
 		Name:  fileName,
@@ -339,10 +622,10 @@ func (b *Bot) createAppointment(chatID int64, date time.Time, hour, minute int) 
 
 	// Уведомляем тренера
 	trainerMsg := tgbotapi.NewMessage(trainerID, fmt.Sprintf(
-		"Новая запись на тренировку!\n\n"+
-			"Клиент: %s %s\n"+
-			"Дата: %s\n"+
-			"Время: %02d:%02d",
+		"📝 Новая запись на тренировку!\n\n"+
+			"👤 Клиент: %s %s\n"+
+			"📅 Дата: %s\n"+
+			"🕐 Время: %02d:%02d",
 		clientName, clientSurname, date.Format("02.01.2006"), hour, minute))
 	b.api.Send(trainerMsg)
 

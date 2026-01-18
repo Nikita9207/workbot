@@ -65,18 +65,20 @@ func getTrainerAI(chatID int64) *ai.TrainerAI {
 
 	// Создаём нового тренера
 	cfg, err := config.Load()
-	if err != nil || cfg.GroqAPIKey == "" {
-		log.Println("GROQ_API_KEY не найден в .env файле")
+	if err != nil {
+		log.Printf("Ошибка загрузки конфига: %v", err)
 	}
-	var apiKey string
+
+	ollamaURL := "http://localhost:11434"
+	ollamaModel := "gemma2:9b-instruct-q4_K_M"
 	if cfg != nil {
-		apiKey = cfg.GroqAPIKey
+		ollamaURL = cfg.OllamaURL
+		ollamaModel = cfg.OllamaModel
 	}
 
 	aiStates.Lock()
-	// Повторная проверка после получения блокировки
 	if aiStates.trainer[chatID] == nil {
-		aiStates.trainer[chatID] = ai.NewTrainerAI(apiKey)
+		aiStates.trainer[chatID] = ai.NewTrainerAI(ollamaURL, ollamaModel)
 	}
 	trainer = aiStates.trainer[chatID]
 	aiStates.Unlock()
@@ -924,6 +926,7 @@ func (b *Bot) handleAIProgressionDaysInput(message *tgbotapi.Message) {
 			tgbotapi.NewKeyboardButton("Рельеф"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("Калистеника"),
 			tgbotapi.NewKeyboardButton("Общая подготовка"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
@@ -954,6 +957,8 @@ func (b *Bot) handleAIProgressionGoalInput(message *tgbotapi.Message) {
 		goal = "похудение и жиросжигание"
 	case "Рельеф":
 		goal = "рельеф и сушка"
+	case "Калистеника":
+		goal = "калистеника (работа с собственным весом)"
 	case "Общая подготовка":
 		goal = "общая физическая подготовка"
 	default:
@@ -1349,15 +1354,19 @@ func (b *Bot) handleAICompetitionSport(message *tgbotapi.Message, clientID int) 
 	keyboard := tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Пауэрлифтинг"),
-			tgbotapi.NewKeyboardButton("Бодибилдинг"),
+			tgbotapi.NewKeyboardButton("Hyrox"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Кроссфит"),
-			tgbotapi.NewKeyboardButton("Strongman"),
-		),
-		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Тяжёлая атлетика"),
+			tgbotapi.NewKeyboardButton("Гонки с препятствиями"),
 			tgbotapi.NewKeyboardButton("Фитнес-бикини"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("Жим лёжа"),
+			tgbotapi.NewKeyboardButton("Становая тяга"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("Ягодичный мост"),
+			tgbotapi.NewKeyboardButton("Подъём на бицепс"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Отмена"),

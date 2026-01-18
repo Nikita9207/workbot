@@ -1,19 +1,27 @@
 # Environment variables
 .env
+docker/.env
 
 # Google credentials (secret!)
 google-credentials.json
 
-# Binaries
+# Binaries (all compiled Go executables)
 workbot
+workbot-*
 main
 createexcel
+indexer
+program_generator
+test_generator
+test_generator_v3
 
 # IDE
 .idea/
+.vscode/
 
 # OS files
 .DS_Store
+Thumbs.db
 
 # Excel temp files
 ~$*.xlsx
@@ -29,13 +37,23 @@ createexcel
 
 # Go workspace
 go.work
+go.work.sum
 
 # Docker volumes data (local)
 data/
+postgres_data/
 
 # Backup files
 *_backups/
 
 # Excel files (created at runtime)
 *.xlsx
-!.env.example
+
+# Knowledge base (too large for git)
+knowledge.json
+
+# Generated JSON output
+JSON/
+
+# Claude Code cache
+.claude/

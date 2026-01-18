@@ -1,0 +1,23 @@
+# Dockerfile для готового ARM64 бинарника
+FROM alpine:3.19
+
+WORKDIR /app
+
+# Устанавливаем необходимые пакеты
+RUN apk add --no-cache ca-certificates tzdata
+
+# Копируем готовый бинарник (с parent context)
+COPY workbot-arm64 /app/workbot
+RUN chmod +x /app/workbot
+
+# Копируем миграции (из parent директории)
+COPY migrations /app/migrations
+
+# Создаём директорию для данных
+RUN mkdir -p /data/Клиенты
+
+# Устанавливаем timezone
+ENV TZ=Europe/Moscow
+
+# Запускаем бота
+CMD ["/app/workbot"]

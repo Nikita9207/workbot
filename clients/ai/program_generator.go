@@ -217,6 +217,16 @@ func parseProgramResponse(response string, req ProgramRequest) (*models.Program,
 }
 
 func extractJSON(s string) string {
+	// Убираем markdown блоки ```json ... ```
+	if idx := strings.Index(s, "```json"); idx != -1 {
+		s = s[idx+7:]
+	} else if idx := strings.Index(s, "```"); idx != -1 {
+		s = s[idx+3:]
+	}
+	if idx := strings.LastIndex(s, "```"); idx != -1 {
+		s = s[:idx]
+	}
+
 	// Ищем начало JSON
 	start := strings.Index(s, "{")
 	if start == -1 {
@@ -229,7 +239,43 @@ func extractJSON(s string) string {
 		return s
 	}
 
-	return s[start : end+1]
+	jsonStr := s[start : end+1]
+
+	// Убираем JavaScript-style комментарии // ...
+	lines := strings.Split(jsonStr, "\n")
+	var cleanLines []string
+	for _, line := range lines {
+		// Убираем однострочные комментарии (но не внутри строк)
+		cleanLine := removeLineComment(line)
+		cleanLines = append(cleanLines, cleanLine)
+	}
+
+	return strings.Join(cleanLines, "\n")
+}
+
+// removeLineComment убирает комментарии из строки, не трогая содержимое в кавычках
+func removeLineComment(line string) string {
+	inString := false
+	escaped := false
+	for i, ch := range line {
+		if escaped {
+			escaped = false
+			continue
+		}
+		if ch == '\\' {
+			escaped = true
+			continue
+		}
+		if ch == '"' {
+			inString = !inString
+			continue
+		}
+		// Нашли // вне строки - обрезаем
+		if !inString && ch == '/' && i+1 < len(line) && line[i+1] == '/' {
+			return strings.TrimRight(line[:i], " \t")
+		}
+	}
+	return line
 }
 
 // FormatWorkoutMessage форматирует тренировку для отправки клиенту

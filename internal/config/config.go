@@ -15,30 +15,35 @@ type Config struct {
 	DBUser     string
 	DBPassword string
 	DBName     string
-	GroqAPIKey string
 
 	// Пути к рабочим файлам
 	WorkDir     string // ~/Desktop/Работа
-	ClientsDir  string // ~/Desktop/Работа/Клиенты (папки клиентов с таблицами и анкетами)
+	ClientsDir  string // ~/Desktop/Работа/Клиенты
 	JournalPath string // ~/Desktop/Работа/Журнал.xlsx
 
 	// Google Sheets
-	GoogleCredentialsPath string // Путь к google-credentials.json
-	GoogleDriveFolderID   string // ID папки в Google Drive
+	GoogleCredentialsPath string
+	GoogleDriveFolderID   string
+
+	// Ollama
+	OllamaURL   string // URL Ollama, например http://localhost:11434
+	OllamaModel string // Модель, например gemma2:9b-instruct-q4_K_M
+
+	// Groq (только для транскрипции голоса)
+	GroqAPIKey string
+
+	// RAG индекс (готовый, через Tailscale)
+	RAGIndexPath string // Путь к готовому индексу knowledge.json
 }
 
 // Load загружает конфигурацию из переменных окружения или .env файла
 func Load() (*Config, error) {
-	// Сначала пробуем загрузить из .env файла (для локальной разработки)
 	env, err := loadEnvFile(".env")
 	if err != nil {
-		// Если .env не найден, используем переменные окружения (Docker)
 		env = make(map[string]string)
 	}
 
-	// Функция для получения значения: сначала из окружения, потом из .env
 	getEnv := func(key, defaultValue string) string {
-		// Приоритет: переменные окружения > .env файл > значение по умолчанию
 		if value := os.Getenv(key); value != "" {
 			return value
 		}
@@ -48,7 +53,6 @@ func Load() (*Config, error) {
 		return defaultValue
 	}
 
-	// Определяем домашнюю директорию
 	homeDir, err := os.UserHomeDir()
 	if err != nil {
 		homeDir = "."
@@ -62,7 +66,6 @@ func Load() (*Config, error) {
 		DBUser:     getEnv("DB_USER", "postgres"),
 		DBPassword: getEnv("DB_PASSWORD", ""),
 		DBName:     getEnv("DB_NAME", "postgres"),
-		GroqAPIKey: getEnv("GROQ_API_KEY", ""),
 
 		WorkDir:     workDir,
 		ClientsDir:  workDir + "/Клиенты",
@@ -70,6 +73,16 @@ func Load() (*Config, error) {
 
 		GoogleCredentialsPath: getEnv("GOOGLE_CREDENTIALS_PATH", "google-credentials.json"),
 		GoogleDriveFolderID:   getEnv("GOOGLE_DRIVE_FOLDER_ID", ""),
+
+		// Ollama
+		OllamaURL:   getEnv("OLLAMA_URL", "http://localhost:11434"),
+		OllamaModel: getEnv("OLLAMA_MODEL", "gemma2:9b-instruct-q4_K_M"),
+
+		// Groq (только для транскрипции)
+		GroqAPIKey: getEnv("GROQ_API_KEY", ""),
+
+		// Готовый RAG индекс
+		RAGIndexPath: getEnv("RAG_INDEX_PATH", ""),
 	}
 
 	if cfg.BotToken == "" {
@@ -87,7 +100,7 @@ func (c *Config) DSN() string {
 	)
 }
 
-// loadEnvFile читает .env файл и возвращает map переменных
+// loadEnvFile читает .env файл
 func loadEnvFile(filename string) (map[string]string, error) {
 	file, err := os.Open(filename)
 	if err != nil {
@@ -100,13 +113,10 @@ func loadEnvFile(filename string) (map[string]string, error) {
 
 	for scanner.Scan() {
 		line := strings.TrimSpace(scanner.Text())
-
-		// Пропускаем пустые строки и комментарии
 		if line == "" || strings.HasPrefix(line, "#") {
 			continue
 		}
 
-		// Разделяем по первому знаку равенства
 		parts := strings.SplitN(line, "=", 2)
 		if len(parts) != 2 {
 			continue
@@ -114,24 +124,10 @@ func loadEnvFile(filename string) (map[string]string, error) {
 
 		key := strings.TrimSpace(parts[0])
 		value := strings.TrimSpace(parts[1])
-
-		// Удаляем кавычки, если есть
 		value = strings.Trim(value, `"'`)
 
 		env[key] = value
 	}
 
-	if err := scanner.Err(); err != nil {
-		return nil, err
-	}
-
-	return env, nil
-}
-
-// getOrDefault возвращает значение из map или значение по умолчанию
-func getOrDefault(env map[string]string, key, defaultValue string) string {
-	if value, ok := env[key]; ok && value != "" {
-		return value
-	}
-	return defaultValue
+	return env, scanner.Err()
 }

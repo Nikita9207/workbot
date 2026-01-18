@@ -21,6 +21,106 @@ const (
 	PhasePower       PlanPhase = "power"
 	PhasePeaking     PlanPhase = "peaking"
 	PhaseDeload      PlanPhase = "deload"
+	PhaseAccumulation PlanPhase = "accumulation" // Накопление объёма
+	PhaseTransmutation PlanPhase = "transmutation" // Трансформация в силу
+	PhaseRealization  PlanPhase = "realization"   // Реализация/пик
+)
+
+// TrainingPeriod представляет период годичного цикла
+type TrainingPeriod string
+
+const (
+	PeriodPreparatory   TrainingPeriod = "preparatory"   // Подготовительный
+	PeriodCompetitive   TrainingPeriod = "competitive"   // Соревновательный
+	PeriodTransitional  TrainingPeriod = "transitional"  // Переходный
+)
+
+// PeriodNameRu returns Russian name for period
+func (p TrainingPeriod) NameRu() string {
+	switch p {
+	case PeriodPreparatory:
+		return "Подготовительный"
+	case PeriodCompetitive:
+		return "Соревновательный"
+	case PeriodTransitional:
+		return "Переходный"
+	default:
+		return string(p)
+	}
+}
+
+// MesocycleType тип мезоцикла
+type MesocycleType string
+
+const (
+	MesoIntroductory     MesocycleType = "introductory"      // Втягивающий
+	MesoBasic            MesocycleType = "basic"             // Базовый
+	MesoControlPrep      MesocycleType = "control_prep"      // Контрольно-подготовительный
+	MesoPreCompetitive   MesocycleType = "pre_competitive"   // Предсоревновательный
+	MesoCompetitive      MesocycleType = "competitive"       // Соревновательный
+	MesoRecovery         MesocycleType = "recovery"          // Восстановительный
+)
+
+// MesoTypeNameRu returns Russian name for mesocycle type
+func (m MesocycleType) NameRu() string {
+	switch m {
+	case MesoIntroductory:
+		return "Втягивающий"
+	case MesoBasic:
+		return "Базовый"
+	case MesoControlPrep:
+		return "Контрольно-подготовительный"
+	case MesoPreCompetitive:
+		return "Предсоревновательный"
+	case MesoCompetitive:
+		return "Соревновательный"
+	case MesoRecovery:
+		return "Восстановительный"
+	default:
+		return string(m)
+	}
+}
+
+// Methodology тип периодизации
+type Methodology string
+
+const (
+	MethodLinear    Methodology = "linear"    // Линейная
+	MethodDUP       Methodology = "dup"       // Волнообразная (Daily Undulating)
+	MethodBlock     Methodology = "block"     // Блочная
+	MethodConjugate Methodology = "conjugate" // Сопряжённая
+	MethodHybrid    Methodology = "hybrid"    // Гибридная
+)
+
+// MethodologyNameRu returns Russian name
+func (m Methodology) NameRu() string {
+	switch m {
+	case MethodLinear:
+		return "Линейная"
+	case MethodDUP:
+		return "Волнообразная (DUP)"
+	case MethodBlock:
+		return "Блочная"
+	case MethodConjugate:
+		return "Сопряжённая"
+	case MethodHybrid:
+		return "Гибридная"
+	default:
+		return string(m)
+	}
+}
+
+// WeekAccent акцент тренировочной недели
+type WeekAccent string
+
+const (
+	AccentVolume      WeekAccent = "volume"       // Объём
+	AccentIntensity   WeekAccent = "intensity"    // Интенсивность
+	AccentTechnique   WeekAccent = "technique"    // Техника
+	AccentSpeed       WeekAccent = "speed"        // Скорость/взрывная сила
+	AccentEndurance   WeekAccent = "endurance"    // Выносливость
+	AccentMaxStrength WeekAccent = "max_strength" // Максимальная сила
+	AccentRecovery    WeekAccent = "recovery"     // Восстановление
 )
 
 // PhaseNameRu returns Russian name for phase
@@ -127,6 +227,68 @@ type TrainingPlan struct {
 	CreatedAt   time.Time    `json:"created_at"`
 	UpdatedAt   time.Time    `json:"updated_at"`
 	CreatedBy   int64        `json:"created_by"`
+
+	// Расширенные поля периодизации
+	Methodology     Methodology       `json:"methodology"`      // Тип периодизации
+	Period          TrainingPeriod    `json:"period"`           // Текущий период
+	Weeks           []TrainingWeek    `json:"weeks"`            // Полная структура недель
+	ProgressionRules *ProgressionRules `json:"progression_rules"` // Правила прогрессии
+	OnePMData       map[string]float64 `json:"one_pm_data"`      // 1ПМ данные клиента
+}
+
+// TrainingWeek представляет полную неделю тренировок
+type TrainingWeek struct {
+	WeekNum          int            `json:"week_num"`
+	Period           TrainingPeriod `json:"period"`            // Период (Подготовительный/Соревновательный/Переходный)
+	MesocycleType    MesocycleType  `json:"mesocycle_type"`    // Тип мезоцикла
+	Phase            PlanPhase      `json:"phase"`             // Фаза (hypertrophy/strength/power/deload)
+	Focus            string         `json:"focus"`             // Фокус недели (текстовое описание)
+	Accents          []WeekAccent   `json:"accents"`           // Акценты недели
+	IntensityPercent float64        `json:"intensity_percent"` // Целевая интенсивность %
+	VolumePercent    float64        `json:"volume_percent"`    // Объём относительно базового
+	RPETarget        float64        `json:"rpe_target"`        // Целевой RPE
+	IsDeload         bool           `json:"is_deload"`         // Разгрузочная неделя
+	Notes            string         `json:"notes"`             // Заметки
+	Workouts         []DayWorkout   `json:"workouts"`          // Тренировки недели
+}
+
+// DayWorkout представляет одну тренировку дня
+type DayWorkout struct {
+	DayNum            int               `json:"day_num"`             // Номер дня в неделе (1-7)
+	Name              string            `json:"name"`                // "День 1 - Верх (Push)"
+	Type              string            `json:"type"`                // push/pull/legs/upper/lower/fullbody
+	MuscleGroups      []string          `json:"muscle_groups"`       // ["грудь", "плечи", "трицепс"]
+	EstimatedDuration int               `json:"estimated_duration"`  // Примерная длительность (мин)
+	Exercises         []WorkoutExerciseV2 `json:"exercises"`
+}
+
+// WorkoutExerciseV2 расширенная структура упражнения
+type WorkoutExerciseV2 struct {
+	OrderNum         int      `json:"order_num"`
+	ExerciseName     string   `json:"exercise_name"`
+	MuscleGroup      string   `json:"muscle_group"`
+	MovementType     string   `json:"movement_type"` // compound/isolation
+	Sets             int      `json:"sets"`
+	Reps             string   `json:"reps"`          // "8-10" или "5"
+	WeightPercent    float64  `json:"weight_percent"` // % от 1ПМ (если известен)
+	WeightKg         float64  `json:"weight_kg"`      // Абсолютный вес в кг
+	RestSeconds      int      `json:"rest_seconds"`
+	Tempo            string   `json:"tempo"`          // "3-1-1-0"
+	RPE              float64  `json:"rpe"`
+	Notes            string   `json:"notes"`
+	Alternatives     []string `json:"alternatives"`   // Альтернативные упражнения
+	SupersetWith     string   `json:"superset_with"`  // Упражнение для суперсета
+}
+
+// ProgressionRules правила прогрессии
+type ProgressionRules struct {
+	CompoundIncrement        float64 `json:"compound_increment"`         // Шаг прогрессии для базовых (кг)
+	IsolationIncrement       float64 `json:"isolation_increment"`        // Шаг прогрессии для изоляции (кг)
+	DeloadFrequency          int     `json:"deload_frequency"`           // Частота разгрузок (недель)
+	DeloadVolumeReduction    float64 `json:"deload_volume_reduction"`    // Снижение объёма при разгрузке
+	DeloadIntensityReduction float64 `json:"deload_intensity_reduction"` // Снижение интенсивности при разгрузке
+	WeeklyIntensityIncrease  float64 `json:"weekly_intensity_increase"`  // Еженедельное увеличение интенсивности
+	WeeklyVolumeIncrease     float64 `json:"weekly_volume_increase"`     // Еженедельное увеличение объёма
 }
 
 // TrainingPlanListItem for displaying plan list

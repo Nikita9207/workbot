@@ -284,8 +284,9 @@ func createHealthSheet(f *excelize.File) error {
 // loadClientsFromDB загружает существующих клиентов из БД
 func loadClientsFromDB(f *excelize.File, db *sql.DB) error {
 	rows, err := db.Query(`
-		SELECT id, tg_id, username, name, surname, phone, email, created_at
+		SELECT id, telegram_id, name, surname, phone, birth_date, goal, created_at
 		FROM public.clients
+		WHERE deleted_at IS NULL
 		ORDER BY id
 	`)
 	if err != nil {
@@ -298,34 +299,36 @@ func loadClientsFromDB(f *excelize.File, db *sql.DB) error {
 
 	for rows.Next() {
 		var id int
-		var tgID int64
-		var username, name, surname, phone, email sql.NullString
+		var telegramID sql.NullInt64
+		var name, surname, phone, birthDate, goal sql.NullString
 		var createdAt sql.NullTime
 
-		if err := rows.Scan(&id, &tgID, &username, &name, &surname, &phone, &email, &createdAt); err != nil {
+		if err := rows.Scan(&id, &telegramID, &name, &surname, &phone, &birthDate, &goal, &createdAt); err != nil {
 			continue
 		}
 
 		f.SetCellValue(sheet, fmt.Sprintf("A%d", row), id)
-		f.SetCellValue(sheet, fmt.Sprintf("B%d", row), tgID)
-
-		if username.Valid {
-			f.SetCellValue(sheet, fmt.Sprintf("C%d", row), username.String)
+		if telegramID.Valid {
+			f.SetCellValue(sheet, fmt.Sprintf("B%d", row), telegramID.Int64)
 		}
+
 		if name.Valid {
-			f.SetCellValue(sheet, fmt.Sprintf("D%d", row), name.String)
+			f.SetCellValue(sheet, fmt.Sprintf("C%d", row), name.String)
 		}
 		if surname.Valid {
-			f.SetCellValue(sheet, fmt.Sprintf("E%d", row), surname.String)
+			f.SetCellValue(sheet, fmt.Sprintf("D%d", row), surname.String)
 		}
 		if phone.Valid {
-			f.SetCellValue(sheet, fmt.Sprintf("F%d", row), phone.String)
+			f.SetCellValue(sheet, fmt.Sprintf("E%d", row), phone.String)
 		}
-		if email.Valid {
-			f.SetCellValue(sheet, fmt.Sprintf("G%d", row), email.String)
+		if birthDate.Valid {
+			f.SetCellValue(sheet, fmt.Sprintf("F%d", row), birthDate.String)
+		}
+		if goal.Valid {
+			f.SetCellValue(sheet, fmt.Sprintf("G%d", row), goal.String)
 		}
 		if createdAt.Valid {
-			f.SetCellValue(sheet, fmt.Sprintf("I%d", row), createdAt.Time.Format("02.01.2006"))
+			f.SetCellValue(sheet, fmt.Sprintf("H%d", row), createdAt.Time.Format("02.01.2006"))
 		}
 
 		// По умолчанию новый клиент

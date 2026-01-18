@@ -40,6 +40,7 @@ func (b *Bot) handleCommand(message *tgbotapi.Message) {
 			keyboard := tgbotapi.NewReplyKeyboard(
 				tgbotapi.NewKeyboardButtonRow(
 					tgbotapi.NewKeyboardButton("Записаться на тренировку"),
+					tgbotapi.NewKeyboardButton("Обратная связь"),
 				),
 				tgbotapi.NewKeyboardButtonRow(
 					tgbotapi.NewKeyboardButton("Мои записи"),
@@ -135,11 +136,24 @@ func (b *Bot) handleMessage(message *tgbotapi.Message) {
 		return
 	}
 
+	// Обработка состояний обратной связи
+	if strings.HasPrefix(state, "feedback_") {
+		switch state {
+		case "feedback_select_training":
+			b.handleFeedbackSelectTraining(message)
+		case "feedback_awaiting_input":
+			b.handleFeedbackInput(message)
+		}
+		return
+	}
+
 	switch message.Text {
 	case "Регистрация":
 		b.startRegistration(message)
 	case "Записаться на тренировку":
 		b.handleBookTraining(message)
+	case "Обратная связь":
+		b.handleFeedbackStart(message)
 	case "Мои записи":
 		b.handleMyAppointments(message)
 	case "Мои тренировки":
@@ -228,16 +242,8 @@ func (b *Bot) handleCancel(message *tgbotapi.Message) {
 
 	clearState(chatID)
 
-	keyboard := tgbotapi.NewReplyKeyboard(
-		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Войти"),
-			tgbotapi.NewKeyboardButton("Регистрация"),
-		),
-		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Записать тренировку"),
-		),
-	)
-	b.sendMessageWithKeyboard(chatID, "Операция отменена.", keyboard)
+	// Возвращаем в главное меню
+	b.restoreMainMenu(chatID)
 }
 
 func (b *Bot) handleTrainingInput(message *tgbotapi.Message) {
@@ -304,6 +310,7 @@ func (b *Bot) restoreMainMenu(chatID int64) {
 		keyboard = tgbotapi.NewReplyKeyboard(
 			tgbotapi.NewKeyboardButtonRow(
 				tgbotapi.NewKeyboardButton("Записаться на тренировку"),
+				tgbotapi.NewKeyboardButton("Обратная связь"),
 			),
 			tgbotapi.NewKeyboardButtonRow(
 				tgbotapi.NewKeyboardButton("Мои записи"),

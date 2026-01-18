@@ -23,7 +23,7 @@ services:
   workbot:
     build:
       context: ..
-      dockerfile: Dockerfile
+      dockerfile: docker/Dockerfile.prebuilt
     container_name: workbot_bot
     restart: unless-stopped
     depends_on:
@@ -40,10 +40,16 @@ services:
       WORK_DIR: /data
       GOOGLE_CREDENTIALS_PATH: /app/google-credentials.json
       GOOGLE_DRIVE_FOLDER_ID: ${GOOGLE_DRIVE_FOLDER_ID}
+      OLLAMA_URL: ${OLLAMA_URL:-http://localhost:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-gemma2:9b-instruct-q4_K_M}
+      RAG_DATA_DIR: ${RAG_DATA_DIR:-/data/Knowledge}
+      RAG_INDEX_DIR: ${RAG_INDEX_DIR:-/data/RAGIndex}
+      BOOKS_DIR: ${BOOKS_DIR:-/data/Книги}
       TZ: Europe/Moscow
     volumes:
       - workbot_data:/data
-      - ../google-credentials.json:/app/google-credentials.json:ro
+      - ./google-credentials.json:/app/google-credentials.json:ro
+      - /Users/nikitakrasilnikov/Desktop/Книги:/data/Книги:ro
     networks:
       - workbot_net
 

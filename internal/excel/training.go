@@ -270,3 +270,59 @@ func GetClientTrainings(filePath string, clientID int, limit int) ([]string, err
 
 	return result, nil
 }
+
+// SaveFeedback сохраняет обратную связь от клиента в Excel
+func SaveFeedback(filePath string, clientID int, trainingDate string, feedback string) error {
+	f, err := excelize.OpenFile(filePath)
+	if err != nil {
+		return err
+	}
+	defer f.Close()
+
+	// Ищем лист данных клиента
+	sheetName := ""
+	for _, name := range f.GetSheetList() {
+		if !strings.HasSuffix(name, "_data") {
+			continue
+		}
+		idStr, _ := f.GetCellValue(name, "P2")
+		id, _ := strconv.Atoi(idStr)
+		if id == clientID {
+			sheetName = name
+			break
+		}
+	}
+
+	if sheetName == "" {
+		return fmt.Errorf("лист клиента не найден")
+	}
+
+	rows, err := f.GetRows(sheetName)
+	if err != nil {
+		return err
+	}
+
+	// Находим строки с этой тренировкой (по дате) и записываем feedback
+	// Feedback записывается в колонку I (9)
+	updated := false
+	for i, row := range rows {
+		if i < 1 || len(row) < 1 {
+			continue
+		}
+
+		rowDate := getCell(row, 0)
+		// Сравниваем даты (формат может быть разный, поэтому содержит)
+		if strings.Contains(trainingDate, rowDate) || strings.Contains(rowDate, trainingDate) || rowDate == trainingDate {
+			// Записываем feedback в колонку I (индекс 9, но CoordinatesToCellName использует 1-based)
+			cell, _ := excelize.CoordinatesToCellName(9, i+1)
+			f.SetCellValue(sheetName, cell, feedback)
+			updated = true
+		}
+	}
+
+	if !updated {
+		return fmt.Errorf("тренировка с датой %s не найдена", trainingDate)
+	}
+
+	return f.Save()
+}

@@ -9,22 +9,19 @@ import (
 	"time"
 )
 
+// ============================================
+// AI Client - работает с Ollama
+// Ollama имеет OpenAI-совместимый API
+// ============================================
+
 const (
-	GroqAPIURL = "https://api.groq.com/openai/v1/chat/completions"
-	// Доступные модели на Groq (январь 2026):
-	// TEXT TO TEXT:
-	// - "llama-3.3-70b-versatile" - Llama 3.3 70B
-	// - "llama4-scout-17b-16e-instruct" - Llama 4 Scout
-	// - "qwen-qwq-32b" - Qwen 3 32B
-	// - "gpt-oss-120b" - GPT OSS 120B
-	// - "kimi-k2" - Kimi K2
-	DefaultModel  = "llama-3.3-70b-versatile"
-	FallbackModel = "llama4-scout-17b-16e-instruct"
+	DefaultOllamaURL   = "http://localhost:11434"
+	DefaultOllamaModel = "gemma2:9b-instruct-q4_K_M"
 )
 
-// Client - клиент для работы с Groq API
+// Client - клиент для работы с Ollama API
 type Client struct {
-	apiKey     string
+	baseURL    string
 	httpClient *http.Client
 	model      string
 }
@@ -41,6 +38,7 @@ type ChatRequest struct {
 	Messages    []Message `json:"messages"`
 	Temperature float64   `json:"temperature,omitempty"`
 	MaxTokens   int       `json:"max_tokens,omitempty"`
+	Stream      bool      `json:"stream"`
 }
 
 // ChatResponse - ответ от API
@@ -50,25 +48,38 @@ type ChatResponse struct {
 		Message      Message `json:"message"`
 		FinishReason string  `json:"finish_reason"`
 	} `json:"choices"`
-	Usage struct {
-		PromptTokens     int `json:"prompt_tokens"`
-		CompletionTokens int `json:"completion_tokens"`
-		TotalTokens      int `json:"total_tokens"`
-	} `json:"usage"`
 	Error *struct {
 		Message string `json:"message"`
 		Type    string `json:"type"`
 	} `json:"error,omitempty"`
 }
 
-// NewClient создаёт новый клиент Groq
+// NewClient создаёт новый клиент Ollama
+// apiKey игнорируется (для совместимости с существующим кодом)
 func NewClient(apiKey string) *Client {
 	return &Client{
-		apiKey: apiKey,
+		baseURL: DefaultOllamaURL,
 		httpClient: &http.Client{
-			Timeout: 60 * time.Second,
+			Timeout: 600 * time.Second, // 10 минут для больших программ
 		},
-		model: DefaultModel,
+		model: DefaultOllamaModel,
+	}
+}
+
+// NewClientWithURL создаёт клиент с указанным URL Ollama
+func NewClientWithURL(ollamaURL, model string) *Client {
+	if ollamaURL == "" {
+		ollamaURL = DefaultOllamaURL
+	}
+	if model == "" {
+		model = DefaultOllamaModel
+	}
+	return &Client{
+		baseURL: ollamaURL,
+		httpClient: &http.Client{
+			Timeout: 600 * time.Second, // 10 минут для больших программ
+		},
+		model: model,
 	}
 }
 
@@ -77,32 +88,33 @@ func (c *Client) SetModel(model string) {
 	c.model = model
 }
 
-// Chat отправляет сообщение и получает ответ
-func (c *Client) Chat(messages []Message, temperature float64) (string, error) {
-	// Пробуем основную модель, при ошибке - fallback
-	models := []string{c.model}
-	if c.model != FallbackModel {
-		models = append(models, FallbackModel)
-	}
-
-	var lastErr error
-	for _, model := range models {
-		result, err := c.chatWithModel(messages, temperature, model)
-		if err == nil {
-			return result, nil
-		}
-		lastErr = err
-	}
-	return "", lastErr
+// SetBaseURL устанавливает URL Ollama
+func (c *Client) SetBaseURL(url string) {
+	c.baseURL = url
 }
 
-// chatWithModel выполняет запрос к конкретной модели
-func (c *Client) chatWithModel(messages []Message, temperature float64, model string) (string, error) {
+// IsAvailable проверяет доступность Ollama
+func (c *Client) IsAvailable() bool {
+	client := &http.Client{Timeout: 5 * time.Second}
+	resp, err := client.Get(c.baseURL + "/api/tags")
+	if err != nil {
+		return false
+	}
+	defer resp.Body.Close()
+	return resp.StatusCode == http.StatusOK
+}
+
+// Chat отправляет сообщение и получает ответ
+func (c *Client) Chat(messages []Message, temperature float64) (string, error) {
+	// Ollama OpenAI-совместимый endpoint
+	url := c.baseURL + "/v1/chat/completions"
+
 	req := ChatRequest{
-		Model:       model,
+		Model:       c.model,
 		Messages:    messages,
 		Temperature: temperature,
-		MaxTokens:   4096,
+		MaxTokens:   16384, // Увеличено для больших программ с периодизацией
+		Stream:      false,
 	}
 
 	jsonData, err := json.Marshal(req)
@@ -110,17 +122,16 @@ func (c *Client) chatWithModel(messages []Message, temperature float64, model st
 		return "", fmt.Errorf("ошибка сериализации: %w", err)
 	}
 
-	httpReq, err := http.NewRequest("POST", GroqAPIURL, bytes.NewBuffer(jsonData))
+	httpReq, err := http.NewRequest("POST", url, bytes.NewBuffer(jsonData))
 	if err != nil {
 		return "", fmt.Errorf("ошибка создания запроса: %w", err)
 	}
 
 	httpReq.Header.Set("Content-Type", "application/json")
-	httpReq.Header.Set("Authorization", "Bearer "+c.apiKey)
 
 	resp, err := c.httpClient.Do(httpReq)
 	if err != nil {
-		return "", fmt.Errorf("ошибка запроса: %w", err)
+		return "", fmt.Errorf("Ollama недоступен: %w", err)
 	}
 	defer resp.Body.Close()
 
@@ -135,11 +146,11 @@ func (c *Client) chatWithModel(messages []Message, temperature float64, model st
 	}
 
 	if chatResp.Error != nil {
-		return "", fmt.Errorf("ошибка API: %s", chatResp.Error.Message)
+		return "", fmt.Errorf("ошибка Ollama: %s", chatResp.Error.Message)
 	}
 
 	if len(chatResp.Choices) == 0 {
-		return "", fmt.Errorf("пустой ответ от API")
+		return "", fmt.Errorf("пустой ответ от Ollama")
 	}
 
 	return chatResp.Choices[0].Message.Content, nil

@@ -49,9 +49,9 @@ type GeneratedExercise struct {
 }
 
 // NewTrainerAI создаёт нового AI-ассистента
-func NewTrainerAI(apiKey string) *TrainerAI {
+func NewTrainerAI(ollamaURL, model string) *TrainerAI {
 	return &TrainerAI{
-		client: NewClient(apiKey),
+		client: NewClientWithURL(ollamaURL, model),
 	}
 }
 

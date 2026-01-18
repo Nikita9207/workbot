@@ -480,6 +480,32 @@ func (r *ExerciseRepository) GetClient1PMSummary(clientID int, clientName string
 	return summary, nil
 }
 
+// GetClient1PMByName возвращает карту 1ПМ по названию упражнения для AI генератора
+func (r *ExerciseRepository) GetClient1PMByName(clientID int) (map[string]float64, error) {
+	rows, err := r.db.Query(`
+		SELECT DISTINCT ON (p.exercise_id)
+		       e.name, p.one_pm_kg
+		FROM public.exercise_1pm p
+		JOIN public.exercises e ON e.id = p.exercise_id
+		WHERE p.client_id = $1
+		ORDER BY p.exercise_id, p.test_date DESC`, clientID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	result := make(map[string]float64)
+	for rows.Next() {
+		var name string
+		var onePM float64
+		if err := rows.Scan(&name, &onePM); err != nil {
+			continue
+		}
+		result[name] = onePM
+	}
+	return result, rows.Err()
+}
+
 // GetExercisesWithClientPM возвращает список упражнений с текущими 1ПМ клиента
 func (r *ExerciseRepository) GetExercisesWithClientPM(clientID int) ([]models.ExerciseListItem, error) {
 	rows, err := r.db.Query(`

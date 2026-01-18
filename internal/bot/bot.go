@@ -5,6 +5,7 @@ import (
 	"log"
 
 	"workbot/clients/ai"
+	"workbot/clients/knowledge"
 	"workbot/internal/config"
 	"workbot/internal/gsheets"
 
@@ -13,18 +14,42 @@ import (
 
 // Bot представляет Telegram бота
 type Bot struct {
-	api           *tgbotapi.BotAPI
-	db            *sql.DB
-	aiClient      *ai.Client
-	config        *config.Config
-	sheetsClient  *gsheets.Client
+	api            *tgbotapi.BotAPI
+	db             *sql.DB
+	aiClient       *ai.Client
+	whisperClient  *ai.WhisperClient
+	knowledgeStore *knowledge.Store
+	config         *config.Config
+	sheetsClient   *gsheets.Client
 }
 
 // New создаёт новый экземпляр бота
 func New(api *tgbotapi.BotAPI, db *sql.DB, cfg *config.Config) *Bot {
-	var aiClient *ai.Client
-	if cfg.GroqAPIKey != "" {
-		aiClient = ai.NewClient(cfg.GroqAPIKey)
+	// Инициализируем AI клиент (Ollama)
+	aiClient := ai.NewClientWithURL(cfg.OllamaURL, cfg.OllamaModel)
+
+	if aiClient.IsAvailable() {
+		log.Printf("Ollama доступен: %s (модель: %s)", cfg.OllamaURL, cfg.OllamaModel)
+	} else {
+		log.Printf("Ollama недоступен: %s", cfg.OllamaURL)
+	}
+
+	// Инициализируем Whisper клиент (Groq) для транскрипции
+	whisperClient := ai.NewWhisperClient(cfg.GroqAPIKey)
+	if whisperClient.IsAvailable() {
+		log.Println("Groq Whisper доступен для транскрипции голоса")
+	} else {
+		log.Println("Groq Whisper недоступен (GROQ_API_KEY не настроен)")
+	}
+
+	// Инициализируем хранилище знаний (RAG)
+	knowledgeStore := knowledge.NewStore()
+	if cfg.RAGIndexPath != "" {
+		if err := knowledgeStore.Load(cfg.RAGIndexPath); err != nil {
+			log.Printf("RAG индекс не загружен: %v", err)
+		} else {
+			log.Printf("RAG индекс загружен: %d документов", knowledgeStore.Count())
+		}
 	}
 
 	// Инициализируем Google Sheets клиент
@@ -33,18 +58,20 @@ func New(api *tgbotapi.BotAPI, db *sql.DB, cfg *config.Config) *Bot {
 		var err error
 		sheetsClient, err = gsheets.NewClient(cfg.GoogleCredentialsPath, cfg.GoogleDriveFolderID)
 		if err != nil {
-			log.Printf("Предупреждение: Google Sheets не инициализирован: %v", err)
+			log.Printf("Google Sheets не инициализирован: %v", err)
 		} else {
 			log.Println("Google Sheets клиент инициализирован")
 		}
 	}
 
 	return &Bot{
-		api:          api,
-		db:           db,
-		aiClient:     aiClient,
-		config:       cfg,
-		sheetsClient: sheetsClient,
+		api:            api,
+		db:             db,
+		aiClient:       aiClient,
+		whisperClient:  whisperClient,
+		knowledgeStore: knowledgeStore,
+		config:         cfg,
+		sheetsClient:   sheetsClient,
 	}
 }
 
@@ -61,12 +88,26 @@ func (b *Bot) Start() error {
 
 func (b *Bot) handleUpdates(updates tgbotapi.UpdatesChannel) {
 	for update := range updates {
+		// Обработка callback-запросов (от inline-кнопок)
+		if update.CallbackQuery != nil {
+			b.handleCallbackQuery(update.CallbackQuery)
+			continue
+		}
+
 		if update.Message == nil {
 			continue
 		}
 
 		chatID := update.Message.Chat.ID
 		isAdmin := b.isAdmin(chatID)
+
+		// Обработка голосовых сообщений
+		if update.Message.Voice != nil {
+			if !isAdmin {
+				b.handleFeedbackVoice(update.Message)
+			}
+			continue
+		}
 
 		if update.Message.IsCommand() {
 			if isAdmin {
