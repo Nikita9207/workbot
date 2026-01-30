@@ -64,3 +64,6 @@ JSON/
 
 # Claude Code cache
 .claude/
+
+# Documentation (local only)
+docs/

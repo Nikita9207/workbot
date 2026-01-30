@@ -963,3 +963,11 @@ func (g *ProgramGeneratorV3) BuildPlanFromState(state *PlanGenerationState) *mod
 
 	return plan
 }
+
+// truncateString обрезает строку до maxLen символов
+func truncateString(s string, maxLen int) string {
+	if len(s) <= maxLen {
+		return s
+	}
+	return s[:maxLen-3] + "..."
+}
