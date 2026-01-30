@@ -6,6 +6,7 @@ import (
 
 	"workbot/internal/config"
 	"workbot/internal/gsheets"
+	"workbot/internal/repository"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 )
@@ -16,6 +17,7 @@ type Bot struct {
 	db           *sql.DB
 	config       *config.Config
 	sheetsClient *gsheets.Client
+	repo         *repository.Repository
 }
 
 // New создаёт новый экземпляр бота
@@ -48,6 +50,7 @@ func New(api *tgbotapi.BotAPI, db *sql.DB, cfg *config.Config) *Bot {
 		db:           db,
 		config:       cfg,
 		sheetsClient: sheetsClient,
+		repo:         repository.New(db),
 	}
 }
 

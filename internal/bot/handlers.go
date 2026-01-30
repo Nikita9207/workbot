@@ -157,6 +157,13 @@ func (b *Bot) handleMessage(message *tgbotapi.Message) {
 		return
 	}
 
+	// Обработка состояний тренировки (ввод веса)
+	if strings.HasPrefix(state, "workout_weight_") {
+		exerciseIDStr := strings.TrimPrefix(state, "workout_weight_")
+		b.handleWorkoutWeightInput(message, exerciseIDStr)
+		return
+	}
+
 	switch message.Text {
 	case "Регистрация", "Registration":
 		b.startRegistration(message)
@@ -199,14 +206,21 @@ func (b *Bot) handleMyTrainings(message *tgbotapi.Message) {
 	chatID := message.Chat.ID
 
 	// Получаем ID клиента
-	var clientID int
-	err := b.db.QueryRow("SELECT id FROM public.clients WHERE telegram_id = $1", chatID).Scan(&clientID)
-	if err != nil {
+	clientID, err := b.repo.Program.GetClientByTelegramID(chatID)
+	if err != nil || clientID == 0 {
 		b.sendMessage(chatID, b.t("reg_not_registered", chatID))
 		return
 	}
 
-	// Получаем последние тренировки из Excel
+	// Сначала проверяем есть ли активная программа с тренировками
+	program, err := b.repo.Program.GetActiveProgram(clientID)
+	if err == nil && program != nil {
+		// Показываем следующую тренировку из программы
+		b.handleMyWorkouts(message)
+		return
+	}
+
+	// Fallback: показываем из Excel
 	trainings, err := excel.GetClientTrainings(excel.FilePath, clientID, 5)
 	if err != nil {
 		b.sendError(chatID, b.t("error", chatID), err)

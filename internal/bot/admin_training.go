@@ -49,14 +49,28 @@ func (b *Bot) showClientsForSending(message *tgbotapi.Message) {
 			continue
 		}
 
-		unsentGroups, err := excel.GetUnsentTrainings(excel.FilePath, b.db, id)
-		if err != nil || len(unsentGroups) == 0 {
+		// Проверяем тренировки из программы (training_programs)
+		pendingWorkouts, _ := b.repo.Program.GetPendingWorkoutsForClient(id)
+		programWorkoutsCount := len(pendingWorkouts)
+
+		// Проверяем тренировки из Excel
+		unsentGroups, _ := excel.GetUnsentTrainings(excel.FilePath, b.db, id)
+		excelWorkoutsCount := len(unsentGroups)
+
+		totalCount := programWorkoutsCount + excelWorkoutsCount
+		if totalCount == 0 {
 			continue
 		}
 
 		status := "нет telegram"
 		if telegramID > 0 {
-			status = fmt.Sprintf("%d трен.", len(unsentGroups))
+			if programWorkoutsCount > 0 && excelWorkoutsCount > 0 {
+				status = fmt.Sprintf("%d из прог. + %d из Excel", programWorkoutsCount, excelWorkoutsCount)
+			} else if programWorkoutsCount > 0 {
+				status = fmt.Sprintf("%d из программы", programWorkoutsCount)
+			} else {
+				status = fmt.Sprintf("%d из Excel", excelWorkoutsCount)
+			}
 		}
 
 		buttons = append(buttons, tgbotapi.NewKeyboardButtonRow(
@@ -107,29 +121,44 @@ func (b *Bot) handleSendTrainingSelection(message *tgbotapi.Message, text string
 		return
 	}
 
-	unsentGroups, err := excel.GetUnsentTrainings(excel.FilePath, b.db, clientID)
-	if err != nil || len(unsentGroups) == 0 {
-		b.sendMessage(chatID, "Нет неотправленных тренировок для этого клиента")
-		b.handleAdminStart(message)
-		return
-	}
-
 	sentCount := 0
-	for _, group := range unsentGroups {
-		msgText := excel.FormatTrainingMessage(&group)
-		notification := tgbotapi.NewMessage(telegramID, msgText)
-		if _, err := b.api.Send(notification); err != nil {
-			log.Printf("Ошибка отправки клиенту %d: %v", clientID, err)
-			continue
-		}
 
-		if err := excel.MarkTrainingGroupAsSent(excel.FilePath, &group); err != nil {
-			log.Printf("Ошибка пометки тренировки: %v", err)
+	// 1. Сначала отправляем тренировки из программы (training_programs)
+	nextWorkout, err := b.repo.Program.GetNextPendingWorkout(clientID)
+	if err == nil && nextWorkout != nil {
+		// Отправляем тренировку с inline-кнопками
+		b.sendWorkoutToClient(telegramID, nextWorkout)
+
+		// Отмечаем как отправленную
+		if err := b.repo.Program.MarkWorkoutSent(nextWorkout.ID); err != nil {
+			log.Printf("Ошибка отметки тренировки: %v", err)
 		}
 		sentCount++
 	}
 
-	b.sendMessage(chatID, fmt.Sprintf("Отправлено %d тренировок клиенту %s %s", sentCount, name, surname))
+	// 2. Затем отправляем из Excel (для обратной совместимости)
+	unsentGroups, err := excel.GetUnsentTrainings(excel.FilePath, b.db, clientID)
+	if err == nil && len(unsentGroups) > 0 {
+		for _, group := range unsentGroups {
+			msgText := excel.FormatTrainingMessage(&group)
+			notification := tgbotapi.NewMessage(telegramID, msgText)
+			if _, err := b.api.Send(notification); err != nil {
+				log.Printf("Ошибка отправки клиенту %d: %v", clientID, err)
+				continue
+			}
+
+			if err := excel.MarkTrainingGroupAsSent(excel.FilePath, &group); err != nil {
+				log.Printf("Ошибка пометки тренировки: %v", err)
+			}
+			sentCount++
+		}
+	}
+
+	if sentCount == 0 {
+		b.sendMessage(chatID, "Нет неотправленных тренировок для этого клиента")
+	} else {
+		b.sendMessage(chatID, fmt.Sprintf("✅ Отправлено %d тренировок клиенту %s %s", sentCount, name, surname))
+	}
 	b.handleAdminStart(message)
 }
 

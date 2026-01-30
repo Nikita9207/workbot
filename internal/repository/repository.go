@@ -10,6 +10,7 @@ type Repository struct {
 	Plan        *PlanRepository
 	Appointment *AppointmentRepository
 	Schedule    *ScheduleRepository
+	Program     *ProgramRepository
 }
 
 // New создаёт новый экземпляр Repository
@@ -21,5 +22,6 @@ func New(db *sql.DB) *Repository {
 		Plan:        NewPlanRepository(db),
 		Appointment: NewAppointmentRepository(db),
 		Schedule:    NewScheduleRepository(db),
+		Program:     NewProgramRepository(db),
 	}
 }
