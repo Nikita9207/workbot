@@ -30,19 +30,19 @@ func (b *Bot) handleFeedbackStart(message *tgbotapi.Message) {
 	err := b.db.QueryRow("SELECT id, name, surname FROM public.clients WHERE telegram_id = $1", chatID).
 		Scan(&clientID, &name, &surname)
 	if err != nil {
-		b.sendMessage(chatID, "Вы не зарегистрированы. Используйте /start для регистрации.")
+		b.sendMessage(chatID, b.t("reg_not_registered", chatID))
 		return
 	}
 
 	// Получаем последние тренировки из Excel
 	trainings, err := excel.GetClientTrainings(excel.FilePath, clientID, 10)
 	if err != nil {
-		b.sendError(chatID, "Ошибка загрузки тренировок.", err)
+		b.sendError(chatID, b.t("error", chatID), err)
 		return
 	}
 
 	if len(trainings) == 0 {
-		b.sendMessage(chatID, "У вас пока нет тренировок для обратной связи.")
+		b.sendMessage(chatID, b.t("feedback_no_trainings", chatID))
 		b.restoreMainMenu(chatID)
 		return
 	}
@@ -52,7 +52,7 @@ func (b *Bot) handleFeedbackStart(message *tgbotapi.Message) {
 	for i, t := range trainings {
 		// Извлекаем дату из строки тренировки (первая строка содержит дату)
 		lines := strings.Split(t, "\n")
-		dateStr := "Тренировка"
+		dateStr := "Training"
 		if len(lines) > 0 {
 			dateStr = strings.TrimSpace(lines[0])
 		}
@@ -61,12 +61,12 @@ func (b *Bot) handleFeedbackStart(message *tgbotapi.Message) {
 		))
 	}
 	buttons = append(buttons, tgbotapi.NewKeyboardButtonRow(
-		tgbotapi.NewKeyboardButton("Отмена"),
+		tgbotapi.NewKeyboardButton(b.t("cancel", chatID)),
 	))
 
 	setState(chatID, "feedback_select_training")
 
-	msg := tgbotapi.NewMessage(chatID, "Выберите тренировку для обратной связи:")
+	msg := tgbotapi.NewMessage(chatID, b.t("feedback_select_training", chatID))
 	msg.ReplyMarkup = tgbotapi.NewReplyKeyboard(buttons...)
 	b.api.Send(msg)
 }
@@ -76,7 +76,7 @@ func (b *Bot) handleFeedbackSelectTraining(message *tgbotapi.Message) {
 	chatID := message.Chat.ID
 	text := message.Text
 
-	if text == "Отмена" {
+	if text == "Отмена" || text == "Cancel" {
 		clearState(chatID)
 		delete(clientFeedbackStates, chatID)
 		b.restoreMainMenu(chatID)
@@ -105,17 +105,10 @@ func (b *Bot) handleFeedbackSelectTraining(message *tgbotapi.Message) {
 
 	setState(chatID, "feedback_awaiting_input")
 
-	msg := tgbotapi.NewMessage(chatID, fmt.Sprintf(
-		"Тренировка: %s\n\n"+
-			"Отправьте обратную связь текстом или голосовым сообщением.\n\n"+
-			"Расскажите:\n"+
-			"- Как прошла тренировка?\n"+
-			"- Как самочувствие?\n"+
-			"- Что было сложно/легко?",
-		dateStr))
+	msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("📅 %s\n\n%s", dateStr, b.t("feedback_enter", chatID)))
 	msg.ReplyMarkup = tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Отмена"),
+			tgbotapi.NewKeyboardButton(b.t("cancel", chatID)),
 		),
 	)
 	b.api.Send(msg)
@@ -126,7 +119,7 @@ func (b *Bot) handleFeedbackInput(message *tgbotapi.Message) {
 	chatID := message.Chat.ID
 	text := message.Text
 
-	if text == "Отмена" {
+	if text == "Отмена" || text == "Cancel" {
 		clearState(chatID)
 		delete(clientFeedbackStates, chatID)
 		b.restoreMainMenu(chatID)
@@ -173,7 +166,7 @@ func (b *Bot) saveFeedback(chatID int64, feedbackText string) {
 	clearState(chatID)
 	delete(clientFeedbackStates, chatID)
 
-	b.sendMessage(chatID, "Спасибо за обратную связь! Тренер получил ваше сообщение.")
+	b.sendMessage(chatID, b.t("feedback_saved", chatID))
 	b.restoreMainMenu(chatID)
 }
 

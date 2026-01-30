@@ -58,6 +58,10 @@ func (b *Bot) Start() error {
 		return err
 	}
 
+	// Запускаем фоновые задачи
+	b.StartBirthdayReminder()     // Напоминания о днях рождения
+	b.StartAppointmentReminder()  // Напоминания о тренировках
+
 	b.handleUpdates(updates)
 	return nil
 }
@@ -76,6 +80,18 @@ func (b *Bot) handleUpdates(updates tgbotapi.UpdatesChannel) {
 
 		chatID := update.Message.Chat.ID
 		isAdmin := b.isAdmin(chatID)
+
+		// Обработка фото (для трекера прогресса)
+		if update.Message.Photo != nil {
+			userStates.RLock()
+			state := userStates.states[chatID]
+			userStates.RUnlock()
+
+			if state == stateProgressPhoto {
+				b.handleProgressPhoto(update.Message)
+				continue
+			}
+		}
 
 		if update.Message.IsCommand() {
 			if isAdmin {

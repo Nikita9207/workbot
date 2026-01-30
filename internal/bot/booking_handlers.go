@@ -41,7 +41,7 @@ func (b *Bot) handleBookTraining(message *tgbotapi.Message) {
 	var clientID int
 	err := b.db.QueryRow("SELECT id FROM public.clients WHERE telegram_id = $1", chatID).Scan(&clientID)
 	if err != nil {
-		msg := tgbotapi.NewMessage(chatID, "Сначала необходимо зарегистрироваться. Нажмите /start")
+		msg := tgbotapi.NewMessage(chatID, b.t("booking_need_register", chatID))
 		b.api.Send(msg)
 		return
 	}
@@ -73,12 +73,12 @@ func (b *Bot) showAvailableDates(chatID int64) {
 
 	// Убираем Reply клавиатуру
 	hideKeyboard := tgbotapi.NewRemoveKeyboard(true)
-	hideMsg := tgbotapi.NewMessage(chatID, "📅 Выберите дату тренировки:")
+	hideMsg := tgbotapi.NewMessage(chatID, b.t("booking_select_date", chatID))
 	hideMsg.ReplyMarkup = hideKeyboard
 	b.api.Send(hideMsg)
 
 	// Отправляем календарь
-	msg := tgbotapi.NewMessage(chatID, "Выберите удобную дату:")
+	msg := tgbotapi.NewMessage(chatID, b.t("booking_select_date_short", chatID))
 	msg.ReplyMarkup = cal.GenerateCalendar()
 	sentMsg, err := b.api.Send(msg)
 	if err == nil {
@@ -150,6 +150,14 @@ func (b *Bot) handleCallbackQuery(callback *tgbotapi.CallbackQuery) {
 	case strings.HasPrefix(data, "confirm_"):
 		parts := strings.TrimPrefix(data, "confirm_")
 		b.handleBookingConfirmation(chatID, callback.Message.MessageID, parts)
+		return
+
+	case strings.HasPrefix(data, "stats_"):
+		b.handleStatsCallback(chatID, callback.Message.MessageID, data)
+		return
+
+	case strings.HasPrefix(data, "settings_"), strings.HasPrefix(data, "lang_"):
+		b.handleSettingsCallback(callback)
 		return
 	}
 }
@@ -330,7 +338,7 @@ func (b *Bot) cancelBookingWithInline(chatID int64, messageID int) {
 	deleteMsg := tgbotapi.NewDeleteMessage(chatID, messageID)
 	b.api.Request(deleteMsg)
 
-	msg := tgbotapi.NewMessage(chatID, "❌ Запись отменена")
+	msg := tgbotapi.NewMessage(chatID, "❌ "+b.t("booking_cancelled", chatID))
 	b.api.Send(msg)
 	b.restoreMainMenu(chatID)
 }
@@ -662,7 +670,7 @@ func (b *Bot) cancelBooking(chatID int64) {
 	delete(userStates.states, chatID)
 	userStates.Unlock()
 
-	msg := tgbotapi.NewMessage(chatID, "Запись отменена.")
+	msg := tgbotapi.NewMessage(chatID, b.t("booking_cancelled", chatID))
 	b.api.Send(msg)
 	b.restoreMainMenu(chatID)
 }
@@ -674,7 +682,7 @@ func (b *Bot) handleMyAppointments(message *tgbotapi.Message) {
 	var clientID int
 	err := b.db.QueryRow("SELECT id FROM public.clients WHERE telegram_id = $1", chatID).Scan(&clientID)
 	if err != nil {
-		msg := tgbotapi.NewMessage(chatID, "Вы не зарегистрированы.")
+		msg := tgbotapi.NewMessage(chatID, b.t("reg_not_registered", chatID))
 		b.api.Send(msg)
 		return
 	}
@@ -687,7 +695,7 @@ func (b *Bot) handleMyAppointments(message *tgbotapi.Message) {
 		LIMIT 10`, clientID)
 	if err != nil {
 		log.Printf("Ошибка получения записей: %v", err)
-		msg := tgbotapi.NewMessage(chatID, "Ошибка загрузки записей.")
+		msg := tgbotapi.NewMessage(chatID, b.t("error", chatID))
 		b.api.Send(msg)
 		return
 	}
@@ -702,19 +710,19 @@ func (b *Bot) handleMyAppointments(message *tgbotapi.Message) {
 		}
 
 		parsedDate, _ := time.Parse("2006-01-02T15:04:05Z", date)
-		statusText := getStatusText(status)
+		statusText := b.getStatusTextLocalized(status, chatID)
 		appointments = append(appointments, fmt.Sprintf(
 			"#%d: %s в %s (%s)",
 			id, parsedDate.Format("02.01.2006"), startTime[:5], statusText))
 	}
 
 	if len(appointments) == 0 {
-		msg := tgbotapi.NewMessage(chatID, "У вас нет предстоящих записей.")
+		msg := tgbotapi.NewMessage(chatID, b.t("appointments_empty", chatID))
 		b.api.Send(msg)
 		return
 	}
 
-	msg := tgbotapi.NewMessage(chatID, "Ваши записи:\n\n"+strings.Join(appointments, "\n"))
+	msg := tgbotapi.NewMessage(chatID, b.t("appointments_title", chatID)+"\n\n"+strings.Join(appointments, "\n"))
 	b.api.Send(msg)
 }
 
@@ -727,7 +735,7 @@ func (b *Bot) handleExportCalendar(message *tgbotapi.Message) {
 	err := b.db.QueryRow("SELECT id, name, surname FROM public.clients WHERE telegram_id = $1", chatID).
 		Scan(&clientID, &clientName, &clientSurname)
 	if err != nil {
-		msg := tgbotapi.NewMessage(chatID, "Вы не зарегистрированы.")
+		msg := tgbotapi.NewMessage(chatID, b.t("reg_not_registered", chatID))
 		b.api.Send(msg)
 		return
 	}
@@ -768,7 +776,7 @@ func (b *Bot) handleExportCalendar(message *tgbotapi.Message) {
 	}
 
 	if len(events) == 0 {
-		msg := tgbotapi.NewMessage(chatID, "У вас нет предстоящих записей для экспорта.")
+		msg := tgbotapi.NewMessage(chatID, b.t("calendar_no_appointments", chatID))
 		b.api.Send(msg)
 		return
 	}
@@ -829,4 +837,24 @@ func getStatusText(status string) string {
 	default:
 		return status
 	}
+}
+
+// getStatusTextLocalized возвращает локализованный статус
+func (b *Bot) getStatusTextLocalized(status string, chatID int64) string {
+	lang := b.getLanguage(chatID)
+	if lang == "en" {
+		switch status {
+		case "scheduled":
+			return "scheduled"
+		case "confirmed":
+			return "confirmed"
+		case "completed":
+			return "completed"
+		case "cancelled":
+			return "cancelled"
+		default:
+			return status
+		}
+	}
+	return getStatusText(status)
 }

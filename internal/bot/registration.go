@@ -171,9 +171,7 @@ func (b *Bot) startRegistration(message *tgbotapi.Message) {
 		Scan(&existingID, &name, &surname)
 	if err == nil {
 		// Пользователь уже зарегистрирован
-		msg := tgbotapi.NewMessage(chatID, fmt.Sprintf(
-			"Вы уже зарегистрированы!\n\nID: %d\nИмя: %s %s\n\nИспользуйте меню для работы с ботом.",
-			existingID, name, surname))
+		msg := tgbotapi.NewMessage(chatID, b.tf("reg_already_registered", chatID, existingID, name, surname))
 		b.api.Send(msg)
 		b.restoreMainMenu(chatID)
 		return
@@ -190,10 +188,10 @@ func (b *Bot) startRegistration(message *tgbotapi.Message) {
 	userStates.states[chatID] = stateRegName
 	userStates.Unlock()
 
-	msg := tgbotapi.NewMessage(chatID, "Регистрация клиента\n\nВведите ваше имя:")
+	msg := tgbotapi.NewMessage(chatID, b.t("reg_title", chatID)+"\n\n"+b.t("reg_enter_name", chatID))
 	msg.ReplyMarkup = tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Отмена"),
+			tgbotapi.NewKeyboardButton(b.t("cancel", chatID)),
 		),
 	)
 	b.api.Send(msg)
@@ -204,7 +202,8 @@ func (b *Bot) processRegistration(message *tgbotapi.Message, state string) {
 	chatID := message.Chat.ID
 	text := message.Text
 
-	if text == "Отмена" {
+	// Проверяем отмену на обоих языках
+	if text == "Отмена" || text == "Cancel" {
 		b.cancelRegistration(chatID)
 		return
 	}
@@ -222,7 +221,7 @@ func (b *Bot) processRegistration(message *tgbotapi.Message, state string) {
 		validatedName, err := validateName(text)
 		if err != nil {
 			registrationStore.Unlock()
-			msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("❌ %s\n\nВведите ваше имя:", err.Error()))
+			msg := tgbotapi.NewMessage(chatID, "❌ "+b.t("validation_name_letters", chatID)+"\n\n"+b.t("reg_enter_name", chatID))
 			b.api.Send(msg)
 			return
 		}
@@ -234,14 +233,14 @@ func (b *Bot) processRegistration(message *tgbotapi.Message, state string) {
 		userStates.states[chatID] = stateRegSurname
 		userStates.Unlock()
 
-		msg := tgbotapi.NewMessage(chatID, "Введите вашу фамилию:")
+		msg := tgbotapi.NewMessage(chatID, b.t("reg_enter_surname", chatID))
 		b.api.Send(msg)
 
 	case stateRegSurname:
 		validatedSurname, err := validateName(text)
 		if err != nil {
 			registrationStore.Unlock()
-			msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("❌ %s\n\nВведите вашу фамилию:", err.Error()))
+			msg := tgbotapi.NewMessage(chatID, "❌ "+b.t("validation_name_letters", chatID)+"\n\n"+b.t("reg_enter_surname", chatID))
 			b.api.Send(msg)
 			return
 		}
@@ -253,14 +252,14 @@ func (b *Bot) processRegistration(message *tgbotapi.Message, state string) {
 		userStates.states[chatID] = stateRegPhone
 		userStates.Unlock()
 
-		msg := tgbotapi.NewMessage(chatID, "Введите ваш номер телефона:")
+		msg := tgbotapi.NewMessage(chatID, b.t("reg_enter_phone", chatID))
 		b.api.Send(msg)
 
 	case stateRegPhone:
 		validatedPhone, err := validatePhone(text)
 		if err != nil {
 			registrationStore.Unlock()
-			msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("❌ %s\n\nВведите ваш номер телефона:", err.Error()))
+			msg := tgbotapi.NewMessage(chatID, "❌ "+b.t("validation_phone_digits", chatID)+"\n\n"+b.t("reg_enter_phone", chatID))
 			b.api.Send(msg)
 			return
 		}
@@ -272,14 +271,14 @@ func (b *Bot) processRegistration(message *tgbotapi.Message, state string) {
 		userStates.states[chatID] = stateRegBirthDate
 		userStates.Unlock()
 
-		msg := tgbotapi.NewMessage(chatID, "Введите дату рождения (ДД.ММ.ГГГГ):")
+		msg := tgbotapi.NewMessage(chatID, b.t("reg_enter_birthdate", chatID))
 		b.api.Send(msg)
 
 	case stateRegBirthDate:
 		validatedDate, err := validateBirthDate(text)
 		if err != nil {
 			registrationStore.Unlock()
-			msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("❌ %s", err.Error()))
+			msg := tgbotapi.NewMessage(chatID, "❌ "+b.t("validation_date_format", chatID))
 			b.api.Send(msg)
 			return
 		}
@@ -316,7 +315,7 @@ func (b *Bot) completeRegistration(chatID int64, name, surname, phone, birthDate
 	).Scan(&clientID)
 	if err != nil {
 		log.Println("Ошибка сохранения клиента:", err)
-		errMsg := tgbotapi.NewMessage(chatID, "Ошибка при регистрации. Попробуйте позже.")
+		errMsg := tgbotapi.NewMessage(chatID, b.t("reg_error", chatID))
 		b.api.Send(errMsg)
 		b.restoreMainMenu(chatID)
 		return
@@ -340,10 +339,7 @@ func (b *Bot) completeRegistration(chatID int64, name, surname, phone, birthDate
 		}
 	}
 
-	successMsg := tgbotapi.NewMessage(chatID, fmt.Sprintf(
-		"Регистрация успешна!\n\nВаш ID: %d\nИмя: %s\nФамилия: %s\nТелефон: %s\nДата рождения: %s",
-		clientID, name, surname, phone, birthDate,
-	))
+	successMsg := tgbotapi.NewMessage(chatID, b.tf("reg_success", chatID, clientID, name, surname, phone, birthDate))
 	b.api.Send(successMsg)
 	b.restoreMainMenu(chatID)
 }
@@ -358,7 +354,7 @@ func (b *Bot) cancelRegistration(chatID int64) {
 	delete(userStates.states, chatID)
 	userStates.Unlock()
 
-	msg := tgbotapi.NewMessage(chatID, "Регистрация отменена.")
+	msg := tgbotapi.NewMessage(chatID, b.t("reg_cancelled", chatID))
 	b.api.Send(msg)
 	b.restoreMainMenu(chatID)
 }

@@ -36,18 +36,22 @@ func (b *Bot) handleCommand(message *tgbotapi.Message) {
 
 		if err == nil {
 			// Пользователь зарегистрирован — показываем меню клиента
-			msg := tgbotapi.NewMessage(chatID, fmt.Sprintf("Добро пожаловать, %s!", name))
+			msg := tgbotapi.NewMessage(chatID, b.tf("welcome_name", chatID, name))
 			keyboard := tgbotapi.NewReplyKeyboard(
 				tgbotapi.NewKeyboardButtonRow(
-					tgbotapi.NewKeyboardButton("Записаться на тренировку"),
-					tgbotapi.NewKeyboardButton("Обратная связь"),
+					tgbotapi.NewKeyboardButton(b.t("btn_book_training", chatID)),
+					tgbotapi.NewKeyboardButton(b.t("btn_feedback", chatID)),
 				),
 				tgbotapi.NewKeyboardButtonRow(
-					tgbotapi.NewKeyboardButton("Мои записи"),
-					tgbotapi.NewKeyboardButton("Мои тренировки"),
+					tgbotapi.NewKeyboardButton(b.t("btn_my_appointments", chatID)),
+					tgbotapi.NewKeyboardButton(b.t("btn_my_trainings", chatID)),
 				),
 				tgbotapi.NewKeyboardButtonRow(
-					tgbotapi.NewKeyboardButton("Экспорт в календарь"),
+					tgbotapi.NewKeyboardButton(b.t("btn_my_progress", chatID)),
+					tgbotapi.NewKeyboardButton(b.t("btn_export_calendar", chatID)),
+				),
+				tgbotapi.NewKeyboardButtonRow(
+					tgbotapi.NewKeyboardButton(b.t("btn_settings", chatID)),
 				),
 			)
 			msg.ReplyMarkup = keyboard
@@ -56,10 +60,10 @@ func (b *Bot) handleCommand(message *tgbotapi.Message) {
 			}
 		} else {
 			// Пользователь не зарегистрирован — показываем меню регистрации
-			msg := tgbotapi.NewMessage(chatID, "Добро пожаловать!")
+			msg := tgbotapi.NewMessage(chatID, b.t("welcome", chatID))
 			keyboard := tgbotapi.NewReplyKeyboard(
 				tgbotapi.NewKeyboardButtonRow(
-					tgbotapi.NewKeyboardButton("Регистрация"),
+					tgbotapi.NewKeyboardButton(b.t("btn_registration", chatID)),
 				),
 			)
 			msg.ReplyMarkup = keyboard
@@ -147,25 +151,43 @@ func (b *Bot) handleMessage(message *tgbotapi.Message) {
 		return
 	}
 
+	// Обработка состояний трекера прогресса
+	if strings.HasPrefix(state, "progress_") {
+		b.processProgressState(message, state)
+		return
+	}
+
 	switch message.Text {
-	case "Регистрация":
+	case "Регистрация", "Registration":
 		b.startRegistration(message)
-	case "Записаться на тренировку":
+	case "Записаться на тренировку", "Book a training":
 		b.handleBookTraining(message)
-	case "Обратная связь":
+	case "Обратная связь", "Feedback":
 		b.handleFeedbackStart(message)
-	case "Мои записи":
+	case "Мои записи", "My appointments":
 		b.handleMyAppointments(message)
-	case "Мои тренировки":
+	case "Мои тренировки", "My trainings":
 		b.handleMyTrainings(message)
-	case "Экспорт в календарь":
+	case "Экспорт в календарь", "Export to calendar":
 		b.handleExportCalendar(message)
-	case "Отмена":
+	case "Мой прогресс", "My progress":
+		b.handleProgressMenu(message)
+	case "📝 Записать прогресс", "📝 Record progress":
+		b.handleStartProgress(chatID)
+	case "📊 Мой прогресс", "📊 My progress":
+		b.handleViewProgress(chatID)
+	case "📈 Динамика веса", "📈 Weight dynamics":
+		b.handleWeightDynamics(chatID)
+	case "📏 Динамика замеров", "📏 Measurements dynamics":
+		b.handleMeasurementsDynamics(chatID)
+	case "⚙️ Настройки", "⚙️ Settings":
+		b.handleSettingsMenu(message)
+	case "Отмена", "Cancel":
 		b.handleCancel(message)
-	case "Назад":
+	case "Назад", "Back":
 		b.restoreMainMenu(chatID)
 	default:
-		msg := tgbotapi.NewMessage(chatID, "Неизвестная команда. Используйте /start для начала.")
+		msg := tgbotapi.NewMessage(chatID, b.t("unknown_command_start", chatID))
 		if _, err := b.api.Send(msg); err != nil {
 			log.Println("Ошибка отправки сообщения:", err)
 		}
@@ -180,24 +202,24 @@ func (b *Bot) handleMyTrainings(message *tgbotapi.Message) {
 	var clientID int
 	err := b.db.QueryRow("SELECT id FROM public.clients WHERE telegram_id = $1", chatID).Scan(&clientID)
 	if err != nil {
-		b.sendMessage(chatID, "Вы не зарегистрированы. Используйте /start для регистрации.")
+		b.sendMessage(chatID, b.t("reg_not_registered", chatID))
 		return
 	}
 
 	// Получаем последние тренировки из Excel
 	trainings, err := excel.GetClientTrainings(excel.FilePath, clientID, 5)
 	if err != nil {
-		b.sendError(chatID, "Ошибка загрузки тренировок.", err)
+		b.sendError(chatID, b.t("error", chatID), err)
 		return
 	}
 
 	if len(trainings) == 0 {
-		b.sendMessage(chatID, "У вас пока нет записанных тренировок.")
+		b.sendMessage(chatID, b.t("trainings_empty", chatID))
 		return
 	}
 
 	var result strings.Builder
-	result.WriteString("Ваши последние тренировки:\n\n")
+	result.WriteString(b.t("trainings_title", chatID) + "\n\n")
 	for _, t := range trainings {
 		result.WriteString(t)
 		result.WriteString("\n")
@@ -306,28 +328,32 @@ func (b *Bot) restoreMainMenu(chatID int64) {
 
 	var keyboard tgbotapi.ReplyKeyboardMarkup
 	if exists {
-		// Пользователь зарегистрирован — меню клиента
+		// Пользователь зарегистрирован — меню клиента с локализацией
 		keyboard = tgbotapi.NewReplyKeyboard(
 			tgbotapi.NewKeyboardButtonRow(
-				tgbotapi.NewKeyboardButton("Записаться на тренировку"),
-				tgbotapi.NewKeyboardButton("Обратная связь"),
+				tgbotapi.NewKeyboardButton(b.t("btn_book_training", chatID)),
+				tgbotapi.NewKeyboardButton(b.t("btn_feedback", chatID)),
 			),
 			tgbotapi.NewKeyboardButtonRow(
-				tgbotapi.NewKeyboardButton("Мои записи"),
-				tgbotapi.NewKeyboardButton("Мои тренировки"),
+				tgbotapi.NewKeyboardButton(b.t("btn_my_appointments", chatID)),
+				tgbotapi.NewKeyboardButton(b.t("btn_my_trainings", chatID)),
 			),
 			tgbotapi.NewKeyboardButtonRow(
-				tgbotapi.NewKeyboardButton("Экспорт в календарь"),
+				tgbotapi.NewKeyboardButton(b.t("btn_my_progress", chatID)),
+				tgbotapi.NewKeyboardButton(b.t("btn_export_calendar", chatID)),
+			),
+			tgbotapi.NewKeyboardButtonRow(
+				tgbotapi.NewKeyboardButton(b.t("btn_settings", chatID)),
 			),
 		)
 	} else {
 		// Пользователь не зарегистрирован — меню регистрации
 		keyboard = tgbotapi.NewReplyKeyboard(
 			tgbotapi.NewKeyboardButtonRow(
-				tgbotapi.NewKeyboardButton("Регистрация"),
+				tgbotapi.NewKeyboardButton(b.t("btn_registration", chatID)),
 			),
 		)
 	}
 
-	b.sendMessageWithKeyboard(chatID, "Выберите действие:", keyboard)
+	b.sendMessageWithKeyboard(chatID, b.t("choose_action", chatID), keyboard)
 }

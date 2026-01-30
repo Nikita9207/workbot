@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"log"
+	"path/filepath"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	_ "github.com/lib/pq"
@@ -10,6 +11,7 @@ import (
 	"workbot/internal/bot"
 	"workbot/internal/config"
 	"workbot/internal/excel"
+	"workbot/internal/i18n"
 )
 
 func main() {
@@ -39,6 +41,12 @@ func main() {
 		log.Fatalf("Ошибка проверки соединения с БД: %v", err)
 	}
 	log.Println("Подключение к базе данных установлено")
+
+	// Загружаем локализацию
+	localesDir := filepath.Join(cfg.WorkDir, "locales")
+	if err := i18n.Load(localesDir); err != nil {
+		log.Printf("Предупреждение: ошибка загрузки локализации: %v", err)
+	}
 
 	// Устанавливаем пути для Excel файлов
 	excel.SetPaths(cfg.JournalPath, cfg.ClientsDir)

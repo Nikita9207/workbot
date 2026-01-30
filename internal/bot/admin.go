@@ -89,6 +89,10 @@ func (b *Bot) handleAdminStart(message *tgbotapi.Message) {
 			tgbotapi.NewKeyboardButton("Отправить тренировку"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("Статистика"),
+			tgbotapi.NewKeyboardButton("Дни рождения"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Тренеры"),
 		),
 	)
@@ -217,6 +221,18 @@ func (b *Bot) handleAdminMessage(message *tgbotapi.Message) {
 		b.handleManageAppointments(message)
 	case "Тренеры":
 		b.handleTrainersMenu(message)
+	case "Дни рождения":
+		b.handleBirthdaysCommand(message.Chat.ID)
+	case "Статистика":
+		b.handleStatisticsMenu(message)
+	case "📊 Общая статистика":
+		b.handleGeneralStatistics(message.Chat.ID)
+	case "👥 Топ активных":
+		b.handleTopActiveClients(message.Chat.ID)
+	case "📉 Неактивные клиенты":
+		b.handleInactiveClients(message.Chat.ID)
+	case "📅 За период":
+		b.handlePeriodStatistics(message.Chat.ID)
 	case "Добавить тренера":
 		b.handleAddTrainer(message)
 	case "Удалить тренера":
