@@ -51,6 +51,12 @@ type ProgramRequestV3 struct {
 	// 1ПМ данные (ключ - название упражнения, значение - вес в кг)
 	OnePMData map[string]float64
 
+	// Целевой 1ПМ на соревнования
+	TargetOnePM map[string]float64
+
+	// Соревновательные дисциплины
+	Disciplines []string
+
 	// Методология (опционально, AI выберет оптимальную если не указано)
 	Methodology models.Methodology
 
@@ -904,4 +910,56 @@ func FormatProgramSummaryV3(plan *models.TrainingPlan) string {
 	}
 
 	return sb.String()
+}
+
+// GenerateBatch генерирует следующий батч недель
+func (g *ProgramGeneratorV3) GenerateBatch(state *PlanGenerationState) ([]models.TrainingWeek, error) {
+	startWeek, endWeek, err := state.GetNextBatchRange()
+	if err != nil {
+		return nil, err
+	}
+
+	// Создаём запрос для батча
+	batchReq := state.Request
+	batchReq.TotalWeeks = endWeek - startWeek + 1
+
+	// Генерируем
+	result, err := g.GenerateProgram(batchReq)
+	if err != nil {
+		state.LastError = err.Error()
+		return nil, err
+	}
+
+	// Корректируем номера недель
+	for i := range result.Plan.Weeks {
+		result.Plan.Weeks[i].WeekNum = startWeek + i
+	}
+
+	// Добавляем в состояние
+	state.AddWeeks(result.Plan.Weeks)
+
+	return result.Plan.Weeks, nil
+}
+
+// BuildPlanFromState собирает план из состояния генерации
+func (g *ProgramGeneratorV3) BuildPlanFromState(state *PlanGenerationState) *models.TrainingPlan {
+	req := state.Request
+
+	endDate := time.Now().AddDate(0, 0, req.TotalWeeks*7)
+	plan := &models.TrainingPlan{
+		ClientID:    req.ClientID,
+		ClientName:  req.ClientName,
+		Name:        fmt.Sprintf("Программа для %s", req.ClientName),
+		Goal:        req.Goal,
+		DaysPerWeek: req.DaysPerWeek,
+		TotalWeeks:  req.TotalWeeks,
+		StartDate:   state.CreatedAt,
+		EndDate:     &endDate,
+		Status:      models.PlanStatusActive,
+		AIGenerated: true,
+		OnePMData:   req.OnePMData,
+		Weeks:       state.GeneratedWeeks,
+	}
+
+	return plan
 }

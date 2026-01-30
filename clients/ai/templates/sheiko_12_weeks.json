@@ -1,0 +1,3736 @@
+{
+  "name": "Шейко 12 недель (разрядники)",
+  "author": "Борис Шейко",
+  "level": [
+    "2_разряд",
+    "1_разряд",
+    "КМС"
+  ],
+  "weeks": 12,
+  "days_per_week": 3,
+  "type": "троеборье",
+  "phases": [
+    {
+      "name": "План подг. 1",
+      "weeks": [
+        {
+          "week_num": 1,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "ПЖГС",
+                  "type": "accessory",
+                  "sets_reps": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "exercises": [
+                {
+                  "name": "Тяга до колен",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "ЖСУ",
+                  "type": "accessory",
+                  "sets_reps": [
+                    4,
+                    4,
+                    4,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Тяга с плинтов",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Ножн. на спине",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 50,
+                      "reps": 8,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Подъем на триц.",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 2,
+          "workouts": [
+            {
+              "workout_num": 4,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "ОПпл",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 5,
+              "exercises": [
+                {
+                  "name": "Тяга до колен",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 6,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 6,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Тяга с плинтов",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Широч. на блоке",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 6,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 1,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 55,
+                      "reps": 7,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Гиперэкс.",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 3,
+          "workouts": [
+            {
+              "workout_num": 7,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "ОПшпл",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 8,
+              "exercises": [
+                {
+                  "name": "Тяга на подставке",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Тяга с плинтов",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Ножн. на спине",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 9,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 7
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "ЖСУ",
+                  "type": "accessory",
+                  "sets_reps": [
+                    4,
+                    4,
+                    4,
+                    4,
+                    4
+                  ]
+                },
+                {
+                  "name": "Широч. мышцы",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 4,
+          "workouts": [
+            {
+              "workout_num": 10,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Гиперэкс.",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 11,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Широч. мышцы",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 12,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 50,
+                      "reps": 8,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "План подг. 2",
+      "weeks": [
+        {
+          "week_num": 5,
+          "workouts": [
+            {
+              "workout_num": 13,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 14,
+              "exercises": [
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 8,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 55,
+                      "reps": 7,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 1,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 8,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 55,
+                      "reps": 10,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 50,
+                      "reps": 12,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Тяга с плинтов",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 100,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Ножн. на спине",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 15,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    6,
+                    6,
+                    6,
+                    6,
+                    6
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Подъем на триц.",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 6,
+          "workouts": [
+            {
+              "workout_num": 16,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 17,
+              "exercises": [
+                {
+                  "name": "Тяга на подставке",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 7,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 50,
+                      "reps": 9,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 18,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 7
+                    }
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "ОПшпл",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "РБтр",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 7,
+          "workouts": [
+            {
+              "workout_num": 19,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 1,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 20,
+              "exercises": [
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 1,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 2
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 9,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 50,
+                      "reps": 11,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Тяга с плинтов",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 65,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 5,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Ножн. на спине",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 21,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 6,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 8,
+          "workouts": [
+            {
+              "workout_num": 22,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Отж. на брусьях",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 23,
+              "exercises": [
+                {
+                  "name": "Тяга до колен",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 4,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 5,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 8,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 55,
+                      "reps": 10,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 50,
+                      "reps": 10,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Ножн. на спине",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 24,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 5,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 6,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 6,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Накл. сидя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "План соревн. 3",
+      "weeks": [
+        {
+          "week_num": 9,
+          "workouts": [
+            {
+              "workout_num": 25,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 26,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 100,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 105,
+                      "reps": 1,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 100,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 105,
+                      "reps": 1,
+                      "sets": 1
+                    }
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 2,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 90,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 100,
+                      "reps": 1,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 105,
+                      "reps": 1,
+                      "sets": 1
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 27,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 10,
+          "workouts": [
+            {
+              "workout_num": 28,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 55,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 3,
+                      "sets": 4
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 29,
+              "exercises": [
+                {
+                  "name": "Тяга на подставке",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 65,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 1,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 30,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 3,
+                      "sets": 6
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 4,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 4,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    10,
+                    10,
+                    10,
+                    10,
+                    10
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 11,
+          "workouts": [
+            {
+              "workout_num": 31,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 3
+                    },
+                    {
+                      "percent": 85,
+                      "reps": 1,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 32,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 80,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Разв. лежа",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8,
+                    8
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 5
+                    }
+                  ]
+                },
+                {
+                  "name": "Накл. стоя",
+                  "type": "accessory",
+                  "sets_reps": [
+                    5,
+                    5,
+                    5,
+                    5
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 33,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8,
+                    8
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 12,
+          "workouts": [
+            {
+              "workout_num": 34,
+              "exercises": [
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 75,
+                      "reps": 1,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Тяга становая",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 4
+                    }
+                  ]
+                },
+                {
+                  "name": "Пресс",
+                  "type": "accessory",
+                  "sets_reps": [
+                    8,
+                    8
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 35,
+              "exercises": [
+                {
+                  "name": "Приседания",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                },
+                {
+                  "name": "Жим лежа",
+                  "type": "competition",
+                  "sets": [
+                    {
+                      "percent": 50,
+                      "reps": 3,
+                      "sets": 1
+                    },
+                    {
+                      "percent": 60,
+                      "reps": 3,
+                      "sets": 2
+                    },
+                    {
+                      "percent": 70,
+                      "reps": 2,
+                      "sets": 3
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "workout_num": 36,
+              "exercises": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -12,6 +12,7 @@ import (
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"workbot/internal/excel"
+	"workbot/internal/generator"
 	"workbot/internal/models"
 	"workbot/internal/training"
 )
@@ -210,12 +211,18 @@ func (b *Bot) handlePlanNo1PMConfirm(message *tgbotapi.Message) {
 	chatID := message.Chat.ID
 	text := message.Text
 
+	// Получаем clientID до очистки состояния
+	planStore.RLock()
+	clientID := planStore.clientID[chatID]
+	planStore.RUnlock()
+
 	switch text {
 	case "Да, продолжить":
 		b.showPlanGoalSelection(chatID)
 	case "Записать 1ПМ":
-		b.clearPlanState(chatID)
-		b.handle1PMMenu(message)
+		// Не очищаем planState — переходим к записи 1ПМ с флагом возврата
+		b.handle1PMForClient(chatID, clientID, true)
+		return
 	case "Отмена":
 		b.clearPlanState(chatID)
 		b.handlePlansMenu(message)
@@ -462,7 +469,7 @@ func (b *Bot) handlePlanConfirm(message *tgbotapi.Message) {
 	}
 }
 
-// createTrainingPlan creates the training plan in database
+// createTrainingPlan creates the training plan in database with full workout generation
 func (b *Bot) createTrainingPlan(chatID int64, message *tgbotapi.Message) {
 	planStore.RLock()
 	clientID := planStore.clientID[chatID]
@@ -478,10 +485,62 @@ func (b *Bot) createTrainingPlan(chatID int64, message *tgbotapi.Message) {
 	goalName := training.PeriodizationTemplates[goal].Name
 	planName := fmt.Sprintf("%s - %s", clientName, goalName)
 
-	waitMsg := tgbotapi.NewMessage(chatID, "⏳ Создаю план тренировок...")
+	waitMsg := tgbotapi.NewMessage(chatID, "⏳ Создаю план тренировок с полной программой...")
 	b.api.Send(waitMsg)
 
-	// Generate periodization
+	// Load client profile for generator
+	client, err := b.loadClientProfile(clientID)
+	if err != nil {
+		log.Printf("Ошибка загрузки профиля клиента: %v", err)
+		msg := tgbotapi.NewMessage(chatID, "Ошибка загрузки данных клиента")
+		b.api.Send(msg)
+		return
+	}
+
+	// Generate full workout program using the generator
+	var program *models.GeneratedProgram
+	selector, _ := generator.NewExerciseSelector("data")
+
+	switch goal {
+	case "strength", "competition":
+		gen := generator.NewStrengthGenerator(selector, client)
+		program, err = gen.Generate(generator.StrengthConfig{
+			TotalWeeks:  weeks,
+			DaysPerWeek: days,
+			Focus:       "all",
+		})
+	case "hypertrophy":
+		gen := generator.NewHypertrophyGenerator(selector, client)
+		program, err = gen.Generate(generator.HypertrophyConfig{
+			TotalWeeks:  weeks,
+			DaysPerWeek: days,
+			Split:       generator.GetDefaultSplit(days),
+		})
+	case "weight_loss":
+		gen := generator.NewFatLossGenerator(selector, client)
+		program, err = gen.Generate(generator.FatLossConfig{
+			TotalWeeks:  weeks,
+			DaysPerWeek: days,
+			IncludeHIIT: true,
+		})
+	default:
+		// По умолчанию - силовая
+		gen := generator.NewStrengthGenerator(selector, client)
+		program, err = gen.Generate(generator.StrengthConfig{
+			TotalWeeks:  weeks,
+			DaysPerWeek: days,
+			Focus:       "all",
+		})
+	}
+
+	if err != nil {
+		log.Printf("Ошибка генерации программы: %v", err)
+		msg := tgbotapi.NewMessage(chatID, "Ошибка генерации программы")
+		b.api.Send(msg)
+		return
+	}
+
+	// Generate periodization structure
 	plan := training.GenerateFullPeriodization(
 		clientID,
 		planName,
@@ -556,7 +615,64 @@ func (b *Bot) createTrainingPlan(chatID int64, message *tgbotapi.Message) {
 		}
 	}
 
-	// Generate and save progression
+	// Save generated program to training_programs table
+	var programID int
+	startDate := time.Now()
+	endDate := startDate.AddDate(0, 0, weeks*7)
+	err = tx.QueryRow(`
+		INSERT INTO public.training_programs
+			(client_id, name, goal, total_weeks, days_per_week, start_date, end_date, status, ai_generated)
+		VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+		RETURNING id`,
+		clientID, planName, string(program.Goal), weeks, days, startDate, endDate, "active", true,
+	).Scan(&programID)
+
+	if err != nil {
+		log.Printf("Ошибка сохранения программы: %v", err)
+		// Продолжаем без программы
+	} else {
+		// Save workouts and exercises
+		for _, week := range program.Weeks {
+			for _, day := range week.Days {
+				var workoutID int
+				workoutName := day.Name
+				if workoutName == "" {
+					workoutName = fmt.Sprintf("Неделя %d, День %d", week.WeekNum, day.DayNum)
+				}
+
+				err = tx.QueryRow(`
+					INSERT INTO public.program_workouts
+						(program_id, week_num, day_num, order_in_week, name, status)
+					VALUES ($1, $2, $3, $4, $5, $6)
+					RETURNING id`,
+					programID, week.WeekNum, day.DayNum, day.DayNum, workoutName, "pending",
+				).Scan(&workoutID)
+
+				if err != nil {
+					log.Printf("Ошибка сохранения тренировки: %v", err)
+					continue
+				}
+
+				// Save exercises
+				for _, ex := range day.Exercises {
+					_, err = tx.Exec(`
+						INSERT INTO public.workout_exercises
+							(workout_id, order_num, exercise_name, sets, reps, weight, weight_percent, rest_seconds, rpe, notes)
+						VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+						workoutID, ex.OrderNum, ex.ExerciseName, ex.Sets, ex.Reps,
+						sql.NullFloat64{Float64: ex.Weight, Valid: ex.Weight > 0},
+						sql.NullFloat64{Float64: ex.WeightPercent, Valid: ex.WeightPercent > 0},
+						ex.RestSeconds, ex.RPE, ex.Notes,
+					)
+					if err != nil {
+						log.Printf("Ошибка сохранения упражнения: %v", err)
+					}
+				}
+			}
+		}
+	}
+
+	// Generate and save progression for exercises with 1PM
 	exercises, client1PMs := b.getClientExercisesAnd1PMs(clientID)
 	if len(exercises) > 0 && len(client1PMs) > 0 {
 		config := training.DefaultProgressionConfig()
@@ -586,6 +702,16 @@ func (b *Bot) createTrainingPlan(chatID int64, message *tgbotapi.Message) {
 		return
 	}
 
+	// Count generated workouts
+	totalWorkouts := 0
+	totalExercises := 0
+	for _, week := range program.Weeks {
+		totalWorkouts += len(week.Days)
+		for _, day := range week.Days {
+			totalExercises += len(day.Exercises)
+		}
+	}
+
 	// Show success message
 	responseText := fmt.Sprintf("✅ План создан!\n\n"+
 		"📋 %s\n"+
@@ -597,10 +723,14 @@ func (b *Bot) createTrainingPlan(chatID int64, message *tgbotapi.Message) {
 			meso.WeekStart, meso.WeekEnd, meso.Name, meso.Phase.NameRu())
 	}
 
+	responseText += fmt.Sprintf("\n🏋️ Сгенерировано:\n"+
+		"• %d тренировок\n"+
+		"• %d упражнений всего\n", totalWorkouts, totalExercises)
+
 	if len(client1PMs) > 0 {
-		responseText += fmt.Sprintf("\n📈 Прогрессия рассчитана для %d упражнений\n", len(client1PMs))
+		responseText += fmt.Sprintf("\n📈 Прогрессия весов рассчитана для %d упражнений с 1ПМ\n", len(client1PMs))
 	} else {
-		responseText += "\n⚠️ Добавьте 1ПМ для расчёта рабочих весов\n"
+		responseText += "\n💡 Добавьте 1ПМ для расчёта конкретных весов\n"
 	}
 
 	msg := tgbotapi.NewMessage(chatID, responseText)
@@ -784,7 +914,7 @@ func (b *Bot) exportPlanToExcel(chatID int64, planID int, originalMessage *tgbot
 		return
 	}
 
-	// Load progression
+	// Load progression (for exercises with 1PM)
 	progression, err := b.loadProgressionForExport(planID)
 	if err != nil {
 		log.Printf("Ошибка загрузки прогрессии: %v", err)
@@ -796,8 +926,15 @@ func (b *Bot) exportPlanToExcel(chatID int64, planID int, originalMessage *tgbot
 		log.Printf("Ошибка загрузки 1ПМ: %v", err)
 	}
 
-	// Generate Excel file
-	f, err := excel.ExportTrainingPlan(plan, progression, pm1History)
+	// Load full workout program
+	workouts, err := b.loadWorkoutsForExport(plan.ClientID, plan.Name)
+	if err != nil {
+		log.Printf("Ошибка загрузки тренировок: %v (продолжаем без них)", err)
+		workouts = nil
+	}
+
+	// Generate Excel file with full workouts
+	f, err := excel.ExportTrainingPlanWithWorkouts(plan, progression, pm1History, workouts)
 	if err != nil {
 		log.Printf("Ошибка генерации Excel: %v", err)
 		msg := tgbotapi.NewMessage(chatID, "Ошибка создания Excel файла")
@@ -819,7 +956,17 @@ func (b *Bot) exportPlanToExcel(chatID int64, planID int, originalMessage *tgbot
 
 	// Send file to Telegram
 	doc := tgbotapi.NewDocument(chatID, tgbotapi.FilePath(tempPath))
-	doc.Caption = fmt.Sprintf("📊 План: %s\n📅 %d недель | %d тренировок/нед", plan.Name, plan.TotalWeeks, plan.DaysPerWeek)
+	caption := fmt.Sprintf("📊 План: %s\n📅 %d недель | %d тренировок/нед", plan.Name, plan.TotalWeeks, plan.DaysPerWeek)
+	if workouts != nil && len(workouts.Weeks) > 0 {
+		totalEx := 0
+		for _, w := range workouts.Weeks {
+			for _, d := range w.Days {
+				totalEx += len(d.Exercises)
+			}
+		}
+		caption += fmt.Sprintf("\n🏋️ %d упражнений", totalEx)
+	}
+	doc.Caption = caption
 	if _, err := b.api.Send(doc); err != nil {
 		log.Printf("Ошибка отправки файла: %v", err)
 		msg := tgbotapi.NewMessage(chatID, "Ошибка отправки файла")
@@ -1042,4 +1189,95 @@ func (b *Bot) handlePlanState(msg *tgbotapi.Message, state string) {
 	case statePlanExportSelect:
 		b.handlePlanExportSelect(msg)
 	}
+}
+
+// loadWorkoutsForExport loads full workout program for a plan
+func (b *Bot) loadWorkoutsForExport(clientID int, planName string) (*models.GeneratedProgram, error) {
+	// Find the training program by client_id and name
+	var programID int
+	var goal string
+	var totalWeeks, daysPerWeek int
+	err := b.db.QueryRow(`
+		SELECT id, COALESCE(goal, ''), total_weeks, days_per_week
+		FROM public.training_programs
+		WHERE client_id = $1 AND name = $2
+		ORDER BY created_at DESC LIMIT 1`, clientID, planName).
+		Scan(&programID, &goal, &totalWeeks, &daysPerWeek)
+
+	if err != nil {
+		return nil, fmt.Errorf("программа не найдена: %w", err)
+	}
+
+	program := &models.GeneratedProgram{
+		ClientID:    clientID,
+		Goal:        models.TrainingGoal(goal),
+		TotalWeeks:  totalWeeks,
+		DaysPerWeek: daysPerWeek,
+	}
+
+	// Load workouts
+	workoutRows, err := b.db.Query(`
+		SELECT id, week_num, day_num, name
+		FROM public.program_workouts
+		WHERE program_id = $1
+		ORDER BY week_num, day_num`, programID)
+	if err != nil {
+		return nil, fmt.Errorf("ошибка загрузки тренировок: %w", err)
+	}
+	defer workoutRows.Close()
+
+	// Group workouts by week
+	weekMap := make(map[int]*models.GeneratedWeek)
+
+	for workoutRows.Next() {
+		var workoutID, weekNum, dayNum int
+		var name string
+		if err := workoutRows.Scan(&workoutID, &weekNum, &dayNum, &name); err != nil {
+			continue
+		}
+
+		// Get or create week
+		week, exists := weekMap[weekNum]
+		if !exists {
+			week = &models.GeneratedWeek{
+				WeekNum: weekNum,
+			}
+			weekMap[weekNum] = week
+		}
+
+		// Create day
+		day := models.GeneratedDay{
+			DayNum: dayNum,
+			Name:   name,
+		}
+
+		// Load exercises for this workout
+		exRows, err := b.db.Query(`
+			SELECT order_num, exercise_name, sets, reps,
+				COALESCE(weight, 0), COALESCE(weight_percent, 0),
+				COALESCE(rest_seconds, 90), COALESCE(rpe, 0), COALESCE(notes, '')
+			FROM public.workout_exercises
+			WHERE workout_id = $1
+			ORDER BY order_num`, workoutID)
+		if err == nil {
+			for exRows.Next() {
+				var ex models.GeneratedExercise
+				exRows.Scan(&ex.OrderNum, &ex.ExerciseName, &ex.Sets, &ex.Reps,
+					&ex.Weight, &ex.WeightPercent, &ex.RestSeconds, &ex.RPE, &ex.Notes)
+				day.Exercises = append(day.Exercises, ex)
+			}
+			exRows.Close()
+		}
+
+		week.Days = append(week.Days, day)
+	}
+
+	// Convert map to slice
+	for i := 1; i <= totalWeeks; i++ {
+		if week, exists := weekMap[i]; exists {
+			program.Weeks = append(program.Weeks, *week)
+		}
+	}
+
+	return program, nil
 }

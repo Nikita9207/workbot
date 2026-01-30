@@ -4,16 +4,23 @@ docker/.env
 
 # Google credentials (secret!)
 google-credentials.json
+google-token.json
+oauth-credentials.json
 
 # Binaries (all compiled Go executables)
 workbot
 workbot-*
-main
+/main
 createexcel
 indexer
 program_generator
 test_generator
 test_generator_v3
+/demo
+/oauth_setup
+/plancli
+/plancli-test
+/plgen
 
 # IDE
 .idea/

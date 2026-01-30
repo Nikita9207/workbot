@@ -1,0 +1,1104 @@
+{
+  "name": "Шейко КМС/МС (4 недели к соревнованиям)",
+  "author": "Борис Шейко",
+  "level": [
+    "КМС",
+    "МС"
+  ],
+  "weeks": 4,
+  "days_per_week": 4,
+  "type": "троеборье",
+  "weeks_data": [
+    {
+      "week_num": 1,
+      "days": [
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 127.49999999999999,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 97.5,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 145.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 162.5,
+                  "sets": 1,
+                  "reps": 1
+                },
+                {
+                  "weight": 170.0,
+                  "sets": 2,
+                  "reps": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 117.5,
+                  "sets": 1,
+                  "reps": 1
+                },
+                {
+                  "weight": 122.5,
+                  "sets": 2,
+                  "reps": 1
+                }
+              ]
+            },
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 152.5,
+                  "sets": 1,
+                  "reps": 2
+                },
+                {
+                  "weight": 170.0,
+                  "sets": 1,
+                  "reps": 1
+                },
+                {
+                  "weight": 180.0,
+                  "sets": 2,
+                  "reps": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 145.0,
+                  "sets": 6,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Наклонный жим",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 6,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 117.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 127.49999999999999,
+                  "sets": 4,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Тяга до колен",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 4
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 1,
+                  "reps": 4
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 4,
+                  "reps": 4
+                }
+              ]
+            },
+            {
+              "name": "Тяга с плинтов",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 122.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 142.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 162.5,
+                  "sets": 4,
+                  "reps": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 2,
+      "days": [
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 145.0,
+                  "sets": 3,
+                  "reps": 3
+                },
+                {
+                  "weight": 152.5,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 117.5,
+                  "sets": 2,
+                  "reps": 1
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 2,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 4
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 4
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 4,
+                  "reps": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 152.5,
+                  "sets": 3,
+                  "reps": 3
+                },
+                {
+                  "weight": 162.5,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 5,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Тяга до колен",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 122.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 142.5,
+                  "sets": 4,
+                  "reps": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 145.0,
+                  "sets": 5,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 110.0,
+                  "sets": 3,
+                  "reps": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 117.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 127.49999999999999,
+                  "sets": 4,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 72.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 85.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 97.5,
+                  "sets": 5,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 152.5,
+                  "sets": 6,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 3,
+      "days": [
+        {
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 110.0,
+                  "sets": 2,
+                  "reps": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 145.0,
+                  "sets": 5,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 72.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 85.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 97.5,
+                  "sets": 4,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 6,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 152.5,
+                  "sets": 5,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 152.5,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 162.5,
+                  "sets": 2,
+                  "reps": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 5,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 122.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 142.5,
+                  "sets": 4,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 142.5,
+                  "sets": 4,
+                  "reps": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 4,
+      "days": [
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 145.0,
+                  "sets": 4,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 5,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 4,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 142.5,
+                  "sets": 4,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 127.49999999999999,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 105.0,
+                  "sets": 4,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 5,
+      "days": [
+        {
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 115.0,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 132.5,
+                  "sets": 2,
+                  "reps": 3
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 2,
+                  "reps": 2
+                },
+                {
+                  "weight": 97.5,
+                  "sets": 2,
+                  "reps": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 107.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 125.0,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            },
+            {
+              "name": "Жим лёжа",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "sets": 1,
+                  "reps": 3
+                },
+                {
+                  "weight": 77.5,
+                  "sets": 2,
+                  "reps": 3
+                },
+                {
+                  "weight": 90.0,
+                  "sets": 3,
+                  "reps": 2
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

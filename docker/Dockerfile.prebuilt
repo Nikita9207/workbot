@@ -13,6 +13,9 @@ RUN chmod +x /app/workbot
 # Копируем миграции (из parent директории)
 COPY migrations /app/migrations
 
+# Копируем данные (упражнения, шаблоны)
+COPY data /app/data
+
 # Создаём директорию для данных
 RUN mkdir -p /data/Клиенты
 

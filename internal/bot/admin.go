@@ -77,15 +77,18 @@ func (b *Bot) handleAdminStart(message *tgbotapi.Message) {
 			tgbotapi.NewKeyboardButton("Добавить клиента"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("Создать программу"),
-			tgbotapi.NewKeyboardButton("Отправить тренировку"),
+			tgbotapi.NewKeyboardButton("PL: Программы"),
+			tgbotapi.NewKeyboardButton("FIT: Программы"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Расписание"),
 			tgbotapi.NewKeyboardButton("1ПМ Тестирование"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("AI Ассистент"),
+			tgbotapi.NewKeyboardButton("Планы тренировок"),
+			tgbotapi.NewKeyboardButton("Отправить тренировку"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Тренеры"),
 		),
 	)
@@ -163,13 +166,9 @@ func (b *Bot) handleAdminMessage(message *tgbotapi.Message) {
 		return
 	}
 
-	// Обработка AI состояний
-	if strings.HasPrefix(state, "ai_") {
-		if state == "ai_send_to_client" {
-			b.handleAISendToClient(message)
-		} else {
-			b.handleAIState(message, state)
-		}
+	// Обработка состояний пауэрлифтинга
+	if strings.HasPrefix(state, "pl_") {
+		b.handlePLState(message, state)
 		return
 	}
 
@@ -185,21 +184,15 @@ func (b *Bot) handleAdminMessage(message *tgbotapi.Message) {
 		return
 	}
 
-	// Обработка состояний программ
-	if strings.HasPrefix(state, "program_") {
-		b.handleProgramState(message, state)
+	// Обработка состояний фитнес генератора
+	if strings.HasPrefix(state, "fit_") {
+		b.handleFitnessState(message, state)
 		return
 	}
 
-	// Обработка выбора клиента для программы
-	if state == "program_select_client" && strings.HasPrefix(text, "Программа>> ") {
-		b.handleProgramClientSelection(message, text)
-		return
-	}
-
-	// Обработка выбора клиента для отправки тренировки из программы
-	if state == "send_workout_select" && strings.HasPrefix(text, "Трен>> ") {
-		b.handleSendWorkoutSelection(message, text)
+	// Обработка состояний AI плана
+	if strings.HasPrefix(state, "ai_") {
+		b.handleAIState(message, state)
 		return
 	}
 
@@ -222,8 +215,6 @@ func (b *Bot) handleAdminMessage(message *tgbotapi.Message) {
 		b.handleDeleteScheduleSlot(message)
 	case "Управление записями":
 		b.handleManageAppointments(message)
-	case "AI Ассистент":
-		b.handleAIMenu(message)
 	case "Тренеры":
 		b.handleTrainersMenu(message)
 	case "Добавить тренера":
@@ -234,28 +225,32 @@ func (b *Bot) handleAdminMessage(message *tgbotapi.Message) {
 		b.handle1PMMenu(message)
 	case "Планы тренировок":
 		b.handlePlansMenu(message)
-	case "Создать программу":
-		b.handleCreateProgram(message)
-	case "Активные программы":
-		b.handleProgramsMenu(message)
-	case "Отправить тренировку из программы":
-		b.handleSendNextWorkout(message)
-	case "Отправить первую тренировку":
-		b.handleSendNextWorkout(message)
-	case "AI: Сгенерировать тренировку":
-		b.handleAIGenerateTraining(message)
-	case "AI: План на неделю":
-		b.handleAIWeekPlan(message)
-	case "AI: Годовой план":
-		b.handleAIYearPlan(message)
-	case "AI: Задать вопрос":
-		b.handleAIQuestion(message)
-	case "AI: План с прогрессией":
-		b.handleAIProgressionPlan(message)
-	case "AI: Методики":
-		b.handleAIMethodologies(message)
-	case "AI: К соревнованиям":
-		b.handleAICompetition(message)
+	case "PL: Программы":
+		b.handlePowerliftingMenu(message)
+	case "PL: Троеборье":
+		b.handlePLLiftType(message, "powerlifting")
+	case "PL: Жим лёжа":
+		b.handlePLLiftType(message, "bench")
+	case "PL: Присед":
+		b.handlePLLiftType(message, "squat")
+	case "PL: Становая тяга":
+		b.handlePLLiftType(message, "deadlift")
+	case "PL: Ягодичный мост":
+		b.handlePLLiftType(message, "hip_thrust")
+	case "PL: Авто-подбор":
+		b.handlePLAutoSelect(message)
+	case "PL: Список шаблонов":
+		b.handlePLListTemplates(message)
+	case "FIT: Программы":
+		b.handleFitnessMenu(message)
+	case "FIT: Гипертрофия":
+		b.handleFitnessProgramType(message, "hypertrophy")
+	case "FIT: Сила":
+		b.handleFitnessProgramType(message, "strength")
+	case "FIT: Жиросжигание":
+		b.handleFitnessProgramType(message, "fatloss")
+	case "FIT: Hyrox":
+		b.handleFitnessProgramType(message, "hyrox")
 	case "Отмена":
 		b.handleAdminCancel(message)
 	case "Назад":
@@ -271,18 +266,12 @@ func (b *Bot) handleAdminMessage(message *tgbotapi.Message) {
 			b.handleSendTrainingSelection(message, text)
 			return
 		}
-		// Проверяем выбор клиента для AI
-		if strings.HasPrefix(text, "AI>> ") {
-			b.handleAIClientSelection(message, text)
-			return
-		}
 		b.sendMessage(chatID, "Неизвестная команда")
 	}
 }
 
-// handleAIState обрабатывает различные AI состояния
-func (b *Bot) handleAIState(message *tgbotapi.Message, state string) {
-	chatID := message.Chat.ID
+// handlePLState обрабатывает состояния пауэрлифтинга
+func (b *Bot) handlePLState(message *tgbotapi.Message, state string) {
 	text := message.Text
 
 	if text == "Отмена" {
@@ -291,78 +280,20 @@ func (b *Bot) handleAIState(message *tgbotapi.Message, state string) {
 	}
 
 	switch state {
-	case "ai_awaiting_params":
-		// Выбор типа тренировки
-		b.handleAITrainingType(message)
-	case "ai_awaiting_direction":
-		// Выбор направленности
-		b.handleAIDirection(message)
-	case "ai_review":
-		// Решение по сгенерированной тренировке
-		b.handleAIReview(message)
-	case "ai_modify":
-		// Ввод инструкций по модификации
-		b.handleAIModifyInput(message)
-	case "ai_question":
-		// Ввод вопроса
-		b.handleAIQuestionInput(message)
-	case "ai_week_plan_client":
-		// Выбор клиента для недельного плана
-		if strings.HasPrefix(text, "AI>> ") {
-			clientID := parseClientID(text)
-			if clientID > 0 {
-				userStates.Lock()
-				delete(userStates.states, chatID)
-				userStates.Unlock()
-				b.handleAIWeekPlanGenerate(message, clientID)
-			}
+	case "pl_select_template":
+		if strings.HasPrefix(text, "TPL: ") {
+			b.handlePLTemplateSelection(message)
 		}
-	case "ai_year_plan_client":
-		// Выбор клиента для годового плана
-		if strings.HasPrefix(text, "AI>> ") {
-			clientID := parseClientID(text)
-			if clientID > 0 {
-				userStates.Lock()
-				delete(userStates.states, chatID)
-				userStates.Unlock()
-				b.handleAIYearPlanGenerate(message, clientID)
-			}
-		}
-	case "ai_progression_client":
-		// Выбор клиента для плана с прогрессией
-		if strings.HasPrefix(text, "AI>> ") {
-			clientID := parseClientID(text)
-			if clientID > 0 {
-				b.handleAIProgressionWeeks(message, clientID)
-			}
-		}
-	case "ai_progression_weeks":
-		b.handleAIProgressionWeeksInput(message)
-	case "ai_progression_days":
-		b.handleAIProgressionDaysInput(message)
-	case "ai_progression_goal":
-		b.handleAIProgressionGoalInput(message)
-	case "ai_progression_review":
-		b.handleAIProgressionReview(message)
-	case "ai_methodology_select":
-		b.handleAIMethodologySelect(message)
-	case "ai_methodology_compare":
-		b.handleAIMethodologyCompare(message)
-	case "ai_methodology_compare_goal":
-		b.handleAIMethodologyCompareGoal(message)
-	case "ai_competition_client":
-		if strings.HasPrefix(text, "AI>> ") {
-			clientID := parseClientID(text)
-			if clientID > 0 {
-				b.handleAICompetitionSport(message, clientID)
-			}
-		}
-	case "ai_competition_sport":
-		b.handleAICompetitionSportInput(message)
-	case "ai_competition_weeks":
-		b.handleAICompetitionWeeksInput(message)
-	case "ai_competition_review":
-		b.handleAICompetitionReview(message)
+	case "pl_enter_maxes":
+		b.handlePLMaxesInput(message)
+	case "pl_select_days":
+		b.handlePLDaysInput(message)
+	case "pl_review":
+		b.handlePLReview(message)
+	case "pl_auto_maxes":
+		b.handlePLAutoMaxesInput(message)
+	case "pl_select_client":
+		b.handlePLClientSelection(message)
 	}
 }
 

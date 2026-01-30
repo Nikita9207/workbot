@@ -1,0 +1,1541 @@
+{
+  "name": "Ягодичный мост 12 недель",
+  "author": "WorkBot AI",
+  "level": ["новичок", "2_разряд", "1_разряд", "КМС"],
+  "weeks": 12,
+  "days_per_week": 4,
+  "type": "hip_thrust",
+  "description": "12-недельная программа подготовки к соревнованиям по ягодичному мосту. 3 блока: Накопление (1-4), Трансформация (5-8), Реализация (9-12)",
+  "phases": [
+    {
+      "name": "Блок 1: Накопление",
+      "description": "Создание объёмной базы, гипертрофия, отработка техники",
+      "weeks": [
+        {
+          "week_num": 1,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (тяжёлый)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 5, "sets": 1},
+                    {"percent": 70, "reps": 5, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой 3 сек внизу",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 60, "reps": 6, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Сгибание ног лёжа",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (жим)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Жим гантелей сидя",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (лёгкий) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 5, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга гантели в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (тяга) + Руки",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Подтягивания",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Сгибание рук со штангой",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 2,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (тяжёлый)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 5, "sets": 1},
+                    {"percent": 72, "reps": 5, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой 3 сек внизу",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 62, "reps": 6, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Сгибание ног лёжа",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "+5 кг"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (жим)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Жим гантелей сидя",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Французский жим лёжа",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (лёгкий) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 62, "reps": 5, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Тяга нижнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (тяга) + Руки",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Подтягивания",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Сгибание рук с гантелями",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 3,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (пиковый объём)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 5, "sets": 1},
+                    {"percent": 70, "reps": 5, "sets": 2},
+                    {"percent": 75, "reps": 5, "sets": 4}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой 3 сек внизу",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 65, "reps": 6, "sets": 4}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Сгибание ног лёжа",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12, 12],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "+10 кг"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (жим)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Жим гантелей сидя",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (средний) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 4, "sets": 1},
+                    {"percent": 60, "reps": 4, "sets": 1},
+                    {"percent": 70, "reps": 4, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост на одной ноге",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "собственный вес"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга гантели в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12, 12],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (тяга) + Руки",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Подтягивания",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15, 15],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Сгибание рук со штангой",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10, 10],
+                  "load_type": "RPE 8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 4,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (разгрузка)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 5, "sets": 1},
+                    {"percent": 70, "reps": 5, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 60, "reps": 6, "sets": 2}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (разгрузка)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "RPE 6"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (лёгкий) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 5, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (разгрузка)",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Сгибание рук с гантелями",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 6"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Блок 2: Трансформация",
+      "description": "Перевод накопленного объёма в силу, привыкание к тяжёлым весам",
+      "weeks": [
+        {
+          "week_num": 5,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (силовой)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 3, "sets": 1},
+                    {"percent": 80, "reps": 3, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой 2 сек вверху",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 72, "reps": 4, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Тяга на прямых ногах",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Сгибание ног лёжа",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "+10 кг"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (жим, сила)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5, 5],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7-8"
+                },
+                {
+                  "name": "Жим штанги стоя",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Французский жим",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (скоростной) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой (взрывной)",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 2},
+                    {"percent": 60, "reps": 3, "sets": 6}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с резиной",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Сгибание ног в тренажёре",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (тяга, сила) + Руки",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5, 5],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Подтягивания с отягощением",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Сгибание рук со штангой",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 8"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 6,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (силовой + синглы)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 3, "sets": 1},
+                    {"percent": 82, "reps": 3, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — сингл",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 90, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой 2 сек вверху",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 75, "reps": 4, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Тяга на прямых ногах",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "+15 кг"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (жим)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5, 5],
+                  "load_type": "RPE 8-8.5"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Жим штанги стоя",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (скоростной) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой (взрывной)",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 2},
+                    {"percent": 62, "reps": 3, "sets": 6}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с возвышения (дефицит)",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 65, "reps": 6, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга нижнего блока",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8, 8],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (тяга) + Руки",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5, 5],
+                  "load_type": "RPE 8-8.5"
+                },
+                {
+                  "name": "Подтягивания с отягощением",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [15, 15, 15],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Сгибание рук с гантелями",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Жим узким хватом",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 7,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (тяжёлые синглы)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 2, "sets": 1},
+                    {"percent": 80, "reps": 2, "sets": 1},
+                    {"percent": 85, "reps": 3, "sets": 4}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — сингл",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 92, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой 2 сек вверху",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 77, "reps": 3, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "+15 кг"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (жим)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [4, 4, 4, 4, 4],
+                  "load_type": "RPE 8.5"
+                },
+                {
+                  "name": "Жим гантелей на наклонной",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Жим штанги стоя",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Французский жим",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (средний) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 75, "reps": 3, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с резиной",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6, 6],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (тяга) + Руки",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [4, 4, 4, 4, 4],
+                  "load_type": "RPE 8.5"
+                },
+                {
+                  "name": "Подтягивания с отягощением",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5, 5],
+                  "load_type": "RPE 8"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Сгибание рук со штангой",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 7"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 8,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (разгрузка)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 3, "sets": 1},
+                    {"percent": 80, "reps": 3, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — сингл",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 85, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (разгрузка)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Жим гантелей сидя",
+                  "type": "accessory",
+                  "sets_reps": [8, 8],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "RPE 5"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (лёгкий) + Спина",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 3, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (разгрузка)",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "RPE 5"
+                },
+                {
+                  "name": "Сгибание рук с гантелями",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 5"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Блок 3: Реализация",
+      "description": "Выход на пик формы, суперкомпенсация, соревновательный результат",
+      "weeks": [
+        {
+          "week_num": 9,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (тяжёлый)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 2, "sets": 1},
+                    {"percent": 80, "reps": 2, "sets": 1},
+                    {"percent": 87, "reps": 2, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — сингл",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 93, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с паузой вверху",
+                  "type": "accessory",
+                  "sets": [
+                    {"percent": 75, "reps": 3, "sets": 2}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5],
+                  "load_type": "RPE 7"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (поддерживающий)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [4, 4, 4, 4],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Жим гантелей сидя",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 7"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Разгибание рук на блоке",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "RPE 6"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (скоростной)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой (взрывной)",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 2},
+                    {"percent": 65, "reps": 3, "sets": 5}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Обратная гиперэкстензия",
+                  "type": "accessory",
+                  "sets_reps": [10, 10, 10],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (лёгкий)",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [6, 6, 6],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [12, 12, 12],
+                  "load_type": "RPE 5"
+                },
+                {
+                  "name": "Сгибание рук с гантелями",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 6"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 10,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (проходка)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 5, "sets": 1},
+                    {"percent": 60, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 2, "sets": 1},
+                    {"percent": 80, "reps": 1, "sets": 1},
+                    {"percent": 88, "reps": 2, "sets": 2}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — сингл (тест)",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 95, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — сингл (по ощущениям)",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 100, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Румынская тяга",
+                  "type": "accessory",
+                  "sets_reps": [5, 5],
+                  "load_type": "RPE 6"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (лёгкий)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [5, 5, 5],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Жим гантелей сидя",
+                  "type": "accessory",
+                  "sets_reps": [8, 8],
+                  "load_type": "RPE 6"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 5"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (техника)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 1},
+                    {"percent": 60, "reps": 2, "sets": 4}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [8, 8, 8],
+                  "load_type": "RPE 5"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "Верх тела (очень лёгкий)",
+              "exercises": [
+                {
+                  "name": "Тяга штанги в наклоне",
+                  "type": "accessory",
+                  "sets_reps": [6, 6],
+                  "load_type": "RPE 5"
+                },
+                {
+                  "name": "Тяга к лицу",
+                  "type": "accessory",
+                  "sets_reps": [12, 12],
+                  "load_type": "RPE 4"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "week_num": 11,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (средний)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 1},
+                    {"percent": 60, "reps": 2, "sets": 1},
+                    {"percent": 70, "reps": 2, "sets": 1},
+                    {"percent": 80, "reps": 2, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [8, 8],
+                  "load_type": "RPE 5"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "Верх тела (очень лёгкий)",
+              "exercises": [
+                {
+                  "name": "Жим штанги лёжа",
+                  "type": "accessory",
+                  "sets_reps": [5, 5],
+                  "load_type": "RPE 5"
+                },
+                {
+                  "name": "Тяга верхнего блока",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "RPE 5"
+                }
+              ]
+            },
+            {
+              "workout_num": 3,
+              "name": "Ягодичный мост (лёгкий)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 2, "sets": 1},
+                    {"percent": 65, "reps": 2, "sets": 3}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [6, 6],
+                  "load_type": "RPE 4"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "ОТДЫХ",
+              "exercises": []
+            }
+          ]
+        },
+        {
+          "week_num": 12,
+          "workouts": [
+            {
+              "workout_num": 1,
+              "name": "Ягодичный мост (активация)",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост со штангой",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 50, "reps": 3, "sets": 1},
+                    {"percent": 70, "reps": 2, "sets": 2}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [6, 6],
+                  "load_type": "RPE 4"
+                }
+              ]
+            },
+            {
+              "workout_num": 2,
+              "name": "ОТДЫХ",
+              "exercises": []
+            },
+            {
+              "workout_num": 3,
+              "name": "Лёгкая активация (по желанию)",
+              "exercises": [
+                {
+                  "name": "Ходьба с резинкой",
+                  "type": "accessory",
+                  "sets_reps": [20, 20],
+                  "load_type": "активация"
+                },
+                {
+                  "name": "Ягодичный мост с пола",
+                  "type": "accessory",
+                  "sets_reps": [10, 10],
+                  "load_type": "собственный вес"
+                }
+              ]
+            },
+            {
+              "workout_num": 4,
+              "name": "ОТДЫХ — подготовка к соревнованиям",
+              "exercises": []
+            },
+            {
+              "workout_num": 5,
+              "name": "СОРЕВНОВАНИЯ",
+              "exercises": [
+                {
+                  "name": "Ягодичный мост — 1 подход",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 92, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — 2 подход",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 97, "reps": 1, "sets": 1}
+                  ]
+                },
+                {
+                  "name": "Ягодичный мост — 3 подход",
+                  "type": "competition",
+                  "sets": [
+                    {"percent": 105, "reps": 1, "sets": 1}
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "warmup_protocol": {
+    "description": "Разминка перед выходом на помост",
+    "steps": [
+      "Общая активация (5–7 минут): велотренажёр или ходьба",
+      "Динамическая растяжка сгибателей бедра",
+      "Активация ягодичных: ходьба с резинкой, ягодичный мост с пола — 2×10",
+      "Прогрев со штангой: пустой гриф ×8, 40% ×5, 60% ×3, 75% ×2, 85% ×1",
+      "Последний разминочный подход за 10–15 минут до выхода на помост"
+    ]
+  },
+  "weak_points": {
+    "weak_start": ["Ягодичный мост с паузой внизу", "Ягодичный мост с возвышения"],
+    "weak_lockout": ["Ягодичный мост с паузой вверху", "Ягодичный мост с резиной"],
+    "instability": ["Ягодичный мост на одной ноге", "Паллоф-пресс"],
+    "weak_posterior_chain": ["Румынская тяга", "Обратная гиперэкстензия"]
+  }
+}

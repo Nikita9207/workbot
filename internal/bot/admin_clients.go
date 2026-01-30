@@ -126,11 +126,14 @@ func (b *Bot) showClientProfile(chatID int64, clientID int) {
 			tgbotapi.NewKeyboardButton("Записать тренировку"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("PL: Программа"),
+			tgbotapi.NewKeyboardButton("FIT: Программа"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Задать цель"),
 			tgbotapi.NewKeyboardButton("Составить план"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
-			tgbotapi.NewKeyboardButton("AI план"),
 			tgbotapi.NewKeyboardButton("История"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
@@ -162,12 +165,16 @@ func (b *Bot) handleClientAction(message *tgbotapi.Message) {
 	switch text {
 	case "Записать тренировку":
 		b.startTrainingInput(chatID, clientID)
+	case "PL: Программа":
+		// Переход к пауэрлифтинг программе с предвыбранным клиентом
+		b.handlePLProgramForClient(message, clientID)
+	case "FIT: Программа":
+		// Переход к фитнес программе с предвыбранным клиентом
+		b.handleFITProgramForClient(message, clientID)
 	case "Задать цель":
 		b.startSetGoal(chatID, clientID)
 	case "Составить план":
 		b.startCreatePlan(chatID, clientID)
-	case "AI план":
-		b.handleAIClientPlan(chatID, clientID)
 	case "История":
 		b.showClientHistory(chatID, clientID)
 	case "Удалить клиента":

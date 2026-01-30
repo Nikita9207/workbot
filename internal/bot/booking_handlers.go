@@ -572,6 +572,19 @@ func (b *Bot) createAppointment(chatID int64, date time.Time, hour, minute int) 
 	startTimeStr := fmt.Sprintf("%02d:%02d:00", hour, minute)
 	endTimeStr := fmt.Sprintf("%02d:%02d:00", hour+1, minute) // +1 час
 
+	// Проверяем, не занят ли слот (double-check перед INSERT)
+	var existingCount int
+	err = b.db.QueryRow(`
+		SELECT COUNT(*) FROM public.appointments
+		WHERE trainer_id = $1 AND appointment_date = $2 AND start_time = $3 AND status != 'cancelled'`,
+		trainerID, date.Format("2006-01-02"), startTimeStr).Scan(&existingCount)
+	if err == nil && existingCount > 0 {
+		msg := tgbotapi.NewMessage(chatID, "❌ К сожалению, это время уже занято другим клиентом.\nПожалуйста, выберите другое время.")
+		b.api.Send(msg)
+		b.showAvailableDates(chatID)
+		return
+	}
+
 	// Создаём запись в БД
 	var appointmentID int
 	err = b.db.QueryRow(`
@@ -582,6 +595,13 @@ func (b *Bot) createAppointment(chatID int64, date time.Time, hour, minute int) 
 
 	if err != nil {
 		log.Printf("Ошибка создания записи: %v", err)
+		// Проверяем, является ли ошибка нарушением уникальности (duplicate key)
+		if strings.Contains(err.Error(), "duplicate") || strings.Contains(err.Error(), "unique") {
+			msg := tgbotapi.NewMessage(chatID, "❌ Это время только что было занято другим клиентом.\nПожалуйста, выберите другое время.")
+			b.api.Send(msg)
+			b.showAvailableDates(chatID)
+			return
+		}
 		msg := tgbotapi.NewMessage(chatID, "Ошибка создания записи. Попробуйте позже.")
 		b.api.Send(msg)
 		b.restoreMainMenu(chatID)

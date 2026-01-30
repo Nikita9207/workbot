@@ -25,15 +25,9 @@ type Config struct {
 	GoogleCredentialsPath string
 	GoogleDriveFolderID   string
 
-	// Ollama
-	OllamaURL   string // URL Ollama, например http://localhost:11434
-	OllamaModel string // Модель, например gemma2:9b-instruct-q4_K_M
-
-	// Groq (только для транскрипции голоса)
-	GroqAPIKey string
-
-	// RAG индекс (готовый, через Tailscale)
-	RAGIndexPath string // Путь к готовому индексу knowledge.json
+	// Google OAuth2 (альтернатива Service Account)
+	GoogleOAuthCredPath string
+	GoogleTokenPath     string
 }
 
 // Load загружает конфигурацию из переменных окружения или .env файла
@@ -74,15 +68,8 @@ func Load() (*Config, error) {
 		GoogleCredentialsPath: getEnv("GOOGLE_CREDENTIALS_PATH", "google-credentials.json"),
 		GoogleDriveFolderID:   getEnv("GOOGLE_DRIVE_FOLDER_ID", ""),
 
-		// Ollama
-		OllamaURL:   getEnv("OLLAMA_URL", "http://localhost:11434"),
-		OllamaModel: getEnv("OLLAMA_MODEL", "gemma2:9b-instruct-q4_K_M"),
-
-		// Groq (только для транскрипции)
-		GroqAPIKey: getEnv("GROQ_API_KEY", ""),
-
-		// Готовый RAG индекс
-		RAGIndexPath: getEnv("RAG_INDEX_PATH", ""),
+		GoogleOAuthCredPath: getEnv("GOOGLE_OAUTH_CREDENTIALS_PATH", ""),
+		GoogleTokenPath:     getEnv("GOOGLE_TOKEN_PATH", ""),
 	}
 
 	if cfg.BotToken == "" {

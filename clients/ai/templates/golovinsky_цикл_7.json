@@ -1,0 +1,6949 @@
+{
+  "name": "Головинский Цикл 7",
+  "author": "Головинский",
+  "level": [
+    "1_разряд",
+    "КМС",
+    "МС"
+  ],
+  "type": "троеборье",
+  "microcycles": [
+    {
+      "microcycle_num": 1,
+      "stats": {
+        "tonnage": 52935.0,
+        "avg_weight": 87.35148514851485,
+        "kps": 606
+      },
+      "days": [
+        {
+          "date": "2015-07-20",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 130.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 182.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3460.0,
+                "avg_weight": 164.76190476190476,
+                "intensity": 0.6337,
+                "pm": 260.0,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 135.0,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3050.0,
+                "avg_weight": 127.08333333333333,
+                "intensity": 0.61,
+                "pm": 208.0,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 60.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1500.0,
+                "avg_weight": 60.0,
+                "intensity": 0.45,
+                "pm": 132.0,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2390.0,
+                "avg_weight": 77.09677419354838,
+                "intensity": 0.62,
+                "pm": 25.0,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-21",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 102.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 122.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2712.5,
+                "avg_weight": 129.16666666666666,
+                "intensity": 0.63,
+                "pm": 205.0,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 77.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1907.5,
+                "avg_weight": 70.64814814814815,
+                "intensity": 0.57,
+                "pm": 123.0,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 102.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 112.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 68.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1835.0,
+                "avg_weight": 101.94444444444444,
+                "intensity": 0.62,
+                "pm": 164.0,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 37.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 47.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1412.5,
+                "avg_weight": 45.564516129032256,
+                "intensity": 0.6,
+                "pm": 75.85,
+                "kps": 31
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 10.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1860.0,
+                "avg_weight": 62.0,
+                "intensity": 0.62,
+                "pm": 20.0,
+                "kps": 30
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-23",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 120.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 172.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 72.0
+                },
+                {
+                  "weight": 192.5,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 80.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3847.5,
+                "avg_weight": 160.3125,
+                "intensity": 0.67,
+                "pm": 240.0,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 87.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2625.0,
+                "avg_weight": 87.5,
+                "intensity": 0.46,
+                "pm": 192.0,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2062.5,
+                "avg_weight": 82.5,
+                "intensity": 0.4,
+                "pm": 208.0,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 60.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 92.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2792.5,
+                "avg_weight": 79.78571428571429,
+                "intensity": 0.6,
+                "pm": 132.0,
+                "kps": 35
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1990.0,
+                "avg_weight": 76.53846153846153,
+                "intensity": 0.61,
+                "pm": 25.0,
+                "kps": 26
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-24",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 92.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 112.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 132.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 73.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3005.0,
+                "avg_weight": 125.20833333333333,
+                "intensity": 0.61,
+                "pm": 205.0,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 157.5,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1575.0,
+                "avg_weight": 157.5,
+                "intensity": 0.75,
+                "pm": 211.15,
+                "kps": 10
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1625.0,
+                "avg_weight": 65.0,
+                "intensity": 0.4,
+                "pm": 164.0,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 27.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 50.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1375.0,
+                "avg_weight": 55.0,
+                "intensity": 0.5,
+                "pm": 55.35,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 32.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 47.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1382.5,
+                "avg_weight": 44.596774193548384,
+                "intensity": 0.62,
+                "pm": 71.75,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-25",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2625.0,
+                "avg_weight": 105.0,
+                "intensity": 0.4,
+                "pm": 260.0,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 4,
+                  "sets": 6,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2040.0,
+                "avg_weight": 85.0,
+                "intensity": 0.35,
+                "pm": 240.0,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 135.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 69.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2347.5,
+                "avg_weight": 130.41666666666666,
+                "intensity": 0.63,
+                "pm": 208.0,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 45.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1125.0,
+                "avg_weight": 45.0,
+                "intensity": 0.34,
+                "pm": 132.0,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2390.0,
+                "avg_weight": 77.09677419354838,
+                "intensity": 0.62,
+                "pm": 25.0,
+                "kps": 31
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 2,
+      "stats": {
+        "tonnage": 52082.5,
+        "avg_weight": 78.67447129909365,
+        "kps": 662
+      },
+      "days": [
+        {
+          "date": "2015-07-27",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 117.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 170.0,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3707.5,
+                "avg_weight": 154.47916666666666,
+                "intensity": 0.59,
+                "pm": 261.3,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 107.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2405.0,
+                "avg_weight": 114.52380952380952,
+                "intensity": 0.55,
+                "pm": 209.04,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 47.5,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 55.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2240.0,
+                "avg_weight": 50.90909090909091,
+                "intensity": 0.38,
+                "pm": 132.66,
+                "kps": 44
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2775.0,
+                "avg_weight": 71.15384615384616,
+                "intensity": 0.57,
+                "pm": 25.125,
+                "kps": 39
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-28",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 92.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 112.5,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 54.0
+                },
+                {
+                  "weight": 127.5,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1982.5,
+                "avg_weight": 116.61764705882354,
+                "intensity": 0.57,
+                "pm": 206.025,
+                "kps": 17
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 50.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 87.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2037.5,
+                "avg_weight": 75.46296296296296,
+                "intensity": 0.61,
+                "pm": 123.615,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 82.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 100.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 107.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 115.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2460.0,
+                "avg_weight": 102.5,
+                "intensity": 0.62,
+                "pm": 164.82,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 35.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 45.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 59.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1290.0,
+                "avg_weight": 43.0,
+                "intensity": 0.56,
+                "pm": 76.22925,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 10.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 12.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1500.0,
+                "avg_weight": 57.69230769230769,
+                "intensity": 0.57,
+                "pm": 20.1,
+                "kps": 26
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-30",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 120.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 177.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 74.0
+                },
+                {
+                  "weight": 192.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 80.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3697.5,
+                "avg_weight": 168.0681818181818,
+                "intensity": 0.7,
+                "pm": 241.2,
+                "kps": 22
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 36.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2100.0,
+                "avg_weight": 70.0,
+                "intensity": 0.36,
+                "pm": 192.96,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1875.0,
+                "avg_weight": 62.5,
+                "intensity": 0.3,
+                "pm": 209.04,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 77.5,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 57.99999999999999
+                }
+              ],
+              "stats": {
+                "tonnage": 1887.5,
+                "avg_weight": 75.5,
+                "intensity": 0.57,
+                "pm": 132.66,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 11.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 59.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2715.0,
+                "avg_weight": 69.61538461538461,
+                "intensity": 0.55,
+                "pm": 25.125,
+                "kps": 39
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-07-31",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 102.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 122.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 140.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3192.5,
+                "avg_weight": 133.02083333333334,
+                "intensity": 0.65,
+                "pm": 206.025,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 162.5,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 77.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1300.0,
+                "avg_weight": 162.5,
+                "intensity": 0.77,
+                "pm": 212.20575,
+                "kps": 8
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 52.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 32.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1312.5,
+                "avg_weight": 52.5,
+                "intensity": 0.32,
+                "pm": 164.82,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 17.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 32.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1050.0,
+                "avg_weight": 35.0,
+                "intensity": 0.31,
+                "pm": 55.62675,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 30.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 40.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 55.00000000000001
+                }
+              ],
+              "stats": {
+                "tonnage": 1380.0,
+                "avg_weight": 38.333333333333336,
+                "intensity": 0.53,
+                "pm": 72.10875,
+                "kps": 36
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-01",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 33.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2550.0,
+                "avg_weight": 85.0,
+                "intensity": 0.33,
+                "pm": 261.3,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 72.5,
+                  "reps": 3,
+                  "sets": 6,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1305.0,
+                "avg_weight": 72.5,
+                "intensity": 0.3,
+                "pm": 241.2,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 115.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3855.0,
+                "avg_weight": 116.81818181818181,
+                "intensity": 0.56,
+                "pm": 209.04,
+                "kps": 33
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 42.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 32.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1275.0,
+                "avg_weight": 42.5,
+                "intensity": 0.32,
+                "pm": 132.66,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2190.0,
+                "avg_weight": 73.0,
+                "intensity": 0.58,
+                "pm": 25.125,
+                "kps": 30
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 3,
+      "stats": {
+        "tonnage": 55522.5,
+        "avg_weight": 76.68853591160222,
+        "kps": 724
+      },
+      "days": [
+        {
+          "date": "2015-08-03",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 125.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 48.0
+                },
+                {
+                  "weight": 157.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 185.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3475.0,
+                "avg_weight": 165.47619047619048,
+                "intensity": 0.63,
+                "pm": 262.60650000000004,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 115.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 137.5,
+                  "reps": 3,
+                  "sets": 2,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 147.5,
+                  "reps": 2,
+                  "sets": 2,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2350.0,
+                "avg_weight": 123.6842105263158,
+                "intensity": 0.59,
+                "pm": 210.0852,
+                "kps": 19
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 40.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 30.0
+                },
+                {
+                  "weight": 50.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 38.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1960.0,
+                "avg_weight": 44.54545454545455,
+                "intensity": 0.33,
+                "pm": 133.3233,
+                "kps": 44
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 11.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2790.0,
+                "avg_weight": 71.53846153846153,
+                "intensity": 0.57,
+                "pm": 25.250625,
+                "kps": 39
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-04",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 48.0
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 145.0,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2105.0,
+                "avg_weight": 123.82352941176471,
+                "intensity": 0.6,
+                "pm": 207.055125,
+                "kps": 17
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 70.0,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 56.99999999999999
+                },
+                {
+                  "weight": 80.0,
+                  "reps": 2,
+                  "sets": 6,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1390.0,
+                "avg_weight": 73.15789473684211,
+                "intensity": 0.59,
+                "pm": 124.233075,
+                "kps": 19
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 75.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 90.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 100.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1935.0,
+                "avg_weight": 92.14285714285714,
+                "intensity": 0.56,
+                "pm": 165.64409999999998,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 30.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 42.5,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 47.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1387.5,
+                "avg_weight": 42.04545454545455,
+                "intensity": 0.55,
+                "pm": 76.61039625,
+                "kps": 33
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 8.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 42.0
+                },
+                {
+                  "weight": 11.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 12.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 59.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2760.0,
+                "avg_weight": 55.2,
+                "intensity": 0.55,
+                "pm": 20.2005,
+                "kps": 50
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-06",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 132.5,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 170.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 70.0
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 74.0
+                },
+                {
+                  "weight": 190.0,
+                  "reps": 1,
+                  "sets": 1,
+                  "percent": 78.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3387.5,
+                "avg_weight": 169.375,
+                "intensity": 0.7,
+                "pm": 242.40599999999998,
+                "kps": 20
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 57.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1725.0,
+                "avg_weight": 57.5,
+                "intensity": 0.3,
+                "pm": 193.9248,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 72.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2175.0,
+                "avg_weight": 72.5,
+                "intensity": 0.35,
+                "pm": 210.0852,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 72.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4237.5,
+                "avg_weight": 77.04545454545455,
+                "intensity": 0.58,
+                "pm": 133.3233,
+                "kps": 55
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 12.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 49.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2910.0,
+                "avg_weight": 74.61538461538461,
+                "intensity": 0.59,
+                "pm": 25.250625,
+                "kps": 39
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-07",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 115.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 135.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 147.5,
+                  "reps": 3,
+                  "sets": 2,
+                  "percent": 71.0
+                },
+                {
+                  "weight": 157.5,
+                  "reps": 2,
+                  "sets": 2,
+                  "percent": 76.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2630.0,
+                "avg_weight": 138.42105263157896,
+                "intensity": 0.67,
+                "pm": 207.055125,
+                "kps": 19
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 167.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 78.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1005.0,
+                "avg_weight": 167.5,
+                "intensity": 0.79,
+                "pm": 213.26677875,
+                "kps": 6
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 37.0
+                },
+                {
+                  "weight": 70.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 43.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3625.0,
+                "avg_weight": 65.9090909090909,
+                "intensity": 0.4,
+                "pm": 165.64409999999998,
+                "kps": 55
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 20.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 37.0
+                },
+                {
+                  "weight": 25.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 43.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2450.0,
+                "avg_weight": 44.54545454545455,
+                "intensity": 0.4,
+                "pm": 55.90488375,
+                "kps": 55
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 32.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 45.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 63.0
+                },
+                {
+                  "weight": 47.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 67.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1440.0,
+                "avg_weight": 43.63636363636363,
+                "intensity": 0.6,
+                "pm": 72.46929375,
+                "kps": 33
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-08",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 92.5,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2220.0,
+                "avg_weight": 92.5,
+                "intensity": 0.35,
+                "pm": 262.60650000000004,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 82.5,
+                  "reps": 3,
+                  "sets": 6,
+                  "percent": 34.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1485.0,
+                "avg_weight": 82.5,
+                "intensity": 0.34,
+                "pm": 242.40599999999998,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 122.5,
+                  "reps": 4,
+                  "sets": 2,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 3,
+                  "sets": 2,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2390.0,
+                "avg_weight": 119.5,
+                "intensity": 0.57,
+                "pm": 210.0852,
+                "kps": 20
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1320.0,
+                "avg_weight": 55.0,
+                "intensity": 0.41,
+                "pm": 133.3233,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2370.0,
+                "avg_weight": 71.81818181818181,
+                "intensity": 0.57,
+                "pm": 25.250625,
+                "kps": 33
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 4,
+      "stats": {
+        "tonnage": 59605.0,
+        "avg_weight": 86.88775510204081,
+        "kps": 686
+      },
+      "days": [
+        {
+          "date": "2015-08-10",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 135.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 160.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 61.0
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 200.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 76.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4135.0,
+                "avg_weight": 172.29166666666666,
+                "intensity": 0.65,
+                "pm": 263.91953250000006,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 110.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 71.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2270.0,
+                "avg_weight": 133.52941176470588,
+                "intensity": 0.63,
+                "pm": 211.13562599999997,
+                "kps": 17
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 41.0
+                },
+                {
+                  "weight": 65.0,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2675.0,
+                "avg_weight": 59.44444444444444,
+                "intensity": 0.44,
+                "pm": 133.9899165,
+                "kps": 45
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2790.0,
+                "avg_weight": 77.5,
+                "intensity": 0.61,
+                "pm": 25.376878125,
+                "kps": 36
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-11",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 115.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 69.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2842.5,
+                "avg_weight": 135.35714285714286,
+                "intensity": 0.65,
+                "pm": 208.090400625,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 77.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 87.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1492.5,
+                "avg_weight": 78.55263157894737,
+                "intensity": 0.63,
+                "pm": 124.854240375,
+                "kps": 19
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 102.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2987.5,
+                "avg_weight": 99.58333333333333,
+                "intensity": 0.6,
+                "pm": 166.47232049999997,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 35.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 45.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 56.99999999999999
+                }
+              ],
+              "stats": {
+                "tonnage": 1560.0,
+                "avg_weight": 43.333333333333336,
+                "intensity": 0.56,
+                "pm": 76.99344823125,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 9.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 12.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 59.0
+                },
+                {
+                  "weight": 13.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3010.0,
+                "avg_weight": 60.2,
+                "intensity": 0.59,
+                "pm": 20.3015025,
+                "kps": 50
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-13",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 127.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 170.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 70.0
+                },
+                {
+                  "weight": 190.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 78.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3855.0,
+                "avg_weight": 167.6086956521739,
+                "intensity": 0.69,
+                "pm": 243.61802999999998,
+                "kps": 23
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 36.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1750.0,
+                "avg_weight": 70.0,
+                "intensity": 0.36,
+                "pm": 194.89442400000001,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 100.0,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 47.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4125.0,
+                "avg_weight": 91.66666666666667,
+                "intensity": 0.43,
+                "pm": 211.13562599999997,
+                "kps": 45
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 87.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2607.5,
+                "avg_weight": 84.11290322580645,
+                "intensity": 0.63,
+                "pm": 133.9899165,
+                "kps": 31
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 12.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 48.0
+                },
+                {
+                  "weight": 14.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 56.00000000000001
+                }
+              ],
+              "stats": {
+                "tonnage": 1760.0,
+                "avg_weight": 67.6923076923077,
+                "intensity": 0.53,
+                "pm": 25.376878125,
+                "kps": 26
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-14",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 75.0
+                },
+                {
+                  "weight": 160.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 77.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4185.0,
+                "avg_weight": 144.31034482758622,
+                "intensity": 0.69,
+                "pm": 208.090400625,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 172.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 80.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1035.0,
+                "avg_weight": 172.5,
+                "intensity": 0.8,
+                "pm": 214.33311264374998,
+                "kps": 6
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1687.5,
+                "avg_weight": 67.5,
+                "intensity": 0.41,
+                "pm": 166.47232049999997,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 25.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 43.0
+                },
+                {
+                  "weight": 27.5,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2350.0,
+                "avg_weight": 52.22222222222222,
+                "intensity": 0.46,
+                "pm": 56.184408168750004,
+                "kps": 45
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 37.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 47.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1412.5,
+                "avg_weight": 45.564516129032256,
+                "intensity": 0.63,
+                "pm": 72.83164021875001,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-15",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3150.0,
+                "avg_weight": 105.0,
+                "intensity": 0.4,
+                "pm": 263.91953250000006,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 92.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 38.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1387.5,
+                "avg_weight": 92.5,
+                "intensity": 0.38,
+                "pm": 243.61802999999998,
+                "kps": 15
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 110.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 127.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 137.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2710.0,
+                "avg_weight": 129.04761904761904,
+                "intensity": 0.61,
+                "pm": 211.13562599999997,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 57.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1437.5,
+                "avg_weight": 57.5,
+                "intensity": 0.43,
+                "pm": 133.9899165,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2390.0,
+                "avg_weight": 77.09677419354838,
+                "intensity": 0.61,
+                "pm": 25.376878125,
+                "kps": 31
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 5,
+      "stats": {
+        "tonnage": 65822.5,
+        "avg_weight": 100.3391768292683,
+        "kps": 656
+      },
+      "days": [
+        {
+          "date": "2015-08-17",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 137.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 172.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 197.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 74.0
+                },
+                {
+                  "weight": 215.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 81.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5467.5,
+                "avg_weight": 188.5344827586207,
+                "intensity": 0.71,
+                "pm": 265.23913016250003,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 61.0
+                },
+                {
+                  "weight": 147.5,
+                  "reps": 3,
+                  "sets": 6,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3712.5,
+                "avg_weight": 137.5,
+                "intensity": 0.65,
+                "pm": 212.19130412999996,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 57.5,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 43.0
+                },
+                {
+                  "weight": 65.0,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1642.5,
+                "avg_weight": 60.833333333333336,
+                "intensity": 0.45,
+                "pm": 134.6598660825,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 14.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 54.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1950.0,
+                "avg_weight": 78.0,
+                "intensity": 0.61,
+                "pm": 25.503762515625002,
+                "kps": 25
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-18",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 102.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 49.0
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 147.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 71.0
+                },
+                {
+                  "weight": 160.0,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 76.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3865.0,
+                "avg_weight": 138.03571428571428,
+                "intensity": 0.66,
+                "pm": 209.130852628125,
+                "kps": 28
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 82.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 92.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 73.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2755.0,
+                "avg_weight": 83.48484848484848,
+                "intensity": 0.67,
+                "pm": 125.47851157687501,
+                "kps": 33
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 97.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 6025.0,
+                "avg_weight": 100.41666666666667,
+                "intensity": 0.6,
+                "pm": 167.30468210249995,
+                "kps": 60
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 37.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 50.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 975.0,
+                "avg_weight": 46.42857142857143,
+                "intensity": 0.6,
+                "pm": 77.37841547240625,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 10.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 48.0
+                },
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1470.0,
+                "avg_weight": 61.25,
+                "intensity": 0.6,
+                "pm": 20.4030100125,
+                "kps": 24
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-20",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 122.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 63.0
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 74.0
+                },
+                {
+                  "weight": 190.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 78.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5232.5,
+                "avg_weight": 163.515625,
+                "intensity": 0.67,
+                "pm": 244.83612014999997,
+                "kps": 32
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 87.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2187.5,
+                "avg_weight": 87.5,
+                "intensity": 0.45,
+                "pm": 195.86889612000002,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 97.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 46.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3990.0,
+                "avg_weight": 90.68181818181819,
+                "intensity": 0.43,
+                "pm": 212.19130412999996,
+                "kps": 44
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 75.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 92.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 68.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1485.0,
+                "avg_weight": 87.3529411764706,
+                "intensity": 0.65,
+                "pm": 134.6598660825,
+                "kps": 17
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2265.0,
+                "avg_weight": 73.06451612903226,
+                "intensity": 0.57,
+                "pm": 25.503762515625002,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-21",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 135.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 157.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 75.0
+                },
+                {
+                  "weight": 172.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 82.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3530.0,
+                "avg_weight": 147.08333333333334,
+                "intensity": 0.7,
+                "pm": 209.130852628125,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 180.0,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 84.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 180.0,
+                "intensity": 0.84,
+                "pm": 215.40477820696873,
+                "kps": 10
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 80.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2000.0,
+                "avg_weight": 80.0,
+                "intensity": 0.48,
+                "pm": 167.30468210249995,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 27.5,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 50.0
+                }
+              ],
+              "stats": {
+                "tonnage": 990.0,
+                "avg_weight": 55.0,
+                "intensity": 0.49,
+                "pm": 56.46533020959375,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 37.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 45.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 50.0,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 68.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1500.0,
+                "avg_weight": 45.45454545454545,
+                "intensity": 0.62,
+                "pm": 73.19579841984375,
+                "kps": 33
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-22",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 130.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3250.0,
+                "avg_weight": 130.0,
+                "intensity": 0.49,
+                "pm": 265.23913016250003,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 117.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1762.5,
+                "avg_weight": 117.5,
+                "intensity": 0.48,
+                "pm": 244.83612014999997,
+                "kps": 15
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 157.5,
+                  "reps": 3,
+                  "sets": 6,
+                  "percent": 74.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3890.0,
+                "avg_weight": 144.07407407407408,
+                "intensity": 0.68,
+                "pm": 212.19130412999996,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 47.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1562.5,
+                "avg_weight": 62.5,
+                "intensity": 0.46,
+                "pm": 134.6598660825,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 17.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 67.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2515.0,
+                "avg_weight": 81.12903225806451,
+                "intensity": 0.64,
+                "pm": 25.503762515625002,
+                "kps": 31
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 6,
+      "stats": {
+        "tonnage": 64275.0,
+        "avg_weight": 90.6558533145275,
+        "kps": 709
+      },
+      "days": [
+        {
+          "date": "2015-08-24",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 145.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 54.0
+                },
+                {
+                  "weight": 170.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 190.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 71.0
+                },
+                {
+                  "weight": 200.0,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5085.0,
+                "avg_weight": 175.3448275862069,
+                "intensity": 0.66,
+                "pm": 266.56532581331254,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 117.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 127.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4390.0,
+                "avg_weight": 121.94444444444444,
+                "intensity": 0.57,
+                "pm": 213.25226065064996,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 60.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1890.0,
+                "avg_weight": 57.27272727272727,
+                "intensity": 0.42,
+                "pm": 135.3331654129125,
+                "kps": 33
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3060.0,
+                "avg_weight": 69.54545454545455,
+                "intensity": 0.54,
+                "pm": 25.631281328203126,
+                "kps": 44
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-25",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 115.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 135.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 71.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3845.0,
+                "avg_weight": 137.32142857142858,
+                "intensity": 0.65,
+                "pm": 210.17650689126563,
+                "kps": 28
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 75.0,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2300.0,
+                "avg_weight": 71.875,
+                "intensity": 0.57,
+                "pm": 126.10590413475938,
+                "kps": 32
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 87.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 107.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 117.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2630.0,
+                "avg_weight": 109.58333333333333,
+                "intensity": 0.65,
+                "pm": 168.14120551301247,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 30.0,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1080.0,
+                "avg_weight": 30.0,
+                "intensity": 0.39,
+                "pm": 77.76530754976828,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 12.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 60.0,
+                "intensity": 0.59,
+                "pm": 20.505025062562503,
+                "kps": 30
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-27",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 147.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 73.0
+                },
+                {
+                  "weight": 195.0,
+                  "reps": 2,
+                  "sets": 2,
+                  "percent": 79.0
+                },
+                {
+                  "weight": 210.0,
+                  "reps": 1,
+                  "sets": 2,
+                  "percent": 85.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4590.0,
+                "avg_weight": 170.0,
+                "intensity": 0.69,
+                "pm": 246.06030075074997,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 46.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2250.0,
+                "avg_weight": 90.0,
+                "intensity": 0.46,
+                "pm": 196.8482406006,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 47.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2000.0,
+                "avg_weight": 100.0,
+                "intensity": 0.47,
+                "pm": 213.25226065064996,
+                "kps": 20
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 80.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 59.0
+                },
+                {
+                  "weight": 85.0,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2220.0,
+                "avg_weight": 82.22222222222223,
+                "intensity": 0.61,
+                "pm": 135.3331654129125,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 15.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2250.0,
+                "avg_weight": 75.0,
+                "intensity": 0.59,
+                "pm": 25.631281328203126,
+                "kps": 30
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-28",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 125.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 59.0
+                },
+                {
+                  "weight": 140.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 67.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 71.0
+                },
+                {
+                  "weight": 160.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 76.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4140.0,
+                "avg_weight": 147.85714285714286,
+                "intensity": 0.7,
+                "pm": 210.17650689126563,
+                "kps": 28
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 170.0,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 79.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1700.0,
+                "avg_weight": 170.0,
+                "intensity": 0.79,
+                "pm": 216.48180209800358,
+                "kps": 10
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2430.0,
+                "avg_weight": 67.5,
+                "intensity": 0.4,
+                "pm": 168.14120551301247,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 25.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1500.0,
+                "avg_weight": 50.0,
+                "intensity": 0.44,
+                "pm": 56.74765686064172,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 45.0,
+                  "reps": 5,
+                  "sets": 6,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1350.0,
+                "avg_weight": 45.0,
+                "intensity": 0.61,
+                "pm": 73.56177741194297,
+                "kps": 30
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-08-29",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 92.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 117.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 44.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3730.0,
+                "avg_weight": 103.61111111111111,
+                "intensity": 0.39,
+                "pm": 266.56532581331254,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 41.0
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 2,
+                  "sets": 2,
+                  "percent": 51.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1400.0,
+                "avg_weight": 107.6923076923077,
+                "intensity": 0.44,
+                "pm": 246.06030075074997,
+                "kps": 13
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 110.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 135.0,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4360.0,
+                "avg_weight": 121.11111111111111,
+                "intensity": 0.57,
+                "pm": 213.25226065064996,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1980.0,
+                "avg_weight": 55.0,
+                "intensity": 0.41,
+                "pm": 135.3331654129125,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2295.0,
+                "avg_weight": 69.54545454545455,
+                "intensity": 0.54,
+                "pm": 25.631281328203126,
+                "kps": 33
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 7,
+      "stats": {
+        "tonnage": 64725.0,
+        "avg_weight": 83.51612903225806,
+        "kps": 775
+      },
+      "days": [
+        {
+          "date": "2015-08-31",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 135.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 160.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 182.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 197.5,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 74.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5085.0,
+                "avg_weight": 175.3448275862069,
+                "intensity": 0.65,
+                "pm": 267.8981524423791,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 127.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 140.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3327.5,
+                "avg_weight": 127.98076923076923,
+                "intensity": 0.6,
+                "pm": 214.3185219539032,
+                "kps": 26
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 47.5,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 57.5,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 42.0
+                },
+                {
+                  "weight": 67.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2527.5,
+                "avg_weight": 56.166666666666664,
+                "intensity": 0.41,
+                "pm": 136.00983123997707,
+                "kps": 45
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3280.0,
+                "avg_weight": 74.54545454545455,
+                "intensity": 0.58,
+                "pm": 25.75943773484414,
+                "kps": 44
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-01",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 122.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5200.0,
+                "avg_weight": 123.80952380952381,
+                "intensity": 0.59,
+                "pm": 211.22738942572195,
+                "kps": 42
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 75.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2250.0,
+                "avg_weight": 72.58064516129032,
+                "intensity": 0.57,
+                "pm": 126.73643365543319,
+                "kps": 31
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 102.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 117.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1892.5,
+                "avg_weight": 105.13888888888889,
+                "intensity": 0.62,
+                "pm": 168.98191154057753,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 22.5,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 810.0,
+                "avg_weight": 22.5,
+                "intensity": 0.29,
+                "pm": 78.15413408751712,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Разгибания на блоке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 10.0,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 50.0,
+                "intensity": 0.49,
+                "pm": 20.607550187875315,
+                "kps": 36
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-03",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 135.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 152.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 67.0
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 73.0
+                }
+              ],
+              "stats": {
+                "tonnage": 6535.0,
+                "avg_weight": 159.390243902439,
+                "intensity": 0.64,
+                "pm": 247.2906022545037,
+                "kps": 41
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2100.0,
+                "avg_weight": 70.0,
+                "intensity": 0.35,
+                "pm": 197.832481803603,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2550.0,
+                "avg_weight": 85.0,
+                "intensity": 0.4,
+                "pm": 214.3185219539032,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 47.5,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 57.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2290.0,
+                "avg_weight": 52.04545454545455,
+                "intensity": 0.38,
+                "pm": 136.00983123997707,
+                "kps": 44
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 62.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2390.0,
+                "avg_weight": 77.09677419354838,
+                "intensity": 0.6,
+                "pm": 25.75943773484414,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-04",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 73.0
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 78.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3430.0,
+                "avg_weight": 142.91666666666666,
+                "intensity": 0.68,
+                "pm": 211.22738942572195,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 180.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 83.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1440.0,
+                "avg_weight": 180.0,
+                "intensity": 0.83,
+                "pm": 217.5642111084936,
+                "kps": 8
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 50.0,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 50.0,
+                "intensity": 0.3,
+                "pm": 168.98191154057753,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 17.5,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1260.0,
+                "avg_weight": 35.0,
+                "intensity": 0.31,
+                "pm": 57.03139514494493,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 27.5,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 38.0
+                },
+                {
+                  "weight": 35.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 46.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1360.0,
+                "avg_weight": 30.90909090909091,
+                "intensity": 0.42,
+                "pm": 73.92958629900268,
+                "kps": 44
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-05",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3225.0,
+                "avg_weight": 107.5,
+                "intensity": 0.4,
+                "pm": 267.8981524423791,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 112.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1687.5,
+                "avg_weight": 112.5,
+                "intensity": 0.45,
+                "pm": 247.2906022545037,
+                "kps": 15
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 140.0,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4390.0,
+                "avg_weight": 121.94444444444444,
+                "intensity": 0.57,
+                "pm": 214.3185219539032,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 60.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 60.0,
+                "intensity": 0.44,
+                "pm": 136.00983123997707,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 57.99999999999999
+                }
+              ],
+              "stats": {
+                "tonnage": 2295.0,
+                "avg_weight": 69.54545454545455,
+                "intensity": 0.54,
+                "pm": 25.75943773484414,
+                "kps": 33
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 8,
+      "stats": {
+        "tonnage": 61750.0,
+        "avg_weight": 88.46704871060172,
+        "kps": 698
+      },
+      "days": [
+        {
+          "date": "2015-09-07",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 147.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 167.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 197.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 73.0
+                },
+                {
+                  "weight": 217.5,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 81.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5517.5,
+                "avg_weight": 190.25862068965517,
+                "intensity": 0.71,
+                "pm": 269.237643204591,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 137.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 72.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3582.5,
+                "avg_weight": 137.78846153846155,
+                "intensity": 0.64,
+                "pm": 215.3901145636727,
+                "kps": 26
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 65.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 47.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2620.0,
+                "avg_weight": 59.54545454545455,
+                "intensity": 0.44,
+                "pm": 136.68988039617696,
+                "kps": 44
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 17.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2535.0,
+                "avg_weight": 76.81818181818181,
+                "intensity": 0.59,
+                "pm": 25.88823492351836,
+                "kps": 33
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-08",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 110.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 63.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 67.0
+                },
+                {
+                  "weight": 152.5,
+                  "reps": 1,
+                  "sets": 6,
+                  "percent": 72.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3705.0,
+                "avg_weight": 137.22222222222223,
+                "intensity": 0.65,
+                "pm": 212.28352637285056,
+                "kps": 27
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 82.5,
+                  "reps": 4,
+                  "sets": 6,
+                  "percent": 64.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2317.5,
+                "avg_weight": 79.91379310344827,
+                "intensity": 0.63,
+                "pm": 127.37011582371035,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 102.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 61.0
+                },
+                {
+                  "weight": 115.0,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 67.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2585.0,
+                "avg_weight": 107.70833333333333,
+                "intensity": 0.63,
+                "pm": 169.82682109828042,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 27.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 32.5,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1335.0,
+                "avg_weight": 31.785714285714285,
+                "intensity": 0.4,
+                "pm": 78.54490475795471,
+                "kps": 42
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-10",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 130.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 182.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 73.0
+                },
+                {
+                  "weight": 192.5,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 77.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5912.5,
+                "avg_weight": 173.89705882352942,
+                "intensity": 0.7,
+                "pm": 248.52705526577623,
+                "kps": 34
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2250.0,
+                "avg_weight": 90.0,
+                "intensity": 0.45,
+                "pm": 198.821644212621,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 97.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2437.5,
+                "avg_weight": 97.5,
+                "intensity": 0.45,
+                "pm": 215.3901145636727,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 57.5,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 42.0
+                },
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2047.5,
+                "avg_weight": 62.04545454545455,
+                "intensity": 0.45,
+                "pm": 136.68988039617696,
+                "kps": 33
+              }
+            },
+            {
+              "name": "Сгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 49.0
+                },
+                {
+                  "weight": 17.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2515.0,
+                "avg_weight": 81.12903225806451,
+                "intensity": 0.63,
+                "pm": 25.88823492351836,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-11",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 122.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 67.0
+                },
+                {
+                  "weight": 162.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 76.0
+                },
+                {
+                  "weight": 172.5,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 81.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5345.0,
+                "avg_weight": 157.2058823529412,
+                "intensity": 0.74,
+                "pm": 212.28352637285056,
+                "kps": 34
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 185.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 85.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1110.0,
+                "avg_weight": 185.0,
+                "intensity": 0.85,
+                "pm": 218.65203216403606,
+                "kps": 6
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 60.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 60.0,
+                "intensity": 0.35,
+                "pm": 169.82682109828042,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 20.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1200.0,
+                "avg_weight": 40.0,
+                "intensity": 0.35,
+                "pm": 57.316552120669655,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Бицепс стоя",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 25.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 32.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 43.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1250.0,
+                "avg_weight": 28.40909090909091,
+                "intensity": 0.38,
+                "pm": 74.29923423049769,
+                "kps": 44
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-12",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2850.0,
+                "avg_weight": 95.0,
+                "intensity": 0.35,
+                "pm": 269.237643204591,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "reps": 3,
+                  "sets": 6,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 100.0,
+                "intensity": 0.4,
+                "pm": 248.52705526577623,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 85.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2550.0,
+                "avg_weight": 85.0,
+                "intensity": 0.39,
+                "pm": 215.3901145636727,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 47.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1425.0,
+                "avg_weight": 47.5,
+                "intensity": 0.35,
+                "pm": 136.68988039617696,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 15.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 56.99999999999999
+                }
+              ],
+              "stats": {
+                "tonnage": 3060.0,
+                "avg_weight": 69.54545454545455,
+                "intensity": 0.54,
+                "pm": 25.88823492351836,
+                "kps": 44
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 9,
+      "stats": {
+        "tonnage": 60515.0,
+        "avg_weight": 97.29099678456592,
+        "kps": 622
+      },
+      "days": [
+        {
+          "date": "2015-09-14",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 145.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 54.0
+                },
+                {
+                  "weight": 172.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 200.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 74.0
+                },
+                {
+                  "weight": 230.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 85.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5655.0,
+                "avg_weight": 195.0,
+                "intensity": 0.72,
+                "pm": 270.58383142061393,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 112.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 137.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 63.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 72.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4622.5,
+                "avg_weight": 140.07575757575756,
+                "intensity": 0.65,
+                "pm": 216.46706513649107,
+                "kps": 33
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 65.0,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 47.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2620.0,
+                "avg_weight": 59.54545454545455,
+                "intensity": 0.43,
+                "pm": 137.37332979815784,
+                "kps": 44
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 15.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 56.99999999999999
+                },
+                {
+                  "weight": 17.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2575.0,
+                "avg_weight": 83.06451612903226,
+                "intensity": 0.64,
+                "pm": 26.017676098135954,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-15",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 117.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 137.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 152.5,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 72.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2730.0,
+                "avg_weight": 136.5,
+                "intensity": 0.64,
+                "pm": 213.34494400471482,
+                "kps": 20
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 87.5,
+                  "reps": 4,
+                  "sets": 6,
+                  "percent": 69.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2450.0,
+                "avg_weight": 84.48275862068965,
+                "intensity": 0.66,
+                "pm": 128.0069664028289,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 120.0,
+                  "reps": 3,
+                  "sets": 6,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2540.0,
+                "avg_weight": 115.45454545454545,
+                "intensity": 0.68,
+                "pm": 170.67595520377182,
+                "kps": 22
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 37.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 937.5,
+                "avg_weight": 37.5,
+                "intensity": 0.48,
+                "pm": 78.93762928174448,
+                "kps": 25
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-17",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 155.0,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 170.0,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 200.0,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 80.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3495.0,
+                "avg_weight": 166.42857142857142,
+                "intensity": 0.67,
+                "pm": 249.7696905421051,
+                "kps": 21
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 90.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2700.0,
+                "avg_weight": 90.0,
+                "intensity": 0.45,
+                "pm": 199.8157524336841,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 105.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2625.0,
+                "avg_weight": 105.0,
+                "intensity": 0.49,
+                "pm": 216.46706513649107,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 49.0
+                },
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2467.5,
+                "avg_weight": 79.59677419354838,
+                "intensity": 0.58,
+                "pm": 137.37332979815784,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-18",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 112.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 70.0
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 77.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4002.5,
+                "avg_weight": 142.94642857142858,
+                "intensity": 0.67,
+                "pm": 213.34494400471482,
+                "kps": 28
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 175.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 80.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1400.0,
+                "avg_weight": 175.0,
+                "intensity": 0.8,
+                "pm": 219.74529232485625,
+                "kps": 8
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 82.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 49.0
+                },
+                {
+                  "weight": 95.0,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 56.00000000000001
+                }
+              ],
+              "stats": {
+                "tonnage": 3170.0,
+                "avg_weight": 88.05555555555556,
+                "intensity": 0.52,
+                "pm": 170.67595520377182,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 25.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 43.0
+                },
+                {
+                  "weight": 27.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2875.0,
+                "avg_weight": 52.27272727272727,
+                "intensity": 0.45,
+                "pm": 57.603134881273,
+                "kps": 55
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-19",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 112.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 42.0
+                },
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4370.0,
+                "avg_weight": 121.38888888888889,
+                "intensity": 0.45,
+                "pm": 270.58383142061393,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 75.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 30.0
+                },
+                {
+                  "weight": 95.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 38.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1660.0,
+                "avg_weight": 83.0,
+                "intensity": 0.33,
+                "pm": 249.7696905421051,
+                "kps": 20
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 97.5,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3510.0,
+                "avg_weight": 97.5,
+                "intensity": 0.45,
+                "pm": 216.46706513649107,
+                "kps": 36
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1650.0,
+                "avg_weight": 55.0,
+                "intensity": 0.4,
+                "pm": 137.37332979815784,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2460.0,
+                "avg_weight": 74.54545454545455,
+                "intensity": 0.57,
+                "pm": 26.017676098135954,
+                "kps": 33
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 10,
+      "stats": {
+        "tonnage": 52487.5,
+        "avg_weight": 106.46551724137932,
+        "kps": 493
+      },
+      "days": [
+        {
+          "date": "2015-09-21",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 152.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 56.00000000000001
+                },
+                {
+                  "weight": 175.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 192.5,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 71.0
+                },
+                {
+                  "weight": 205.0,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 6400.0,
+                "avg_weight": 188.23529411764707,
+                "intensity": 0.69,
+                "pm": 271.936750577717,
+                "kps": 34
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 112.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 152.5,
+                  "reps": 2,
+                  "sets": 5,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2402.5,
+                "avg_weight": 141.3235294117647,
+                "intensity": 0.65,
+                "pm": 217.54940046217354,
+                "kps": 17
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 65.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 47.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1560.0,
+                "avg_weight": 65.0,
+                "intensity": 0.47,
+                "pm": 138.06019644714863,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 13.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 51.0
+                },
+                {
+                  "weight": 17.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 65.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2515.0,
+                "avg_weight": 81.12903225806451,
+                "intensity": 0.62,
+                "pm": 26.147764478626634,
+                "kps": 31
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-22",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 117.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 137.5,
+                  "reps": 3,
+                  "sets": 1,
+                  "percent": 64.0
+                },
+                {
+                  "weight": 145.0,
+                  "reps": 2,
+                  "sets": 6,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 1,
+                  "sets": 5,
+                  "percent": 77.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3447.5,
+                "avg_weight": 143.64583333333334,
+                "intensity": 0.67,
+                "pm": 214.4116687247384,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 67.5,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 53.0
+                },
+                {
+                  "weight": 80.0,
+                  "reps": 4,
+                  "sets": 6,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2257.5,
+                "avg_weight": 77.84482758620689,
+                "intensity": 0.61,
+                "pm": 128.64700123484306,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 5,
+                  "sets": 1,
+                  "percent": 55.00000000000001
+                },
+                {
+                  "weight": 122.5,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 72.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2925.0,
+                "avg_weight": 117.0,
+                "intensity": 0.68,
+                "pm": 171.5293349797907,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Французский жим",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 35.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 44.0
+                }
+              ],
+              "stats": {
+                "tonnage": 630.0,
+                "avg_weight": 35.0,
+                "intensity": 0.44,
+                "pm": 79.3323174281532,
+                "kps": 18
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-24",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 172.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 69.0
+                },
+                {
+                  "weight": 192.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 77.0
+                },
+                {
+                  "weight": 200.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 80.0
+                },
+                {
+                  "weight": 217.5,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 87.0
+                }
+              ],
+              "stats": {
+                "tonnage": 4275.0,
+                "avg_weight": 194.3181818181818,
+                "intensity": 0.77,
+                "pm": 251.01853899481563,
+                "kps": 22
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 97.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2437.5,
+                "avg_weight": 97.5,
+                "intensity": 0.49,
+                "pm": 200.81483119585252,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 87.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1400.0,
+                "avg_weight": 87.5,
+                "intensity": 0.4,
+                "pm": 217.54940046217354,
+                "kps": 16
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1562.5,
+                "avg_weight": 62.5,
+                "intensity": 0.45,
+                "pm": 138.06019644714863,
+                "kps": 25
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-25",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 132.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 62.0
+                },
+                {
+                  "weight": 162.5,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 76.0
+                },
+                {
+                  "weight": 175.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 82.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3880.0,
+                "avg_weight": 161.66666666666666,
+                "intensity": 0.75,
+                "pm": 214.4116687247384,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим с бруса 5 см",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 165.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1485.0,
+                "avg_weight": 165.0,
+                "intensity": 0.75,
+                "pm": 220.84401878648055,
+                "kps": 9
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 80.0,
+                  "reps": 6,
+                  "sets": 1,
+                  "percent": 47.0
+                },
+                {
+                  "weight": 107.5,
+                  "reps": 5,
+                  "sets": 4,
+                  "percent": 63.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2630.0,
+                "avg_weight": 101.15384615384616,
+                "intensity": 0.59,
+                "pm": 171.5293349797907,
+                "kps": 26
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 27.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1375.0,
+                "avg_weight": 55.0,
+                "intensity": 0.48,
+                "pm": 57.89115055567937,
+                "kps": 25
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-26",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 132.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3312.5,
+                "avg_weight": 132.5,
+                "intensity": 0.49,
+                "pm": 271.936750577717,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Уступающая тяга",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 112.5,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2250.0,
+                "avg_weight": 112.5,
+                "intensity": 0.45,
+                "pm": 251.01853899481563,
+                "kps": 20
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 49.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1720.0,
+                "avg_weight": 107.5,
+                "intensity": 0.49,
+                "pm": 217.54940046217354,
+                "kps": 16
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1562.5,
+                "avg_weight": 62.5,
+                "intensity": 0.45,
+                "pm": 138.06019644714863,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 14.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 16.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 61.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2460.0,
+                "avg_weight": 74.54545454545455,
+                "intensity": 0.57,
+                "pm": 26.147764478626634,
+                "kps": 33
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 11,
+      "stats": {
+        "tonnage": 34262.5,
+        "avg_weight": 97.06090651558074,
+        "kps": 353
+      },
+      "days": [
+        {
+          "date": "2015-09-28",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Тяжелая",
+              "sets": [
+                {
+                  "weight": 157.5,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 3,
+                  "sets": 4,
+                  "percent": 66.0
+                },
+                {
+                  "weight": 200.0,
+                  "reps": 2,
+                  "sets": 4,
+                  "percent": 73.0
+                },
+                {
+                  "weight": 215.0,
+                  "reps": 1,
+                  "sets": 4,
+                  "percent": 79.0
+                }
+              ],
+              "stats": {
+                "tonnage": 5250.0,
+                "avg_weight": 187.5,
+                "intensity": 0.69,
+                "pm": 273.2964343306056,
+                "kps": 28
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 87.5,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 105.0,
+                  "reps": 4,
+                  "sets": 4,
+                  "percent": 48.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3080.0,
+                "avg_weight": 96.25,
+                "intensity": 0.44,
+                "pm": 218.6371474644844,
+                "kps": 32
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 55.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 825.0,
+                "avg_weight": 55.0,
+                "intensity": 0.4,
+                "pm": 138.75049742938438,
+                "kps": 15
+              }
+            },
+            {
+              "name": "Разгибания ног",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 9.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 36.0
+                }
+              ],
+              "stats": {
+                "tonnage": 810.0,
+                "avg_weight": 45.0,
+                "intensity": 0.34,
+                "pm": 26.278503301019768,
+                "kps": 18
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-09-29",
+          "exercises": [
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 100.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 46.0
+                },
+                {
+                  "weight": 120.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 56.00000000000001
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 150.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 70.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2710.0,
+                "avg_weight": 123.18181818181819,
+                "intensity": 0.57,
+                "pm": 215.4837270683621,
+                "kps": 22
+              }
+            },
+            {
+              "name": "Жим стоя",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 45.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 675.0,
+                "avg_weight": 45.0,
+                "intensity": 0.35,
+                "pm": 129.29023624101728,
+                "kps": 15
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 55.00000000000001
+                }
+              ],
+              "stats": {
+                "tonnage": 2375.0,
+                "avg_weight": 95.0,
+                "intensity": 0.55,
+                "pm": 172.38698165468963,
+                "kps": 25
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-10-01",
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 145.0,
+                  "reps": 4,
+                  "sets": 1,
+                  "percent": 56.99999999999999
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 65.0
+                },
+                {
+                  "weight": 180.0,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 71.0
+                },
+                {
+                  "weight": 190.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 75.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3715.0,
+                "avg_weight": 168.86363636363637,
+                "intensity": 0.67,
+                "pm": 252.2736316897897,
+                "kps": 22
+              }
+            },
+            {
+              "name": "Тяга на прямых ногах",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 6,
+                  "sets": 3,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1260.0,
+                "avg_weight": 70.0,
+                "intensity": 0.35,
+                "pm": 201.81890535183177,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 77.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2325.0,
+                "avg_weight": 77.5,
+                "intensity": 0.35,
+                "pm": 218.6371474644844,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Наклоны",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 62.5,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 45.0
+                }
+              ],
+              "stats": {
+                "tonnage": 937.5,
+                "avg_weight": 62.5,
+                "intensity": 0.45,
+                "pm": 138.75049742938438,
+                "kps": 15
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-10-02",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 4,
+                  "sets": 5,
+                  "percent": 35.0
+                },
+                {
+                  "weight": 115.0,
+                  "reps": 3,
+                  "sets": 5,
+                  "percent": 42.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3625.0,
+                "avg_weight": 103.57142857142857,
+                "intensity": 0.38,
+                "pm": 273.2964343306056,
+                "kps": 35
+              }
+            },
+            {
+              "name": "Жим лежа",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 107.5,
+                  "reps": 4,
+                  "sets": 3,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 125.0,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 57.99999999999999
+                },
+                {
+                  "weight": 147.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 68.0
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 76.0
+                }
+              ],
+              "stats": {
+                "tonnage": 3795.0,
+                "avg_weight": 126.5,
+                "intensity": 0.59,
+                "pm": 215.4837270683621,
+                "kps": 30
+              }
+            },
+            {
+              "name": "Жим на наклонной",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 75.0,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 43.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1800.0,
+                "avg_weight": 75.0,
+                "intensity": 0.44,
+                "pm": 172.38698165468963,
+                "kps": 24
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 22.5,
+                  "reps": 6,
+                  "sets": 4,
+                  "percent": 40.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1080.0,
+                "avg_weight": 45.0,
+                "intensity": 0.39,
+                "pm": 58.18060630845776,
+                "kps": 24
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "microcycle_num": 12,
+      "stats": {
+        "tonnage": 13572.5,
+        "avg_weight": 77.55714285714286,
+        "kps": 175
+      },
+      "days": [
+        {
+          "date": "2015-10-05",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 122.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 45.0
+                },
+                {
+                  "weight": 142.5,
+                  "reps": 2,
+                  "sets": 3,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 165.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 60.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2452.5,
+                "avg_weight": 136.25,
+                "intensity": 0.5,
+                "pm": 274.66291650225867,
+                "kps": 18
+              }
+            },
+            {
+              "name": "Присед на груди",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 70.0,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 32.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1750.0,
+                "avg_weight": 70.0,
+                "intensity": 0.32,
+                "pm": 219.73033320180681,
+                "kps": 25
+              }
+            },
+            {
+              "name": "Жим",
+              "load_type": "Средняя",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 4,
+                  "sets": 2,
+                  "percent": 44.0
+                },
+                {
+                  "weight": 112.5,
+                  "reps": 3,
+                  "sets": 3,
+                  "percent": 52.0
+                },
+                {
+                  "weight": 130.0,
+                  "reps": 2,
+                  "sets": 1,
+                  "percent": 60.0
+                },
+                {
+                  "weight": 145.0,
+                  "reps": 1,
+                  "sets": 3,
+                  "percent": 67.0
+                }
+              ],
+              "stats": {
+                "tonnage": 2467.5,
+                "avg_weight": 112.1590909090909,
+                "intensity": 0.52,
+                "pm": 216.56114570370391,
+                "kps": 22
+              }
+            },
+            {
+              "name": "Жим гантелей",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 17.5,
+                  "reps": 6,
+                  "sets": 6,
+                  "percent": 31.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1260.0,
+                "avg_weight": 35.0,
+                "intensity": 0.3,
+                "pm": 58.18060630845776,
+                "kps": 36
+              }
+            }
+          ]
+        },
+        {
+          "date": "2015-10-07",
+          "exercises": [
+            {
+              "name": "Присед",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 95.0,
+                  "reps": 5,
+                  "sets": 3,
+                  "percent": 35.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1425.0,
+                "avg_weight": 95.0,
+                "intensity": 0.35,
+                "pm": 274.66291650225867,
+                "kps": 15
+              }
+            },
+            {
+              "name": "Жим",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 87.5,
+                  "reps": 5,
+                  "sets": 5,
+                  "percent": 40.0
+                },
+                {
+                  "weight": 107.5,
+                  "reps": 1,
+                  "sets": 2,
+                  "percent": 50.0
+                },
+                {
+                  "weight": 120.0,
+                  "reps": 1,
+                  "sets": 2,
+                  "percent": 55.00000000000001
+                }
+              ],
+              "stats": {
+                "tonnage": 2642.5,
+                "avg_weight": 91.12068965517241,
+                "intensity": 0.42,
+                "pm": 216.56114570370391,
+                "kps": 29
+              }
+            },
+            {
+              "name": "Жим средним хватом",
+              "load_type": "Легкая",
+              "sets": [
+                {
+                  "weight": 52.5,
+                  "reps": 6,
+                  "sets": 5,
+                  "percent": 30.0
+                }
+              ],
+              "stats": {
+                "tonnage": 1575.0,
+                "avg_weight": 52.5,
+                "intensity": 0.3,
+                "pm": 173.24891656296307,
+                "kps": 30
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

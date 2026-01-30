@@ -28,12 +28,13 @@ const (
 // onePMStore stores temporary data for 1PM recording
 var onePMStore = struct {
 	sync.RWMutex
-	clientID    map[int64]int
-	exerciseID  map[int64]int
-	calcWeight  map[int64]float64
-	calcReps    map[int64]int
-	calcMethod  map[int64]string
+	clientID      map[int64]int
+	exerciseID    map[int64]int
+	calcWeight    map[int64]float64
+	calcReps      map[int64]int
+	calcMethod    map[int64]string
 	calculated1PM map[int64]float64
+	returnToPlan  map[int64]bool // Флаг: вернуться к созданию плана после записи 1ПМ
 }{
 	clientID:      make(map[int64]int),
 	exerciseID:    make(map[int64]int),
@@ -41,6 +42,7 @@ var onePMStore = struct {
 	calcReps:      make(map[int64]int),
 	calcMethod:    make(map[int64]string),
 	calculated1PM: make(map[int64]float64),
+	returnToPlan:  make(map[int64]bool),
 }
 
 // handle1PMMenu shows the 1PM testing menu
@@ -52,6 +54,21 @@ func (b *Bot) handle1PMMenu(message *tgbotapi.Message) {
 	userStates.Unlock()
 
 	b.showClientsFor1PM(chatID, "Выберите клиента для записи 1ПМ:")
+}
+
+// handle1PMForClient записывает 1ПМ для конкретного клиента (минуя выбор клиента)
+// Если returnToPlan=true, после записи вернётся к созданию плана
+func (b *Bot) handle1PMForClient(chatID int64, clientID int, returnToPlan bool) {
+	onePMStore.Lock()
+	onePMStore.clientID[chatID] = clientID
+	onePMStore.returnToPlan[chatID] = returnToPlan
+	onePMStore.Unlock()
+
+	userStates.Lock()
+	userStates.states[chatID] = state1PMSelectExercise
+	userStates.Unlock()
+
+	b.show1PMExerciseList(chatID, clientID)
 }
 
 // showClientsFor1PM shows client list for 1PM recording
@@ -543,8 +560,25 @@ func (b *Bot) save1PM(chatID int64, message *tgbotapi.Message) {
 	msg := tgbotapi.NewMessage(chatID, responseText)
 	b.api.Send(msg)
 
+	// Проверяем нужно ли вернуться к созданию плана
+	onePMStore.RLock()
+	returnToPlan := onePMStore.returnToPlan[chatID]
+	savedClientID := onePMStore.clientID[chatID]
+	onePMStore.RUnlock()
+
 	b.clear1PMState(chatID)
-	b.handle1PMMenu(message)
+
+	if returnToPlan {
+		// Восстанавливаем clientID в planStore и продолжаем создание плана
+		planStore.Lock()
+		planStore.clientID[chatID] = savedClientID
+		planStore.Unlock()
+
+		b.sendMessage(chatID, "✅ 1ПМ записан. Продолжаем создание плана...")
+		b.showPlanGoalSelection(chatID)
+	} else {
+		b.handle1PMMenu(message)
+	}
 }
 
 // handle1PMAddExercise handles adding new exercise
@@ -652,6 +686,7 @@ func (b *Bot) clear1PMState(chatID int64) {
 	delete(onePMStore.calcReps, chatID)
 	delete(onePMStore.calcMethod, chatID)
 	delete(onePMStore.calculated1PM, chatID)
+	delete(onePMStore.returnToPlan, chatID)
 	onePMStore.Unlock()
 }
 

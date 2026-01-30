@@ -1,0 +1,722 @@
+{
+  "name": "Русский цикл",
+  "author": "Народная программа",
+  "level": [
+    "2_разряд",
+    "1_разряд",
+    "КМС"
+  ],
+  "weeks": 12,
+  "days_per_week": 2,
+  "exercises": {
+    "squat": {
+      "name": "Вес приседаний на 12",
+      "weeks": [
+        {
+          "week_num": 1,
+          "sets": [
+            {
+              "percent": 75,
+              "reps": 3,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 2,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 3,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 3,
+          "sets": [
+            {
+              "percent": 62.5,
+              "reps": 3
+            },
+            {
+              "percent": 72.5,
+              "reps": 3,
+              "sets": 3
+            },
+            {
+              "percent": 75,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 4,
+          "sets": [
+            {
+              "percent": 62.5,
+              "reps": 3
+            },
+            {
+              "percent": 70,
+              "reps": 3
+            },
+            {
+              "percent": 77.5,
+              "reps": 3,
+              "sets": 3
+            }
+          ]
+        },
+        {
+          "week_num": 5,
+          "sets": [
+            {
+              "percent": 62.5,
+              "reps": 3
+            },
+            {
+              "percent": 70,
+              "reps": 3
+            },
+            {
+              "percent": 75,
+              "reps": 3
+            },
+            {
+              "percent": 80,
+              "reps": 3,
+              "sets": 3
+            }
+          ]
+        },
+        {
+          "week_num": 6,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 3
+            },
+            {
+              "percent": 72.5,
+              "reps": 3
+            },
+            {
+              "percent": 77.5,
+              "reps": 3
+            },
+            {
+              "percent": 82.5,
+              "reps": 3,
+              "sets": 3
+            }
+          ]
+        },
+        {
+          "week_num": 7,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 3
+            },
+            {
+              "percent": 77.5,
+              "reps": 3
+            },
+            {
+              "percent": 87.5,
+              "reps": 3,
+              "sets": 3
+            }
+          ]
+        },
+        {
+          "week_num": 8,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 3
+            },
+            {
+              "percent": 80,
+              "reps": 2
+            },
+            {
+              "percent": 90,
+              "reps": 3,
+              "sets": 2
+            }
+          ]
+        },
+        {
+          "week_num": 9,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 2
+            },
+            {
+              "percent": 80,
+              "reps": 1
+            },
+            {
+              "percent": 90,
+              "reps": 1
+            },
+            {
+              "percent": 92.5,
+              "reps": 1
+            }
+          ]
+        },
+        {
+          "week_num": 10,
+          "sets": [
+            {
+              "percent": 62.5,
+              "reps": 3
+            },
+            {
+              "percent": 70,
+              "reps": 3
+            },
+            {
+              "percent": 75,
+              "reps": 1
+            },
+            {
+              "percent": 80,
+              "reps": 1
+            }
+          ]
+        },
+        {
+          "week_num": 11,
+          "sets": [
+            {
+              "percent": 62.5,
+              "reps": 3
+            },
+            {
+              "percent": 70,
+              "reps": 2
+            },
+            {
+              "percent": 80,
+              "reps": 2
+            },
+            {
+              "percent": 90,
+              "reps": 1
+            },
+            {
+              "percent": 95,
+              "reps": 1
+            }
+          ]
+        },
+        {
+          "week_num": 1,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 2,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 3,
+          "sets": [
+            {
+              "percent": 70,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 4,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 8
+            },
+            {
+              "percent": 75,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 5,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 72.5,
+              "reps": 5
+            },
+            {
+              "percent": 80,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "week_num": 6,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 72.5,
+              "reps": 5
+            },
+            {
+              "percent": 82.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "week_num": 7,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 72.5,
+              "reps": 5
+            },
+            {
+              "percent": 82.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "week_num": 8,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 3
+            },
+            {
+              "percent": 82.5,
+              "reps": 3
+            },
+            {
+              "percent": 90,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 9,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 3
+            },
+            {
+              "percent": 82.5,
+              "reps": 3
+            },
+            {
+              "percent": 92.5,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 10,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 3
+            },
+            {
+              "percent": 85,
+              "reps": 3
+            },
+            {
+              "percent": 95,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 11,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 3
+            },
+            {
+              "percent": 77.5,
+              "reps": 2
+            },
+            {
+              "percent": 87.5,
+              "reps": 1
+            }
+          ]
+        }
+      ]
+    },
+    "bench": {
+      "name": "Жим лежа на 12",
+      "weeks": [
+        {
+          "week_num": 1,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 3,
+              "sets": 8
+            }
+          ]
+        },
+        {
+          "week_num": 2,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 80,
+              "reps": 3,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 3,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 8
+            },
+            {
+              "percent": 70,
+              "reps": 8,
+              "sets": 4
+            }
+          ]
+        },
+        {
+          "week_num": 4,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 5
+            },
+            {
+              "percent": 82.5,
+              "reps": 4,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 5,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 3,
+              "sets": 8
+            },
+            {
+              "percent": 72.5,
+              "reps": 4,
+              "sets": 8
+            }
+          ]
+        },
+        {
+          "week_num": 6,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 5
+            },
+            {
+              "percent": 82.5,
+              "reps": 4,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 7,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 8
+            },
+            {
+              "percent": 75,
+              "reps": 4,
+              "sets": 8
+            }
+          ]
+        },
+        {
+          "week_num": 8,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 5
+            },
+            {
+              "percent": 85,
+              "reps": 3,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 9,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 8
+            },
+            {
+              "percent": 77.5,
+              "reps": 4,
+              "sets": 8
+            }
+          ]
+        },
+        {
+          "week_num": 10,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 5
+            },
+            {
+              "percent": 75,
+              "reps": 5
+            },
+            {
+              "percent": 87.5,
+              "reps": 3,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 11,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 5
+            },
+            {
+              "percent": 77.5,
+              "reps": 5
+            },
+            {
+              "percent": 87.5,
+              "reps": 3,
+              "sets": 5
+            }
+          ]
+        },
+        {
+          "week_num": 12,
+          "sets": [
+            {
+              "percent": 67.5,
+              "reps": 5
+            },
+            {
+              "percent": 77.5,
+              "reps": 3
+            },
+            {
+              "percent": 87.5,
+              "reps": 1
+            },
+            {
+              "percent": 92.5,
+              "reps": 1
+            }
+          ]
+        }
+      ]
+    },
+    "deadlift": {
+      "name": "Становая на 12",
+      "weeks": [
+        {
+          "week_num": 1,
+          "sets": [
+            {
+              "percent": 65,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 2,
+          "sets": [
+            {
+              "percent": 70,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 3,
+          "sets": [
+            {
+              "percent": 72.5,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 4,
+          "sets": [
+            {
+              "percent": 75,
+              "reps": 8
+            }
+          ]
+        },
+        {
+          "week_num": 5,
+          "sets": [
+            {
+              "percent": 80,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "week_num": 6,
+          "sets": [
+            {
+              "percent": 82.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "week_num": 7,
+          "sets": [
+            {
+              "percent": 82.5,
+              "reps": 5
+            }
+          ]
+        },
+        {
+          "week_num": 8,
+          "sets": [
+            {
+              "percent": 85,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 9,
+          "sets": [
+            {
+              "percent": 87.5,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 10,
+          "sets": [
+            {
+              "percent": 90,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 11,
+          "sets": [
+            {
+              "percent": 85,
+              "reps": 3
+            },
+            {
+              "percent": 92.5,
+              "reps": 3
+            }
+          ]
+        },
+        {
+          "week_num": 12,
+          "sets": [
+            {
+              "percent": 62.5,
+              "reps": 5
+            },
+            {
+              "percent": 70,
+              "reps": 3
+            },
+            {
+              "percent": 77.5,
+              "reps": 3
+            },
+            {
+              "percent": 85,
+              "reps": 2
+            },
+            {
+              "percent": 92.5,
+              "reps": 2
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

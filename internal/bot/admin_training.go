@@ -482,3 +482,156 @@ func formatTrainingNotification(exercises []models.ExerciseInput, trainingDate t
 
 	return exerciseList.String()
 }
+
+// handleAIState обрабатывает состояния AI плана
+func (b *Bot) handleAIState(message *tgbotapi.Message, state string) {
+	chatID := message.Chat.ID
+	text := message.Text
+
+	if text == "Отмена" {
+		clearState(chatID)
+		aiClientStore.Lock()
+		delete(aiClientStore.data, chatID)
+		aiClientStore.Unlock()
+		// Возвращаемся к профилю клиента
+		adminStates.RLock()
+		clientID := adminStates.selectedClient[chatID]
+		adminStates.RUnlock()
+		if clientID > 0 {
+			b.showClientProfile(chatID, clientID)
+		} else {
+			b.handleAdminStart(message)
+		}
+		return
+	}
+
+	switch state {
+	case "ai_awaiting_params":
+		b.handleAIParamsSelect(message)
+	}
+}
+
+// handleAIParamsSelect обрабатывает выбор типа тренировки для AI
+func (b *Bot) handleAIParamsSelect(message *tgbotapi.Message) {
+	chatID := message.Chat.ID
+	text := message.Text
+
+	aiClientStore.RLock()
+	clientID := aiClientStore.data[chatID]
+	aiClientStore.RUnlock()
+
+	if clientID == 0 {
+		b.sendMessage(chatID, "Ошибка: клиент не выбран")
+		b.handleAdminStart(message)
+		return
+	}
+
+	// Получаем данные клиента
+	var name, surname string
+	var goal sql.NullString
+	if err := b.db.QueryRow("SELECT name, surname, goal FROM public.clients WHERE id = $1", clientID).
+		Scan(&name, &surname, &goal); err != nil {
+		b.sendError(chatID, "Ошибка получения данных клиента", err)
+		return
+	}
+
+	var trainingType string
+	switch text {
+	case "Силовая":
+		trainingType = "силовая"
+	case "Кардио":
+		trainingType = "кардио"
+	case "Смешанная":
+		trainingType = "смешанная"
+	case "Функциональная":
+		trainingType = "функциональная"
+	default:
+		b.sendMessage(chatID, "Выберите тип тренировки из меню")
+		return
+	}
+
+	// Генерируем простой план на основе типа
+	plan := b.generateSimplePlan(name, surname, goal.String, trainingType)
+
+	// Сохраняем в БД
+	_, err := b.db.Exec("UPDATE public.clients SET training_plan = $1 WHERE id = $2", plan, clientID)
+	if err != nil {
+		b.sendError(chatID, "Ошибка сохранения плана", err)
+		return
+	}
+
+	b.sendMessage(chatID, fmt.Sprintf("✅ План сгенерирован!\n\n%s", plan))
+
+	// Очищаем состояние
+	clearState(chatID)
+	aiClientStore.Lock()
+	delete(aiClientStore.data, chatID)
+	aiClientStore.Unlock()
+
+	b.showClientProfile(chatID, clientID)
+}
+
+// generateSimplePlan генерирует простой план тренировок
+func (b *Bot) generateSimplePlan(name, surname, goal, trainingType string) string {
+	var plan strings.Builder
+
+	plan.WriteString(fmt.Sprintf("План для %s %s\n", name, surname))
+	plan.WriteString(fmt.Sprintf("Цель: %s\n", goal))
+	plan.WriteString(fmt.Sprintf("Тип: %s тренировка\n\n", trainingType))
+
+	switch trainingType {
+	case "силовая":
+		plan.WriteString("День 1 (Верх):\n")
+		plan.WriteString("1. Жим штанги лёжа 4x8-10\n")
+		plan.WriteString("2. Тяга штанги в наклоне 4x8-10\n")
+		plan.WriteString("3. Жим гантелей сидя 3x10-12\n")
+		plan.WriteString("4. Подтягивания 3xmax\n")
+		plan.WriteString("5. Разгибания на трицепс 3x12-15\n\n")
+		plan.WriteString("День 2 (Низ):\n")
+		plan.WriteString("1. Приседания со штангой 4x8-10\n")
+		plan.WriteString("2. Румынская тяга 4x8-10\n")
+		plan.WriteString("3. Жим ногами 3x10-12\n")
+		plan.WriteString("4. Сгибания ног 3x12-15\n")
+		plan.WriteString("5. Подъём на носки 4x15-20\n")
+
+	case "кардио":
+		plan.WriteString("День 1:\n")
+		plan.WriteString("1. Разминка 5 мин\n")
+		plan.WriteString("2. Интервальный бег 20 мин (30с быстро/60с медленно)\n")
+		plan.WriteString("3. Велотренажёр 15 мин\n")
+		plan.WriteString("4. Заминка 5 мин\n\n")
+		plan.WriteString("День 2:\n")
+		plan.WriteString("1. Разминка 5 мин\n")
+		plan.WriteString("2. Эллипс 25 мин\n")
+		plan.WriteString("3. Скакалка 3x3 мин\n")
+		plan.WriteString("4. Заминка 5 мин\n")
+
+	case "смешанная":
+		plan.WriteString("День 1:\n")
+		plan.WriteString("1. Приседания 4x10\n")
+		plan.WriteString("2. Жим гантелей лёжа 3x12\n")
+		plan.WriteString("3. Тяга верхнего блока 3x12\n")
+		plan.WriteString("4. Интервальное кардио 15 мин\n\n")
+		plan.WriteString("День 2:\n")
+		plan.WriteString("1. Становая тяга 4x8\n")
+		plan.WriteString("2. Жим плечами 3x12\n")
+		plan.WriteString("3. Тяга нижнего блока 3x12\n")
+		plan.WriteString("4. HIIT 15 мин\n")
+
+	case "функциональная":
+		plan.WriteString("День 1:\n")
+		plan.WriteString("1. Берпи 3x10\n")
+		plan.WriteString("2. Махи гирей 4x15\n")
+		plan.WriteString("3. Выпады с гантелями 3x12 на ногу\n")
+		plan.WriteString("4. Планка 3x45 сек\n")
+		plan.WriteString("5. Box jump 3x10\n\n")
+		plan.WriteString("День 2:\n")
+		plan.WriteString("1. Турецкий подъём 3x5 на сторону\n")
+		plan.WriteString("2. Рывок гири 4x10\n")
+		plan.WriteString("3. Приседания с гирей 3x12\n")
+		plan.WriteString("4. Farmer's walk 3x30м\n")
+		plan.WriteString("5. Скручивания 3x20\n")
+	}
+
+	return plan.String()
+}

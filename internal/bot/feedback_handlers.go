@@ -136,59 +136,6 @@ func (b *Bot) handleFeedbackInput(message *tgbotapi.Message) {
 	b.saveFeedback(chatID, text)
 }
 
-// handleFeedbackVoice обрабатывает голосовое сообщение
-func (b *Bot) handleFeedbackVoice(message *tgbotapi.Message) {
-	chatID := message.Chat.ID
-
-	// Проверяем состояние
-	userStates.RLock()
-	state := userStates.states[chatID]
-	userStates.RUnlock()
-
-	if state != "feedback_awaiting_input" {
-		return
-	}
-
-	// Проверяем доступность Whisper
-	if b.whisperClient == nil || !b.whisperClient.IsAvailable() {
-		b.sendMessage(chatID, "Голосовые сообщения временно недоступны. Пожалуйста, отправьте обратную связь текстом.")
-		return
-	}
-
-	// Отправляем сообщение о транскрипции
-	waitMsg := tgbotapi.NewMessage(chatID, "Распознаю голосовое сообщение...")
-	b.api.Send(waitMsg)
-
-	// Получаем файл голосового сообщения
-	fileID := message.Voice.FileID
-	file, err := b.api.GetFile(tgbotapi.FileConfig{FileID: fileID})
-	if err != nil {
-		log.Printf("Ошибка получения файла: %v", err)
-		b.sendMessage(chatID, "Ошибка получения голосового сообщения. Попробуйте отправить текстом.")
-		return
-	}
-
-	// Получаем URL файла
-	fileURL := file.Link(b.config.BotToken)
-
-	// Транскрибируем через Groq Whisper
-	transcript, err := b.whisperClient.TranscribeAudio(fileURL)
-	if err != nil {
-		log.Printf("Ошибка транскрипции: %v", err)
-		b.sendMessage(chatID, "Не удалось распознать голосовое сообщение. Попробуйте отправить текстом.")
-		return
-	}
-
-	if transcript == "" {
-		b.sendMessage(chatID, "Не удалось распознать речь. Попробуйте отправить текстом.")
-		return
-	}
-
-	// Показываем распознанный текст
-	b.sendMessage(chatID, fmt.Sprintf("Распознано: %s", transcript))
-
-	b.saveFeedback(chatID, transcript)
-}
 
 // saveFeedback сохраняет обратную связь и отправляет тренеру
 func (b *Bot) saveFeedback(chatID int64, feedbackText string) {

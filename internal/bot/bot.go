@@ -4,8 +4,6 @@ import (
 	"database/sql"
 	"log"
 
-	"workbot/clients/ai"
-	"workbot/clients/knowledge"
 	"workbot/internal/config"
 	"workbot/internal/gsheets"
 
@@ -14,64 +12,42 @@ import (
 
 // Bot представляет Telegram бота
 type Bot struct {
-	api            *tgbotapi.BotAPI
-	db             *sql.DB
-	aiClient       *ai.Client
-	whisperClient  *ai.WhisperClient
-	knowledgeStore *knowledge.Store
-	config         *config.Config
-	sheetsClient   *gsheets.Client
+	api          *tgbotapi.BotAPI
+	db           *sql.DB
+	config       *config.Config
+	sheetsClient *gsheets.Client
 }
 
 // New создаёт новый экземпляр бота
 func New(api *tgbotapi.BotAPI, db *sql.DB, cfg *config.Config) *Bot {
-	// Инициализируем AI клиент (Ollama)
-	aiClient := ai.NewClientWithURL(cfg.OllamaURL, cfg.OllamaModel)
+	// Инициализируем Google Sheets клиент
+	var sheetsClient *gsheets.Client
 
-	if aiClient.IsAvailable() {
-		log.Printf("Ollama доступен: %s (модель: %s)", cfg.OllamaURL, cfg.OllamaModel)
-	} else {
-		log.Printf("Ollama недоступен: %s", cfg.OllamaURL)
-	}
-
-	// Инициализируем Whisper клиент (Groq) для транскрипции
-	whisperClient := ai.NewWhisperClient(cfg.GroqAPIKey)
-	if whisperClient.IsAvailable() {
-		log.Println("Groq Whisper доступен для транскрипции голоса")
-	} else {
-		log.Println("Groq Whisper недоступен (GROQ_API_KEY не настроен)")
-	}
-
-	// Инициализируем хранилище знаний (RAG)
-	knowledgeStore := knowledge.NewStore()
-	if cfg.RAGIndexPath != "" {
-		if err := knowledgeStore.Load(cfg.RAGIndexPath); err != nil {
-			log.Printf("RAG индекс не загружен: %v", err)
-		} else {
-			log.Printf("RAG индекс загружен: %d документов", knowledgeStore.Count())
+	// Сначала пробуем OAuth2 (личный аккаунт)
+	if cfg.GoogleOAuthCredPath != "" && cfg.GoogleTokenPath != "" {
+		var err error
+		sheetsClient, err = gsheets.NewOAuthClient(cfg.GoogleOAuthCredPath, cfg.GoogleTokenPath, cfg.GoogleDriveFolderID)
+		if err != nil {
+			log.Printf("Google Sheets OAuth2 не инициализирован: %v", err)
 		}
 	}
 
-	// Инициализируем Google Sheets клиент
-	var sheetsClient *gsheets.Client
-	if cfg.GoogleDriveFolderID != "" {
+	// Если OAuth не настроен — пробуем Service Account
+	if sheetsClient == nil && cfg.GoogleCredentialsPath != "" && cfg.GoogleDriveFolderID != "" {
 		var err error
 		sheetsClient, err = gsheets.NewClient(cfg.GoogleCredentialsPath, cfg.GoogleDriveFolderID)
 		if err != nil {
-			log.Printf("Google Sheets не инициализирован: %v", err)
+			log.Printf("Google Sheets Service Account не инициализирован: %v", err)
 		} else {
-			log.Println("Google Sheets клиент инициализирован")
+			log.Println("Google Sheets клиент инициализирован (Service Account)")
 		}
 	}
 
 	return &Bot{
-		api:            api,
-		db:             db,
-		aiClient:       aiClient,
-		whisperClient:  whisperClient,
-		knowledgeStore: knowledgeStore,
-		config:         cfg,
-		sheetsClient:   sheetsClient,
+		api:          api,
+		db:           db,
+		config:       cfg,
+		sheetsClient: sheetsClient,
 	}
 }
 
@@ -100,14 +76,6 @@ func (b *Bot) handleUpdates(updates tgbotapi.UpdatesChannel) {
 
 		chatID := update.Message.Chat.ID
 		isAdmin := b.isAdmin(chatID)
-
-		// Обработка голосовых сообщений
-		if update.Message.Voice != nil {
-			if !isAdmin {
-				b.handleFeedbackVoice(update.Message)
-			}
-			continue
-		}
 
 		if update.Message.IsCommand() {
 			if isAdmin {

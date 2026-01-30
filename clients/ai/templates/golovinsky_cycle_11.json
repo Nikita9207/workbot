@@ -1,0 +1,2029 @@
+{
+  "name": "Головинский Цикл 11",
+  "author": "Головинский",
+  "level": [
+    "2_разряд",
+    "1_разряд",
+    "КМС"
+  ],
+  "weeks": 12,
+  "days_per_week": 4,
+  "microcycles": [
+    {
+      "micro_num": 1,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 68.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 55.0,
+                  "reps": 6,
+                  "sets": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 55.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 65.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 47.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 68.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 40.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 46.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 70.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 2,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 62.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 40.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 37.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 6,
+                  "sets": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 40.0,
+                  "reps": 5,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 39.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 40.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 34.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 28.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 3,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 52.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 33.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 37.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 54.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 52.0,
+                  "reps": 4,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 33.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 35.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 53.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 31.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 35.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 54.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 4,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 54.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 36.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 39.0,
+                  "reps": 4,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 56.0,
+                  "reps": 5,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 46.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 61.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 39.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 53.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 34.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 42.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 39.0,
+                  "reps": 5,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 5,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 46.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 4,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 5,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 64.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 54.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 64.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 56.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 4,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 5,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 64.0,
+                  "reps": 5,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 6,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 46.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 4,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 34.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 54.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 64.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 47.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 42.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 56.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 7,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 39.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 51.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 42.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 52.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 41.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 52.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 31.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 53.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 8,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 53.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 42.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 55.0,
+                  "reps": 4,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 63.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 55.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 36.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 38.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 9,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 64.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 2
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 56.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 67.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 5,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 46.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 62.0,
+                  "reps": 6,
+                  "sets": 3
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 10,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 49.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 67.0,
+                  "reps": 4,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 62.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 58.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 42.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 5,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 34.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 11,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 44.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 51.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 50.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 32.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 51.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 48.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 43.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 51.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 38.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 41.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 52.0,
+                  "reps": 6,
+                  "sets": 4
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "micro_num": 12,
+      "workouts": [
+        {
+          "day": 1,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 59.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 47.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Присед на груди",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим гантелей",
+              "sets": [
+                {
+                  "percent": 52.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Трицепс на блоке",
+              "sets": [
+                {
+                  "percent": 62.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 2,
+          "exercises": []
+        },
+        {
+          "day": 3,
+          "exercises": [
+            {
+              "name": "Становая тяга",
+              "sets": [
+                {
+                  "percent": 51.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 41.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Наклоны",
+              "sets": [
+                {
+                  "percent": 67.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим стоя",
+              "sets": [
+                {
+                  "percent": 39.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "day": 4,
+          "exercises": []
+        },
+        {
+          "day": 5,
+          "exercises": [
+            {
+              "name": "Присед",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Жим лежа",
+              "sets": [
+                {
+                  "percent": 60.0,
+                  "reps": 6,
+                  "sets": 2
+                }
+              ]
+            },
+            {
+              "name": "Присед в широкой постановке",
+              "sets": [
+                {
+                  "percent": 46.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Французский жим",
+              "sets": [
+                {
+                  "percent": 47.0,
+                  "reps": 5,
+                  "sets": 5
+                }
+              ]
+            },
+            {
+              "name": "Разгибания ног",
+              "sets": [
+                {
+                  "percent": 57.0,
+                  "reps": 6,
+                  "sets": 5
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

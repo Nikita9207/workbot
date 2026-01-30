@@ -1,0 +1,621 @@
+{
+  "name": "Верхошанский 6 недель (жим лёжа)",
+  "author": "Юрий Верхошанский",
+  "level": [
+    "1_разряд",
+    "КМС",
+    "МС"
+  ],
+  "weeks": 6,
+  "days_per_week": 2,
+  "type": "жим",
+  "weeks_data": [
+    {
+      "week_num": 1,
+      "workouts": [
+        {
+          "workout_num": 1,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 6,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 6,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 6,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 6,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workout_num": 2,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 8,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 6,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 6,
+                  "sets": 1
+                },
+                {
+                  "percent": 50.0,
+                  "reps": 8,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 2,
+      "workouts": [
+        {
+          "workout_num": 1,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 6,
+                  "sets": 1
+                },
+                {
+                  "percent": 70.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 70.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 70.0,
+                  "reps": 5,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workout_num": 2,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 70.0,
+                  "reps": 7,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 3,
+      "workouts": [
+        {
+          "workout_num": 1,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 70.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 3,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workout_num": 2,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 90.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 90.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 8,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 4,
+      "workouts": [
+        {
+          "workout_num": 1,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 3,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workout_num": 2,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 4,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 2,
+                  "sets": 1
+                },
+                {
+                  "percent": 90.0,
+                  "reps": 2,
+                  "sets": 1
+                },
+                {
+                  "percent": 95.0,
+                  "reps": 2,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 5,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 5,
+      "workouts": [
+        {
+          "workout_num": 1,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 5,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workout_num": 2,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 2,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week_num": 6,
+      "workouts": [
+        {
+          "workout_num": 1,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 2,
+                  "sets": 1
+                },
+                {
+                  "percent": 80.0,
+                  "reps": 2,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "workout_num": 2,
+          "exercises": [
+            {
+              "name": "Жим лёжа",
+              "type": "competition",
+              "sets": [
+                {
+                  "percent": 45.0,
+                  "reps": 9,
+                  "sets": 1
+                },
+                {
+                  "percent": 55.0,
+                  "reps": 7,
+                  "sets": 1
+                },
+                {
+                  "percent": 65.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 75.0,
+                  "reps": 3,
+                  "sets": 1
+                },
+                {
+                  "percent": 85.0,
+                  "reps": 2,
+                  "sets": 1
+                },
+                {
+                  "percent": 90.0,
+                  "reps": 1,
+                  "sets": 1
+                },
+                {
+                  "percent": 95.0,
+                  "reps": 1,
+                  "sets": 1
+                },
+                {
+                  "percent": 100.0,
+                  "reps": 1,
+                  "sets": 1
+                },
+                {
+                  "percent": 102.0,
+                  "reps": 5,
+                  "sets": 1
+                },
+                {
+                  "percent": 105.0,
+                  "reps": 1,
+                  "sets": 1
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

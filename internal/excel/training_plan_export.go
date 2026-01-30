@@ -13,22 +13,36 @@ import (
 const (
 	SheetPlanOverview   = "Обзор плана"
 	SheetPeriodization  = "Периодизация"
+	SheetWorkouts       = "Тренировки"
 	SheetProgression    = "Прогрессия весов"
 	Sheet1PMHistory     = "История 1ПМ"
 	SheetVolumeAnalysis = "Анализ объёма"
 )
 
-// ExportTrainingPlan creates a comprehensive Excel workbook for a training plan
+// ExportTrainingPlan creates a comprehensive Excel workbook for a training plan (legacy, without workouts)
 func ExportTrainingPlan(
 	plan *models.TrainingPlan,
 	progression []models.Progression,
 	pm1History []models.Exercise1PMHistory,
+) (*excelize.File, error) {
+	return ExportTrainingPlanWithWorkouts(plan, progression, pm1History, nil)
+}
+
+// ExportTrainingPlanWithWorkouts creates a comprehensive Excel workbook with full workout details
+func ExportTrainingPlanWithWorkouts(
+	plan *models.TrainingPlan,
+	progression []models.Progression,
+	pm1History []models.Exercise1PMHistory,
+	workouts *models.GeneratedProgram,
 ) (*excelize.File, error) {
 	f := excelize.NewFile()
 
 	// Create sheets
 	f.SetSheetName("Sheet1", SheetPlanOverview)
 	f.NewSheet(SheetPeriodization)
+	if workouts != nil && len(workouts.Weeks) > 0 {
+		f.NewSheet(SheetWorkouts)
+	}
 	f.NewSheet(SheetProgression)
 	f.NewSheet(Sheet1PMHistory)
 	f.NewSheet(SheetVolumeAnalysis)
@@ -40,6 +54,13 @@ func ExportTrainingPlan(
 
 	if err := createPeriodizationSheetExport(f, plan); err != nil {
 		return nil, fmt.Errorf("ошибка создания периодизации: %w", err)
+	}
+
+	// Add workouts sheet if available
+	if workouts != nil && len(workouts.Weeks) > 0 {
+		if err := createWorkoutsSheetExport(f, workouts); err != nil {
+			return nil, fmt.Errorf("ошибка создания тренировок: %w", err)
+		}
 	}
 
 	if err := createProgressionSheetExport(f, plan, progression); err != nil {
@@ -560,5 +581,145 @@ func sanitizeFilename(name string) string {
 		result = strings.ReplaceAll(result, char, "_")
 	}
 	return result
+}
+
+// createWorkoutsSheetExport creates the full workouts sheet
+func createWorkoutsSheetExport(f *excelize.File, program *models.GeneratedProgram) error {
+	sheet := SheetWorkouts
+
+	// Styles
+	weekHeaderStyle, _ := f.NewStyle(&excelize.Style{
+		Font:      &excelize.Font{Bold: true, Size: 14, Color: "FFFFFF"},
+		Fill:      excelize.Fill{Type: "pattern", Color: []string{"1F4E79"}, Pattern: 1},
+		Alignment: &excelize.Alignment{Horizontal: "center", Vertical: "center"},
+	})
+
+	dayHeaderStyle, _ := f.NewStyle(&excelize.Style{
+		Font:      &excelize.Font{Bold: true, Size: 12, Color: "FFFFFF"},
+		Fill:      excelize.Fill{Type: "pattern", Color: []string{"2E75B6"}, Pattern: 1},
+		Alignment: &excelize.Alignment{Horizontal: "left", Vertical: "center"},
+		Border: []excelize.Border{
+			{Type: "bottom", Color: "000000", Style: 2},
+		},
+	})
+
+	exerciseHeaderStyle, _ := f.NewStyle(&excelize.Style{
+		Font:      &excelize.Font{Bold: true, Size: 10},
+		Fill:      excelize.Fill{Type: "pattern", Color: []string{"D6DCE4"}, Pattern: 1},
+		Alignment: &excelize.Alignment{Horizontal: "center", Vertical: "center"},
+		Border: []excelize.Border{
+			{Type: "left", Color: "000000", Style: 1},
+			{Type: "right", Color: "000000", Style: 1},
+			{Type: "top", Color: "000000", Style: 1},
+			{Type: "bottom", Color: "000000", Style: 1},
+		},
+	})
+
+	exerciseStyle, _ := f.NewStyle(&excelize.Style{
+		Alignment: &excelize.Alignment{Vertical: "center"},
+		Border: []excelize.Border{
+			{Type: "left", Color: "000000", Style: 1},
+			{Type: "right", Color: "000000", Style: 1},
+			{Type: "top", Color: "000000", Style: 1},
+			{Type: "bottom", Color: "000000", Style: 1},
+		},
+	})
+
+	exerciseValueStyle, _ := f.NewStyle(&excelize.Style{
+		Alignment: &excelize.Alignment{Horizontal: "center", Vertical: "center"},
+		Border: []excelize.Border{
+			{Type: "left", Color: "000000", Style: 1},
+			{Type: "right", Color: "000000", Style: 1},
+			{Type: "top", Color: "000000", Style: 1},
+			{Type: "bottom", Color: "000000", Style: 1},
+		},
+	})
+
+	// Title
+	f.SetCellValue(sheet, "A1", "ТРЕНИРОВОЧНАЯ ПРОГРАММА")
+	f.MergeCell(sheet, "A1", "G1")
+	f.SetCellStyle(sheet, "A1", "G1", weekHeaderStyle)
+	f.SetRowHeight(sheet, 1, 30)
+
+	row := 3
+	for _, week := range program.Weeks {
+		// Week header
+		weekTitle := fmt.Sprintf("НЕДЕЛЯ %d", week.WeekNum)
+		if week.IsDeload {
+			weekTitle += " (РАЗГРУЗКА)"
+		}
+		f.SetCellValue(sheet, fmt.Sprintf("A%d", row), weekTitle)
+		f.MergeCell(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("G%d", row))
+		f.SetCellStyle(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("G%d", row), weekHeaderStyle)
+		f.SetRowHeight(sheet, row, 25)
+		row++
+
+		for _, day := range week.Days {
+			// Day header
+			dayTitle := day.Name
+			if dayTitle == "" {
+				dayTitle = fmt.Sprintf("День %d", day.DayNum)
+			}
+			f.SetCellValue(sheet, fmt.Sprintf("A%d", row), dayTitle)
+			f.MergeCell(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("G%d", row))
+			f.SetCellStyle(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("G%d", row), dayHeaderStyle)
+			f.SetRowHeight(sheet, row, 22)
+			row++
+
+			// Exercise headers
+			headers := []string{"#", "Упражнение", "Подходы", "Повторения", "Вес (кг)", "Отдых (сек)", "RPE"}
+			for i, h := range headers {
+				cell := fmt.Sprintf("%s%d", colName(i+1), row)
+				f.SetCellValue(sheet, cell, h)
+				f.SetCellStyle(sheet, cell, cell, exerciseHeaderStyle)
+			}
+			row++
+
+			// Exercises
+			for _, ex := range day.Exercises {
+				f.SetCellValue(sheet, fmt.Sprintf("A%d", row), ex.OrderNum)
+				f.SetCellValue(sheet, fmt.Sprintf("B%d", row), ex.ExerciseName)
+				f.SetCellValue(sheet, fmt.Sprintf("C%d", row), ex.Sets)
+				f.SetCellValue(sheet, fmt.Sprintf("D%d", row), ex.Reps)
+
+				if ex.Weight > 0 {
+					f.SetCellValue(sheet, fmt.Sprintf("E%d", row), fmt.Sprintf("%.1f", ex.Weight))
+				} else if ex.WeightPercent > 0 {
+					f.SetCellValue(sheet, fmt.Sprintf("E%d", row), fmt.Sprintf("%.0f%%", ex.WeightPercent))
+				} else {
+					f.SetCellValue(sheet, fmt.Sprintf("E%d", row), "-")
+				}
+
+				f.SetCellValue(sheet, fmt.Sprintf("F%d", row), ex.RestSeconds)
+
+				if ex.RPE > 0 {
+					f.SetCellValue(sheet, fmt.Sprintf("G%d", row), fmt.Sprintf("%.1f", ex.RPE))
+				} else {
+					f.SetCellValue(sheet, fmt.Sprintf("G%d", row), "-")
+				}
+
+				// Style
+				f.SetCellStyle(sheet, fmt.Sprintf("A%d", row), fmt.Sprintf("A%d", row), exerciseValueStyle)
+				f.SetCellStyle(sheet, fmt.Sprintf("B%d", row), fmt.Sprintf("B%d", row), exerciseStyle)
+				f.SetCellStyle(sheet, fmt.Sprintf("C%d", row), fmt.Sprintf("G%d", row), exerciseValueStyle)
+				row++
+			}
+
+			row++ // Empty row between days
+		}
+
+		row++ // Extra space between weeks
+	}
+
+	// Column widths
+	f.SetColWidth(sheet, "A", "A", 5)
+	f.SetColWidth(sheet, "B", "B", 35)
+	f.SetColWidth(sheet, "C", "C", 10)
+	f.SetColWidth(sheet, "D", "D", 12)
+	f.SetColWidth(sheet, "E", "E", 12)
+	f.SetColWidth(sheet, "F", "F", 12)
+	f.SetColWidth(sheet, "G", "G", 8)
+
+	return nil
 }
 
