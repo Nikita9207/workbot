@@ -1412,58 +1412,145 @@
                 <h2>Структура проекта</h2>
                 <pre>
 workbot/
-├── cmd/
-│   ├── main.go                 # Точка входа
-│   ├── oauth_setup/            # Настройка Google OAuth
-│   ├── plgen/                  # CLI для PL программ
-│   └── plancli/                # CLI для планов
+├── cmd/                            # CLI инструменты
+│   ├── main.go                     # Точка входа бота
+│   ├── demo/                       # Демо приложение
+│   ├── oauth_setup/                # Настройка Google OAuth2
+│   ├── plancli/                    # Интерактивный CLI с Ollama LLM
+│   ├── plgen/                      # CLI для PL программ
+│   └── program_generator/          # Автономный генератор программ
+│
 ├── internal/
-│   ├── bot/                    # Обработчики Telegram
-│   │   ├── bot.go              # Структура бота + repo
-│   │   ├── handlers.go         # Маршрутизация сообщений
-│   │   ├── workout_tracker.go  # Клиентский трекер тренировок ← NEW
-│   │   ├── language.go         # Управление языком
-│   │   ├── fitness_handlers.go # FIT программы
-│   │   ├── powerlifting_handlers.go
-│   │   ├── birthday_reminder.go # Напоминания о ДР
+│   ├── bot/                        # Telegram обработчики (26 файлов)
+│   │   ├── bot.go                  # Структура бота + repo
+│   │   ├── handlers.go             # Маршрутизация сообщений
+│   │   ├── workout_tracker.go      # Клиентский трекер тренировок
+│   │   ├── plan_handlers.go        # Управление планами
+│   │   ├── plan_export.go          # Экспорт планов в Excel
+│   │   ├── onepm_handlers.go       # 1ПМ тестирование
+│   │   ├── fitness_handlers.go     # FIT программы
+│   │   ├── powerlifting_handlers.go # PL программы
+│   │   ├── powerlifting_helpers.go # Утилиты для PL
+│   │   ├── progress_tracker.go     # Трекер прогресса клиента
+│   │   ├── client_statistics.go    # Статистика клиентов
+│   │   ├── calendar_widget.go      # Inline календарь
+│   │   ├── language.go             # Управление языком + кэш
+│   │   ├── validation.go           # Валидация Input/Output
+│   │   ├── helpers.go              # Вспомогательные функции
+│   │   ├── booking_handlers.go     # Бронирование тренировок
+│   │   ├── schedule_handlers.go    # Расписание тренера
+│   │   ├── feedback_handlers.go    # Обратная связь
+│   │   ├── registration.go         # Регистрация клиентов
+│   │   ├── birthday_reminder.go    # Напоминания о ДР
 │   │   ├── appointment_reminder.go # Напоминания о тренировках
-│   │   ├── progress_tracker.go # Трекер прогресса
-│   │   ├── feedback_handlers.go # Обратная связь
-│   │   ├── admin*.go           # Панель администратора
-│   │   └── booking_handlers.go
-│   ├── i18n/                   # Локализация
-│   │   └── i18n.go             # Загрузка и получение переводов
-│   ├── generator/              # Генераторы программ
-│   │   ├── selector.go         # Выбор упражнений
-│   │   ├── generator_strength.go   # WavePattern + H/M/L
-│   │   ├── generator_hypertrophy.go # WavePattern + MEV→MRV
-│   │   ├── generator_fatloss.go
-│   │   ├── generator_hyrox.go
-│   │   └── progression/        # Прогрессия весов/TRX/гирь
-│   │       ├── progression_models.go  # WavePattern, DayIntensity, GoalBlockConfig
-│   │       └── progression_weight.go  # GetBlockParams, INOL validation
-│   ├── repository/             # Слой базы данных
-│   │   ├── *_repo.go           # Client, Admin, Plan, Exercise...
-│   │   └── program_repo.go     # ProgramRepository ← NEW
-│   ├── models/                 # Структуры данных
-│   ├── excel/                  # Экспорт Excel
-│   ├── gsheets/                # Google Таблицы
-│   ├── training/               # 1ПМ, периодизация
-│   └── config/                 # Конфигурация
-├── locales/                    # Переводы ← NEW
-│   ├── ru.json                 # Русский (150+ ключей)
-│   └── en.json                 # English (150+ keys)
+│   │   ├── admin.go                # Админ панель
+│   │   ├── admin_clients.go        # Управление клиентами
+│   │   ├── admin_trainers.go       # Управление тренерами
+│   │   └── admin_training.go       # Управление тренировками
+│   │
+│   ├── models/                     # Модели данных (8 файлов)
+│   │   ├── types.go                # Базовые типы
+│   │   ├── exercise.go             # Упражнение
+│   │   ├── exercise_extended.go    # Расширенные свойства + MovementType
+│   │   ├── program.go              # Программа тренировок
+│   │   ├── training_plan.go        # План тренировок
+│   │   ├── periodization.go        # Периодизация, блоки
+│   │   ├── analytics.go            # TrainingLog, VolumeAnalytics, Charts
+│   │   └── movement_balance.go     # BalanceOptimizer, CorrectiveExercises
+│   │
+│   ├── generator/                  # Генераторы программ
+│   │   ├── selector.go             # Выбор упражнений + BalanceAwareSelection
+│   │   ├── generator_strength.go   # Сила: блоки + волны + H/M/L
+│   │   ├── generator_hypertrophy.go # Гипертрофия: MEV→MRV + Stepped
+│   │   ├── generator_fatloss.go    # Жиросжигание: Сила + HIIT + LISS
+│   │   ├── generator_hyrox.go      # Hyrox: 4 фазы + станции
+│   │   ├── formatter/
+│   │   │   └── formatter_telegram.go # Форматирование для Telegram
+│   │   └── progression/            # Модели прогрессии (5 файлов)
+│   │       ├── progression_models.go   # INOL, Fatigue, WorkCapacity, BlockType
+│   │       ├── progression_weight.go   # Линейная, волновая, double
+│   │       ├── progression_trx.go      # Прогрессия TRX
+│   │       ├── progression_kettlebell.go # Прогрессия гирь
+│   │       └── progression_cardio.go   # Прогрессия кардио
+│   │
+│   ├── repository/                 # Слой базы данных (8 файлов)
+│   │   ├── repository.go           # Базовый интерфейс
+│   │   ├── client_repo.go          # Клиенты
+│   │   ├── admin_repo.go           # Администраторы
+│   │   ├── exercise_repo.go        # Упражнения
+│   │   ├── plan_repo.go            # Планы
+│   │   ├── appointment_repo.go     # Записи на тренировки
+│   │   ├── schedule_repo.go        # Расписание
+│   │   └── program_repo.go         # ProgramRepository: прогресс, тренировки
+│   │
+│   ├── excel/                      # Excel экспорт (11 файлов)
+│   │   ├── program.go              # Экспорт программ
+│   │   ├── program_export.go       # Расширенный экспорт
+│   │   ├── training.go             # Тренировки
+│   │   ├── training_plan_export.go # Планы тренировок
+│   │   ├── client_workbook.go      # Рабочие книги клиентов
+│   │   ├── dashboard.go            # Дашборды
+│   │   ├── journal_file.go         # Журналы
+│   │   ├── hybrid.go               # Гибридные форматы
+│   │   ├── unified.go              # Единый формат
+│   │   ├── sync.go                 # Синхронизация
+│   │   └── watcher.go              # Отслеживание изменений
+│   │
+│   ├── gsheets/                    # Google Sheets (3 файла)
+│   │   ├── client.go               # OAuth2 + Service Account + batch
+│   │   ├── gsheets_pl.go           # PL шаблоны
+│   │   └── gsheets_reader.go       # Чтение данных
+│   │
+│   ├── training/                   # Тренировочная логика (4 файла)
+│   │   ├── onepm.go                # Калькуляторы 1ПМ
+│   │   ├── periodization.go        # Периодизация блоков
+│   │   ├── progression.go          # Прогрессия программ
+│   │   └── parser.go               # Парсинг данных
+│   │
+│   ├── i18n/                       # Локализация
+│   │   └── i18n.go                 # Загрузка переводов, кэш языка
+│   │
+│   ├── calendar/                   # Календарь
+│   │   └── ics.go                  # ICS экспорт
+│   │
+│   └── config/                     # Конфигурация
+│       └── config.go               # Загрузка .env
+│
 ├── clients/
-│   └── ai/                     # AI/PL шаблоны
-│       ├── powerlifting_templates.go
-│       ├── templates/*.json    # Шейко, Русский цикл...
-│       └── groq.go             # Интеграция LLM
-├── data/                       # Базы упражнений
-│   ├── barbell_dumbbell.json
-│   ├── trx.json
-│   ├── kettlebell.json
-│   └── cardio_metabolic.json
-└── migrations/                 # SQL миграции
+│   ├── ai/                         # AI интеграция (14 файлов)
+│   │   ├── provider.go             # Интерфейс провайдеров
+│   │   ├── groq.go                 # Groq API
+│   │   ├── whisper.go              # Распознавание речи
+│   │   ├── trainer.go              # AI тренер
+│   │   ├── plan_state.go           # Состояние планирования
+│   │   ├── validator.go            # Валидация программ
+│   │   ├── validator_v3.go         # Валидация v3
+│   │   ├── program_generator.go    # Генератор программ
+│   │   ├── program_generator_v3.go # Генератор v3
+│   │   ├── powerlifting_templates.go # PL шаблоны
+│   │   ├── prompts.go              # Промпты v1
+│   │   ├── prompts_v2.go           # Промпты v2
+│   │   └── prompts_v3.go           # Промпты v3
+│   └── knowledge/
+│       └── store.go                # База знаний
+│
+├── locales/                        # Переводы (150+ ключей)
+│   ├── ru.json                     # Русский
+│   └── en.json                     # English
+│
+├── data/                           # Базы упражнений
+│   ├── barbell_dumbbell.json       # Штанга + гантели
+│   ├── trx.json                    # TRX упражнения
+│   ├── kettlebell.json             # Гири
+│   └── cardio_metabolic.json       # Кардио + метаболические
+│
+├── migrations/                     # SQL миграции
+│
+├── docker/                         # Docker конфигурация
+│   └── docker-compose.yml
+│
+└── docs/                           # Документация
+    └── architecture.html           # Эта страница
                 </pre>
             </div>
         </div>
