@@ -374,6 +374,7 @@ type ProgramStats struct {
 	TotalVolume     float64 `json:"total_volume"` // тоннаж
 	AvgWorkoutDur   int     `json:"avg_workout_duration"` // минут
 	SetsPerMuscle   map[MuscleGroupExt]int `json:"sets_per_muscle"`
+	MovementBalance *MovementBalance        `json:"movement_balance,omitempty"` // Баланс паттернов
 }
 
 // Substitution - замена упражнения

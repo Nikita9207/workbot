@@ -35,7 +35,7 @@ func main() {
 
 	// Показать список шаблонов
 	if *listTemplates {
-		fmt.Println("📋 Доступные шаблоны программ:\n")
+		fmt.Println("📋 Доступные шаблоны программ:")
 		for i, name := range gen.ListTemplates() {
 			fmt.Printf("%d. %s\n", i+1, name)
 		}
@@ -131,7 +131,7 @@ func runInteractive(gen *ai.ProgramGenerator) {
 	reader := bufio.NewReader(os.Stdin)
 
 	fmt.Println("🏋️ Генератор программ пауэрлифтинга")
-	fmt.Println("====================================\n")
+	fmt.Println("====================================")
 
 	// Выбор шаблона
 	templates := gen.ListTemplates()

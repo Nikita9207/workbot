@@ -23,9 +23,12 @@ func NewStrengthGenerator(selector *ExerciseSelector, client *models.ClientProfi
 
 // StrengthConfig - конфигурация программы силы
 type StrengthConfig struct {
-	TotalWeeks  int    // Всего недель (6-12)
-	DaysPerWeek int    // Дней в неделю (3-4)
-	Focus       string // squat/bench/deadlift/all
+	TotalWeeks       int                          // Всего недель (6-12)
+	DaysPerWeek      int                          // Дней в неделю (3-4)
+	Focus            string                       // squat/bench/deadlift/all
+	ProgressionModel progression.ProgressionModel // Модель прогрессии
+	UseAdvanced      bool                         // Использовать расширенную периодизацию
+	WavePattern      progression.WavePattern      // Паттерн волновой периодизации (none/three_plus_one/stepped)
 }
 
 // Generate генерирует программу силы
@@ -39,12 +42,19 @@ func (g *StrengthGenerator) Generate(config StrengthConfig) (*models.GeneratedPr
 		DaysPerWeek:   config.DaysPerWeek,
 	}
 
+	// Используем расширенную периодизацию если указано
+	if config.UseAdvanced {
+		return g.generateAdvanced(config)
+	}
+
 	// Определяем фазы (блочная периодизация)
 	program.Phases = g.definePhasesStrength(config.TotalWeeks)
 
 	// Генерируем недели
 	for weekNum := 1; weekNum <= config.TotalWeeks; weekNum++ {
 		week := g.generateWeekStrength(weekNum, config)
+		// Оптимизируем баланс недели
+		g.ensureWeekBalance(&week)
 		program.Weeks = append(program.Weeks, week)
 	}
 
@@ -52,6 +62,276 @@ func (g *StrengthGenerator) Generate(config StrengthConfig) (*models.GeneratedPr
 	program.Statistics = g.calculateStats(program)
 
 	return program, nil
+}
+
+// generateAdvanced генерирует программу с расширенной периодизацией
+func (g *StrengthGenerator) generateAdvanced(config StrengthConfig) (*models.GeneratedProgram, error) {
+	program := &models.GeneratedProgram{
+		ClientID:      g.client.ID,
+		ClientName:    g.client.Name,
+		Goal:          models.GoalStrength,
+		Periodization: models.PeriodBlock,
+		TotalWeeks:    config.TotalWeeks,
+		DaysPerWeek:   config.DaysPerWeek,
+	}
+
+	// Определяем волновой паттерн: из конфига или дефолтный для цели
+	wavePattern := config.WavePattern
+	if wavePattern == "" {
+		wavePattern = progression.GetWavePattern("strength") // По умолчанию 3+1 для силы
+	}
+
+	// Автоматический расчёт блоков с выбранным волновым паттерном
+	blocks := progression.CalculateBlockLengthsWithWave("strength", config.TotalWeeks, config.DaysPerWeek, wavePattern)
+
+	// Конвертируем блоки в фазы
+	program.Phases = g.blocksToPhases(blocks)
+
+	// Создаём расширенные прогрессии для основных движений
+	advancedProgs := make(map[string]*progression.WeightProgression)
+	for movement, onePM := range g.client.OnePM {
+		model := config.ProgressionModel
+		if model == "" {
+			model = progression.ProgressionWave // По умолчанию волновая для силы
+		}
+		advancedProgs[movement] = progression.NewAdvancedProgression(onePM, model, "intermediate_strength")
+	}
+
+	// Генерируем недели по блокам
+	for _, block := range blocks {
+		for weekInBlock := 1; weekInBlock <= block.Weeks; weekInBlock++ {
+			weekNum := block.WeekStart + weekInBlock - 1
+			week := g.generateAdvancedWeek(weekNum, weekInBlock, block, config, advancedProgs)
+			// Оптимизируем баланс недели
+			g.ensureWeekBalance(&week)
+			program.Weeks = append(program.Weeks, week)
+		}
+	}
+
+	// Считаем статистику
+	program.Statistics = g.calculateStats(program)
+
+	return program, nil
+}
+
+// blocksToPhases конвертирует блоки в фазы программы
+func (g *StrengthGenerator) blocksToPhases(blocks []progression.CalculatedBlock) []models.ProgramPhase {
+	phases := make([]models.ProgramPhase, 0, len(blocks))
+
+	for _, block := range blocks {
+		phase := models.ProgramPhase{
+			Name:         block.Config.NameRu,
+			WeekStart:    block.WeekStart,
+			WeekEnd:      block.WeekEnd,
+			IntensityMin: block.Config.IntensityStart,
+			IntensityMax: block.Config.IntensityEnd,
+		}
+
+		switch block.Config.Type {
+		case progression.BlockAccumulation:
+			phase.Focus = "Объём, техника, рабочая гипертрофия"
+			phase.VolumeLevel = "high"
+		case progression.BlockTransmutation:
+			phase.Focus = "Конверсия объёма в силу"
+			phase.VolumeLevel = "medium"
+		case progression.BlockRealization:
+			phase.Focus = "Выход на пик, максимальные веса"
+			phase.VolumeLevel = "low"
+		}
+
+		phases = append(phases, phase)
+	}
+
+	return phases
+}
+
+// generateAdvancedWeek генерирует неделю с расширенной прогрессией
+func (g *StrengthGenerator) generateAdvancedWeek(
+	weekNum, weekInBlock int,
+	block progression.CalculatedBlock,
+	config StrengthConfig,
+	advancedProgs map[string]*progression.WeightProgression,
+) models.GeneratedWeek {
+	weekParams := block.WeeklyParams[weekInBlock-1]
+
+	week := models.GeneratedWeek{
+		WeekNum:           weekNum,
+		PhaseName:         block.Config.NameRu,
+		IsDeload:          weekParams.IsDeload,
+		IntensityPercent:  weekParams.IntensityPercent,
+		VolumePercent:     weekParams.VolumeMultiplier * 100,
+		RPETarget:         g.getRPEForBlockType(block.Config.Type, weekParams.IsDeload),
+	}
+
+	// Генерируем дни с H/M/L паттерном
+	dayTypes := g.getStrengthDayTypes(config.DaysPerWeek, config.Focus)
+	for dayNum, dayType := range dayTypes {
+		dayIntensity := progression.GetDayIntensity(dayNum+1, config.DaysPerWeek)
+		day := g.generateAdvancedDay(dayNum+1, dayType, weekNum, block, weekInBlock, dayIntensity, config, advancedProgs)
+		week.Days = append(week.Days, day)
+	}
+
+	return week
+}
+
+// generateAdvancedDay генерирует день с расширенной прогрессией
+func (g *StrengthGenerator) generateAdvancedDay(
+	dayNum int,
+	dayType string,
+	weekNum int,
+	block progression.CalculatedBlock,
+	weekInBlock int,
+	dayIntensity progression.DayIntensity,
+	config StrengthConfig,
+	advancedProgs map[string]*progression.WeightProgression,
+) models.GeneratedDay {
+	weekParams := block.WeeklyParams[weekInBlock-1]
+	isDeload := weekParams.IsDeload
+
+	day := models.GeneratedDay{
+		DayNum: dayNum,
+		Name:   g.getDayNameWithIntensity(dayType, dayNum, dayIntensity),
+		Type:   dayType,
+	}
+
+	// Упражнения для дня
+	exercises := g.getExercisesForDay(dayType, string(block.Config.Type), isDeload)
+
+	for orderNum, exDef := range exercises {
+		ex := g.createAdvancedExercise(exDef, orderNum+1, block, weekInBlock, dayIntensity, isDeload, advancedProgs)
+		day.Exercises = append(day.Exercises, ex)
+	}
+
+	// Оценка длительности
+	totalSets := 0
+	for _, ex := range day.Exercises {
+		totalSets += ex.Sets
+	}
+	day.EstimatedDuration = totalSets * 4
+
+	return day
+}
+
+// createAdvancedExercise создаёт упражнение с расширенной прогрессией
+func (g *StrengthGenerator) createAdvancedExercise(
+	exDef ExerciseDef,
+	orderNum int,
+	block progression.CalculatedBlock,
+	weekInBlock int,
+	dayIntensity progression.DayIntensity,
+	isDeload bool,
+	advancedProgs map[string]*progression.WeightProgression,
+) models.GeneratedExercise {
+	ex := models.GeneratedExercise{
+		OrderNum:     orderNum,
+		ExerciseName: exDef.Name,
+	}
+
+	// Для основных движений используем расширенную прогрессию
+	if exDef.IsMain && exDef.Movement != "" {
+		wp, ok := advancedProgs[exDef.Movement]
+		if ok {
+			params := wp.GetBlockParams(block, weekInBlock, dayIntensity)
+
+			// Применяем базовый процент для вариаций
+			if exDef.BasePercent < 100 && exDef.BasePercent > 0 {
+				params.Intensity = params.Intensity * exDef.BasePercent / 100
+				params.Weight = wp.CalculateWeight(params.Intensity)
+			}
+
+			ex.Weight = params.Weight
+			ex.WeightPercent = params.Intensity
+			ex.Reps = fmt.Sprintf("%d", params.Reps)
+			ex.Sets = params.Sets
+			ex.RestSeconds = params.RestSeconds
+			ex.RPE = params.RPE
+		}
+	} else if exDef.IsAccessory {
+		// Подсобные упражнения
+		ex.Sets = g.getAccessorySetsForBlock(block.Config.Type, isDeload)
+		ex.Reps = g.getAccessoryRepsForBlock(block.Config.Type, isDeload)
+		ex.RestSeconds = 90
+		ex.RPE = 7.5
+
+		// Если есть связь с основным движением
+		if exDef.Movement != "" && exDef.BasePercent > 0 {
+			if wp, ok := advancedProgs[exDef.Movement]; ok {
+				params := wp.GetBlockParams(block, weekInBlock, dayIntensity)
+				adjustedIntensity := params.Intensity * exDef.BasePercent / 100
+				ex.Weight = wp.CalculateWeight(adjustedIntensity)
+				ex.WeightPercent = adjustedIntensity
+			}
+		}
+	}
+
+	return ex
+}
+
+// getDayNameWithIntensity возвращает название дня с типом нагрузки
+func (g *StrengthGenerator) getDayNameWithIntensity(dayType string, dayNum int, dayIntensity progression.DayIntensity) string {
+	baseName := g.getDayName(dayType, dayNum)
+
+	intensityNames := map[progression.DayIntensity]string{
+		progression.DayHeavy:  "Тяжёлый",
+		progression.DayMedium: "Средний",
+		progression.DayLight:  "Лёгкий",
+	}
+
+	if name, ok := intensityNames[dayIntensity]; ok {
+		return fmt.Sprintf("%s (%s)", baseName, name)
+	}
+	return baseName
+}
+
+// getRPEForBlockType возвращает целевой RPE для типа блока
+func (g *StrengthGenerator) getRPEForBlockType(blockType progression.BlockType, isDeload bool) float64 {
+	if isDeload {
+		return 5.0
+	}
+	switch blockType {
+	case progression.BlockAccumulation:
+		return 7.5
+	case progression.BlockTransmutation:
+		return 8.5
+	case progression.BlockRealization:
+		return 9.5
+	default:
+		return 8.0
+	}
+}
+
+// getAccessorySetsForBlock возвращает подходы для подсобки по типу блока
+func (g *StrengthGenerator) getAccessorySetsForBlock(blockType progression.BlockType, isDeload bool) int {
+	if isDeload {
+		return 2
+	}
+	switch blockType {
+	case progression.BlockAccumulation:
+		return 4
+	case progression.BlockTransmutation:
+		return 3
+	case progression.BlockRealization:
+		return 2
+	default:
+		return 3
+	}
+}
+
+// getAccessoryRepsForBlock возвращает повторения для подсобки по типу блока
+func (g *StrengthGenerator) getAccessoryRepsForBlock(blockType progression.BlockType, isDeload bool) string {
+	if isDeload {
+		return "8"
+	}
+	switch blockType {
+	case progression.BlockAccumulation:
+		return "10-12"
+	case progression.BlockTransmutation:
+		return "8-10"
+	case progression.BlockRealization:
+		return "6-8"
+	default:
+		return "8-10"
+	}
 }
 
 // definePhasesStrength определяет фазы для силовой программы
@@ -431,6 +711,84 @@ func (g *StrengthGenerator) getDayName(dayType string, dayNum int) string {
 	return fmt.Sprintf("День %d", dayNum)
 }
 
+// ensureWeekBalance проверяет и корректирует баланс недели
+func (g *StrengthGenerator) ensureWeekBalance(week *models.GeneratedWeek) {
+	optimizer := models.NewBalanceOptimizer(nil)
+
+	// Собираем все упражнения недели
+	var allExercises []models.GeneratedExercise
+	usedNames := make([]string, 0)
+	for _, day := range week.Days {
+		for _, ex := range day.Exercises {
+			allExercises = append(allExercises, ex)
+			usedNames = append(usedNames, ex.ExerciseName)
+		}
+	}
+
+	// Анализируем баланс
+	balance := models.CalculateBalance(allExercises)
+	if balance.OverallScore >= 85 {
+		return // Баланс уже хороший
+	}
+
+	// Получаем дефициты
+	deficits := optimizer.AnalyzeDeficits(balance)
+	if len(deficits) == 0 {
+		return
+	}
+
+	// Добавляем корректирующие упражнения в подходящие дни
+	for _, deficit := range deficits {
+		if deficit.Priority < 6 {
+			continue // Пропускаем низкоприоритетные
+		}
+
+		correctives := optimizer.GetCorrectiveExercises(deficit, usedNames)
+		if len(correctives) == 0 {
+			continue
+		}
+
+		// Находим лучший день для упражнения
+		dayIdx := g.findBestDayForCategory(week, deficit.Category)
+		if dayIdx < 0 || dayIdx >= len(week.Days) {
+			continue
+		}
+
+		// Добавляем упражнение
+		corrEx := correctives[0]
+		genEx := models.ConvertCorrectiveToGenerated(corrEx, len(week.Days[dayIdx].Exercises)+1)
+		week.Days[dayIdx].Exercises = append(week.Days[dayIdx].Exercises, genEx)
+		usedNames = append(usedNames, corrEx.NameRu)
+	}
+}
+
+// findBestDayForCategory находит лучший день для добавления упражнения
+func (g *StrengthGenerator) findBestDayForCategory(week *models.GeneratedWeek, category models.MovementCategory) int {
+	// Маппинг категорий на типы дней
+	preferredDays := map[models.MovementCategory][]string{
+		models.CategoryPush:         {"bench_day", "bench_day_light"},
+		models.CategoryPull:         {"deadlift_day", "bench_day_light"},
+		models.CategoryQuadDominant: {"squat_day"},
+		models.CategoryHipDominant:  {"deadlift_day", "squat_day"},
+		models.CategoryCore:         {"squat_day", "deadlift_day"},
+	}
+
+	preferred, ok := preferredDays[category]
+	if !ok {
+		return 0
+	}
+
+	for _, pref := range preferred {
+		for i, day := range week.Days {
+			if day.Type == pref {
+				return i
+			}
+		}
+	}
+
+	return 0
+}
+
 func (g *StrengthGenerator) getAccessorySets(phase string, isDeload bool) int {
 	if isDeload {
 		return 2
@@ -476,6 +834,7 @@ func (g *StrengthGenerator) calculateStats(program *models.GeneratedProgram) mod
 					fmt.Sscanf(ex.Reps, "%d", &reps)
 					stats.TotalVolume += ex.Weight * float64(ex.Sets*reps)
 				}
+				stats.SetsPerMuscle[ex.MuscleGroup] += ex.Sets
 			}
 		}
 	}
@@ -483,6 +842,9 @@ func (g *StrengthGenerator) calculateStats(program *models.GeneratedProgram) mod
 	if stats.TotalWorkouts > 0 {
 		stats.AvgWorkoutDur = (stats.TotalSets * 4) / stats.TotalWorkouts
 	}
+
+	// Рассчитываем баланс паттернов движения
+	stats.MovementBalance = models.CalculateProgramBalance(program)
 
 	return stats
 }

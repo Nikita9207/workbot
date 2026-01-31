@@ -123,6 +123,9 @@ func (b *Bot) showClientProfile(chatID int64, clientID int) {
 
 	keyboard := tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("📊 Прогресс программы"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton("Записать тренировку"),
 		),
 		tgbotapi.NewKeyboardButtonRow(
@@ -163,6 +166,8 @@ func (b *Bot) handleClientAction(message *tgbotapi.Message) {
 	}
 
 	switch text {
+	case "📊 Прогресс программы":
+		b.showProgramProgress(clientID, chatID)
 	case "Записать тренировку":
 		b.startTrainingInput(chatID, clientID)
 	case "PL: Программа":

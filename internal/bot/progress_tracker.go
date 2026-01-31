@@ -63,6 +63,9 @@ func (b *Bot) handleProgressMenu(message *tgbotapi.Message) {
 
 	keyboard := tgbotapi.NewReplyKeyboard(
 		tgbotapi.NewKeyboardButtonRow(
+			tgbotapi.NewKeyboardButton("🏋️ Прогресс программы"),
+		),
+		tgbotapi.NewKeyboardButtonRow(
 			tgbotapi.NewKeyboardButton(b.t("progress_btn_record", chatID)),
 			tgbotapi.NewKeyboardButton(b.t("progress_btn_view", chatID)),
 		),
@@ -642,6 +645,92 @@ func formatMeasurements(chest, waist, hips, biceps, thigh float64) string {
 		parts = append(parts, fmt.Sprintf("Бд:%.0f", thigh))
 	}
 	return strings.Join(parts, "/")
+}
+
+// === Прогресс по программе тренировок для клиентов ===
+
+// handleClientProgramProgress показывает клиенту прогресс по его программе
+func (b *Bot) handleClientProgramProgress(chatID int64) {
+	// Получаем ID клиента
+	clientID, err := b.repo.Program.GetClientByTelegramID(chatID)
+	if err != nil || clientID == 0 {
+		b.sendMessage(chatID, b.t("reg_not_registered", chatID))
+		return
+	}
+
+	// Получаем прогресс программы
+	progress, err := b.repo.Program.GetProgramProgress(clientID)
+	if err != nil {
+		b.sendMessage(chatID, "Ошибка загрузки прогресса программы")
+		return
+	}
+
+	if progress == nil {
+		b.sendMessage(chatID, "🏋️ У вас пока нет активной программы тренировок.\n\nОбратитесь к тренеру для получения программы!")
+		return
+	}
+
+	// Формируем прогресс-бар
+	progressBar := makeProgressBar(progress.ProgressPercent, 10)
+
+	// Формируем текст
+	var text strings.Builder
+	text.WriteString("🏋️ *Прогресс программы*\n\n")
+	text.WriteString(fmt.Sprintf("📋 *%s*\n", progress.ProgramName))
+	if progress.Goal != "" {
+		text.WriteString(fmt.Sprintf("🎯 Цель: %s\n", progress.Goal))
+	}
+	text.WriteString("\n")
+
+	// Прогресс-бар и проценты
+	text.WriteString(fmt.Sprintf("*Выполнено: %.0f%%*\n", progress.ProgressPercent))
+	text.WriteString(progressBar)
+	text.WriteString("\n\n")
+
+	// Статистика по неделям
+	text.WriteString(fmt.Sprintf("📅 *Неделя:* %d из %d\n", progress.CurrentWeek, progress.TotalWeeks))
+	text.WriteString(fmt.Sprintf("🗓️ *Тренировок в неделю:* %d\n\n", progress.DaysPerWeek))
+
+	// Статистика по тренировкам
+	text.WriteString("*Статистика тренировок:*\n")
+	text.WriteString(fmt.Sprintf("✅ Выполнено: %d\n", progress.CompletedCount))
+	if progress.SentCount > 0 {
+		text.WriteString(fmt.Sprintf("📤 Ожидает выполнения: %d\n", progress.SentCount))
+	}
+	text.WriteString(fmt.Sprintf("⏳ Впереди: %d\n", progress.PendingCount))
+	if progress.SkippedCount > 0 {
+		text.WriteString(fmt.Sprintf("⏭️ Пропущено: %d\n", progress.SkippedCount))
+	}
+
+	// Следующая тренировка
+	if progress.NextWorkout != nil {
+		text.WriteString(fmt.Sprintf("\n📌 *Следующая тренировка:*\n%s (Неделя %d, День %d)\n",
+			progress.NextWorkout.Name, progress.NextWorkout.WeekNum, progress.NextWorkout.DayNum))
+
+		if progress.NextWorkout.Status == "sent" {
+			text.WriteString("\n💪 Тренировка уже отправлена — напиши /workouts чтобы начать!")
+		}
+	} else if progress.PendingCount == 0 && progress.SentCount == 0 {
+		text.WriteString("\n\n🎉 *Поздравляем!*\nВы выполнили все тренировки программы! 🏆")
+	}
+
+	// Мотивация
+	if progress.ProgressPercent > 0 && progress.ProgressPercent < 100 {
+		text.WriteString("\n\n")
+		if progress.ProgressPercent < 25 {
+			text.WriteString("🚀 Отличное начало! Продолжайте в том же духе!")
+		} else if progress.ProgressPercent < 50 {
+			text.WriteString("💪 Вы на правильном пути! Уже почти половина!")
+		} else if progress.ProgressPercent < 75 {
+			text.WriteString("🔥 Больше половины позади! Не сдавайтесь!")
+		} else {
+			text.WriteString("🏆 Финишная прямая! Ещё немного до цели!")
+		}
+	}
+
+	msg := tgbotapi.NewMessage(chatID, text.String())
+	msg.ParseMode = "Markdown"
+	b.api.Send(msg)
 }
 
 // === Функции для тренера (просмотр прогресса клиента) ===

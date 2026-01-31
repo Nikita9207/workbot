@@ -80,6 +80,12 @@ if [ -d "clients/ai/templates" ]; then
     echo "  clients/ai/templates скопированы"
 fi
 
+# Копируем локали (i18n)
+if [ -d "locales" ]; then
+    scp -r locales ${PI_USER}@${PI_HOST}:${PI_DIR}/
+    echo "  locales скопированы"
+fi
+
 # 4. Применяем миграции
 echo -e "${YELLOW}[4/5] Применение миграций...${NC}"
 ssh ${PI_USER}@${PI_HOST} << 'EOF'

@@ -1093,6 +1093,7 @@ func convertToFITProgramData(program *models.GeneratedProgram) gsheets.ProgramDa
 					OrderNum:      ex.OrderNum,
 					Name:          ex.ExerciseName,
 					MuscleGroup:   string(ex.MuscleGroup),
+					MovementType:  string(ex.MovementType),
 					Sets:          ex.Sets,
 					Reps:          ex.Reps,
 					WeightPercent: ex.WeightPercent,

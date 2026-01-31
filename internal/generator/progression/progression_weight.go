@@ -4,12 +4,67 @@ import "math"
 
 // WeightProgression - прогрессия для штанги/гантелей
 type WeightProgression struct {
-	OnePM float64 // 1ПМ клиента
+	OnePM             float64              // 1ПМ клиента
+	Model             ProgressionModel     // Модель прогрессии
+	Config            *AdvancedProgressionConfig
+	advancedProg      *AdvancedWeightProgression
 }
 
-// NewWeightProgression создаёт новый калькулятор прогрессии
+// NewWeightProgression создаёт новый калькулятор прогрессии (базовая версия)
 func NewWeightProgression(onePM float64) *WeightProgression {
-	return &WeightProgression{OnePM: onePM}
+	return &WeightProgression{
+		OnePM: onePM,
+		Model: ProgressionLinear,
+	}
+}
+
+// NewAdvancedProgression создаёт расширенный калькулятор прогрессии
+func NewAdvancedProgression(onePM float64, model ProgressionModel, goal string) *WeightProgression {
+	config := DefaultProgressionConfigs[goal]
+	if config.Model == "" {
+		config = DefaultProgressionConfigs["beginner_strength"]
+	}
+	config.Model = model
+	config.OnePM = onePM
+
+	return &WeightProgression{
+		OnePM:        onePM,
+		Model:        model,
+		Config:       &config,
+		advancedProg: NewAdvancedWeightProgression(config),
+	}
+}
+
+// GetAdvancedParams возвращает параметры с учётом расширенной модели прогрессии
+func (wp *WeightProgression) GetAdvancedParams(weekNum, totalWeeks int, dayIntensity DayIntensity) ProgressionParams {
+	if wp.advancedProg != nil {
+		return wp.advancedProg.GetParams(weekNum, totalWeeks, dayIntensity)
+	}
+	// Fallback к базовой версии
+	return wp.GetStrengthParams(weekNum, "transmutation")
+}
+
+// GetParamsWithDayType возвращает параметры с учётом типа дня (H/M/L)
+func (wp *WeightProgression) GetParamsWithDayType(weekNum int, phase string, dayIntensity DayIntensity) ProgressionParams {
+	// Получаем базовые параметры
+	params := wp.GetStrengthParams(weekNum, phase)
+
+	// Корректируем по типу дня
+	switch dayIntensity {
+	case DayHeavy:
+		params.Intensity *= 1.05
+		params.RPE += 0.5
+		params.Reps = maxInt(params.Reps-1, 1)
+	case DayLight:
+		params.Intensity *= 0.85
+		params.RPE -= 1.5
+		params.Sets = maxInt(params.Sets-1, 2)
+		params.Reps += 2
+	// DayMedium - без изменений
+	}
+
+	params.Weight = wp.CalculateWeight(params.Intensity)
+	return params
 }
 
 // CalculateWeight рассчитывает рабочий вес по проценту от 1ПМ
@@ -98,84 +153,9 @@ func (wp *WeightProgression) GetFatLossParams(weekNum int) ProgressionParams {
 	}
 }
 
-// ProgressionParams - параметры прогрессии
-type ProgressionParams struct {
-	Intensity   float64 // % от 1ПМ
-	Weight      float64 // Вес в кг
-	Reps        int     // Повторения
-	Sets        int     // Подходы
-	RestSeconds int     // Отдых (сек)
-	RPE         float64 // Целевой RPE
-}
+// ProgressionParams уже определён в progression_models.go
 
-// === Вспомогательные функции ===
-
-// roundToStep округляет вес до ближайшего шага
-func roundToStep(weight, step float64) float64 {
-	return math.Round(weight/step) * step
-}
-
-// getRepsForIntensity возвращает повторения для силовой работы
-func getRepsForIntensity(intensity float64) int {
-	switch {
-	case intensity >= 95:
-		return 1
-	case intensity >= 90:
-		return 2
-	case intensity >= 87:
-		return 3
-	case intensity >= 85:
-		return 4
-	case intensity >= 80:
-		return 5
-	default:
-		return 6
-	}
-}
-
-// getSetsForStrength возвращает подходы для силовой работы
-func getSetsForStrength(intensity float64) int {
-	switch {
-	case intensity >= 95:
-		return 3
-	case intensity >= 90:
-		return 4
-	case intensity >= 85:
-		return 5
-	default:
-		return 5
-	}
-}
-
-// getRestForIntensity возвращает отдых между подходами
-func getRestForIntensity(intensity float64) int {
-	switch {
-	case intensity >= 90:
-		return 300 // 5 минут
-	case intensity >= 85:
-		return 240 // 4 минуты
-	case intensity >= 80:
-		return 180 // 3 минуты
-	default:
-		return 120 // 2 минуты
-	}
-}
-
-// getRPEForIntensity возвращает целевой RPE
-func getRPEForIntensity(intensity float64) float64 {
-	switch {
-	case intensity >= 95:
-		return 9.5
-	case intensity >= 90:
-		return 9.0
-	case intensity >= 85:
-		return 8.5
-	case intensity >= 80:
-		return 8.0
-	default:
-		return 7.5
-	}
-}
+// === Вспомогательные функции для гипертрофии ===
 
 // getRepsForHypertrophy возвращает повторения для гипертрофии
 func getRepsForHypertrophy(intensity float64) int {
@@ -242,4 +222,157 @@ var WeightIncrements = map[string]float64{
 	"barbell_isolation": 1.25, // Штанга, изоляция
 	"dumbbell_compound": 2.0,  // Гантели, базовые
 	"dumbbell_isolation": 1.0,  // Гантели, изоляция
+}
+
+// === INOL-based валидация и оптимизация ===
+
+// ValidateWithINOL проверяет параметры по INOL и корректирует при необходимости
+func (wp *WeightProgression) ValidateWithINOL(params ProgressionParams, maxINOL float64) ProgressionParams {
+	inol := CalculateINOL(params.Reps, params.Intensity) * float64(params.Sets)
+
+	if inol > maxINOL {
+		// Снижаем нагрузку - уменьшаем подходы
+		for inol > maxINOL && params.Sets > 1 {
+			params.Sets--
+			inol = CalculateINOL(params.Reps, params.Intensity) * float64(params.Sets)
+		}
+		// Если всё ещё много - снижаем интенсивность
+		for inol > maxINOL && params.Intensity > 60 {
+			params.Intensity -= 2.5
+			params.Weight = wp.CalculateWeight(params.Intensity)
+			inol = CalculateINOL(params.Reps, params.Intensity) * float64(params.Sets)
+		}
+	}
+
+	return params
+}
+
+// GetOptimalParams возвращает оптимальные параметры с учётом INOL, RPE и цели
+func (wp *WeightProgression) GetOptimalParams(weekNum, totalWeeks int, goal string, dayIntensity DayIntensity) ProgressionParams {
+	var params ProgressionParams
+	var maxINOL float64
+
+	switch goal {
+	case "strength", "сила":
+		params = wp.GetStrengthParams(weekNum, getPhaseForGoal(weekNum, totalWeeks, "strength"))
+		maxINOL = 2.0 // Высокая нагрузка допустима
+	case "hypertrophy", "масса":
+		params = wp.GetHypertrophyParams(weekNum, getPhaseForGoal(weekNum, totalWeeks, "hypertrophy"))
+		maxINOL = 1.5 // Умеренная нагрузка
+	case "fat_loss", "похудение":
+		params = wp.GetFatLossParams(weekNum)
+		maxINOL = 1.0 // Низкая нагрузка (сохраняем мышцы, не перегружаем)
+	default:
+		params = wp.GetStrengthParams(weekNum, "transmutation")
+		maxINOL = 1.5
+	}
+
+	// Корректировка по типу дня
+	switch dayIntensity {
+	case DayHeavy:
+		params.Intensity *= 1.05
+		params.Reps = maxInt(params.Reps-1, 1)
+		maxINOL *= 1.2 // Допускаем больше на тяжёлый день
+	case DayLight:
+		params.Intensity *= 0.85
+		params.Sets = maxInt(params.Sets-1, 2)
+		params.Reps += 2
+		maxINOL *= 0.7
+	}
+
+	params.Weight = wp.CalculateWeight(params.Intensity)
+
+	// Валидация по INOL
+	return wp.ValidateWithINOL(params, maxINOL)
+}
+
+// getPhaseForGoal определяет фазу по неделе и цели
+func getPhaseForGoal(weekNum, totalWeeks int, goal string) string {
+	progress := float64(weekNum) / float64(totalWeeks)
+
+	switch goal {
+	case "strength":
+		if progress <= 0.33 {
+			return "accumulation"
+		} else if progress <= 0.66 {
+			return "transmutation"
+		}
+		return "realization"
+	case "hypertrophy":
+		if progress <= 0.6 {
+			return "accumulation"
+		} else if progress < 1.0 {
+			return "intensification"
+		}
+		return "deload"
+	default:
+		return "transmutation"
+	}
+}
+
+// === Расширенные методы для блочной периодизации ===
+
+// GetBlockParams возвращает параметры для конкретного блока
+func (wp *WeightProgression) GetBlockParams(block CalculatedBlock, weekInBlock int, dayIntensity DayIntensity) ProgressionParams {
+	if weekInBlock < 1 || weekInBlock > block.Weeks {
+		weekInBlock = 1
+	}
+
+	// Получаем параметры недели из блока
+	weekParams := block.WeeklyParams[weekInBlock-1]
+
+	var reps int
+	var sets int
+	var rpe float64
+	var rest int
+
+	intensity := weekParams.IntensityPercent
+
+	// Корректируем по типу дня
+	switch dayIntensity {
+	case DayHeavy:
+		intensity *= 1.05
+		reps = getRepsForIntensity(intensity)
+		sets = getSetsForStrength(intensity)
+		rpe = getRPEForIntensity(intensity) + 0.5
+		rest = getRestForIntensity(intensity)
+	case DayLight:
+		intensity *= 0.85
+		reps = getRepsForIntensity(intensity) + 2
+		sets = maxInt(getSetsForStrength(intensity)-1, 2)
+		rpe = getRPEForIntensity(intensity) - 1.5
+		rest = int(float64(getRestForIntensity(intensity)) * 0.75)
+	default: // DayMedium
+		reps = getRepsForIntensity(intensity)
+		sets = getSetsForStrength(intensity)
+		rpe = getRPEForIntensity(intensity)
+		rest = getRestForIntensity(intensity)
+	}
+
+	// Deload корректировка
+	if weekParams.IsDeload {
+		intensity *= 0.65
+		sets = maxInt(sets-2, 2)
+		reps = 6
+		rpe = 5.0
+		rest = 120
+	}
+
+	return ProgressionParams{
+		Intensity:   intensity,
+		Weight:      wp.CalculateWeight(intensity),
+		Reps:        reps,
+		Sets:        sets,
+		RestSeconds: rest,
+		RPE:         rpe,
+	}
+}
+
+// === Утилиты ===
+
+func maxInt(a, b int) int {
+	if a > b {
+		return a
+	}
+	return b
 }

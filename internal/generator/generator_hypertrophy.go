@@ -23,9 +23,13 @@ func NewHypertrophyGenerator(selector *ExerciseSelector, client *models.ClientPr
 
 // HypertrophyConfig - конфигурация программы гипертрофии
 type HypertrophyConfig struct {
-	TotalWeeks   int // Всего недель (8-12)
-	DaysPerWeek  int // Дней в неделю (3-5)
-	Split        string // fullbody/upper_lower/push_pull_legs
+	TotalWeeks        int                           // Всего недель (8-12)
+	DaysPerWeek       int                           // Дней в неделю (3-5)
+	Split             string                        // fullbody/upper_lower/push_pull_legs
+	ProgressionModel  progression.ProgressionModel  // Модель прогрессии
+	UseAdvanced       bool                          // Использовать расширенную периодизацию
+	PrioritizeMuscles []string                      // Приоритетные мышечные группы
+	WavePattern       progression.WavePattern       // Паттерн волновой периодизации (none/three_plus_one/stepped)
 }
 
 // GetDefaultSplit возвращает оптимальный сплит для количества дней
@@ -53,6 +57,11 @@ func (g *HypertrophyGenerator) Generate(config HypertrophyConfig) (*models.Gener
 		DaysPerWeek:   config.DaysPerWeek,
 	}
 
+	// Используем расширенную периодизацию если указано
+	if config.UseAdvanced {
+		return g.generateAdvanced(config)
+	}
+
 	// Определяем фазы
 	program.Phases = g.definePhasesHypertrophy(config.TotalWeeks)
 
@@ -62,6 +71,8 @@ func (g *HypertrophyGenerator) Generate(config HypertrophyConfig) (*models.Gener
 	// Генерируем недели
 	for weekNum := 1; weekNum <= config.TotalWeeks; weekNum++ {
 		week := g.generateWeekHypertrophy(weekNum, config.TotalWeeks, dayTypes)
+		// Оптимизируем баланс недели
+		g.ensureWeekBalance(&week)
 		program.Weeks = append(program.Weeks, week)
 	}
 
@@ -72,6 +83,403 @@ func (g *HypertrophyGenerator) Generate(config HypertrophyConfig) (*models.Gener
 	program.Substitutions = g.getSubstitutions()
 
 	return program, nil
+}
+
+// generateAdvanced генерирует программу с расширенной периодизацией MEV→MAV→MRV
+func (g *HypertrophyGenerator) generateAdvanced(config HypertrophyConfig) (*models.GeneratedProgram, error) {
+	program := &models.GeneratedProgram{
+		ClientID:      g.client.ID,
+		ClientName:    g.client.Name,
+		Goal:          models.GoalHypertrophy,
+		Periodization: models.PeriodBlock,
+		TotalWeeks:    config.TotalWeeks,
+		DaysPerWeek:   config.DaysPerWeek,
+	}
+
+	// Определяем волновой паттерн: из конфига или дефолтный для цели
+	wavePattern := config.WavePattern
+	if wavePattern == "" {
+		wavePattern = progression.GetWavePattern("hypertrophy") // По умолчанию stepped для гипертрофии
+	}
+
+	// Автоматический расчёт блоков с выбранным волновым паттерном
+	blocks := progression.CalculateBlockLengthsWithWave("hypertrophy", config.TotalWeeks, config.DaysPerWeek, wavePattern)
+
+	// Конвертируем блоки в фазы
+	program.Phases = g.blocksToPhases(blocks)
+
+	// Создаём расширенные прогрессии
+	advancedProgs := make(map[string]*progression.WeightProgression)
+	for movement, onePM := range g.client.OnePM {
+		model := config.ProgressionModel
+		if model == "" {
+			model = progression.ProgressionDouble // По умолчанию double для гипертрофии
+		}
+		advancedProgs[movement] = progression.NewAdvancedProgression(onePM, model, "hypertrophy")
+	}
+
+	// Инициализируем work capacity для мышечных групп
+	workCapacities := g.initWorkCapacities(config.PrioritizeMuscles)
+
+	// Определяем сплит
+	dayTypes := g.getDayTypes(config.Split, config.DaysPerWeek)
+
+	// Генерируем недели по блокам
+	for _, block := range blocks {
+		for weekInBlock := 1; weekInBlock <= block.Weeks; weekInBlock++ {
+			weekNum := block.WeekStart + weekInBlock - 1
+			week := g.generateAdvancedWeek(weekNum, weekInBlock, block, dayTypes, config, advancedProgs, workCapacities)
+			// Оптимизируем баланс недели
+			g.ensureWeekBalance(&week)
+			program.Weeks = append(program.Weeks, week)
+		}
+	}
+
+	// Считаем статистику
+	program.Statistics = g.calculateStats(program)
+	program.Substitutions = g.getSubstitutions()
+
+	return program, nil
+}
+
+// blocksToPhases конвертирует блоки в фазы программы
+func (g *HypertrophyGenerator) blocksToPhases(blocks []progression.CalculatedBlock) []models.ProgramPhase {
+	phases := make([]models.ProgramPhase, 0, len(blocks))
+
+	for _, block := range blocks {
+		phase := models.ProgramPhase{
+			Name:         block.Config.NameRu,
+			WeekStart:    block.WeekStart,
+			WeekEnd:      block.WeekEnd,
+			IntensityMin: block.Config.IntensityStart,
+			IntensityMax: block.Config.IntensityEnd,
+		}
+
+		switch block.Config.Type {
+		case progression.BlockAccumulation:
+			phase.Focus = "Объём, MEV→MRV прогрессия"
+			phase.VolumeLevel = "high"
+		case progression.BlockTransmutation:
+			phase.Focus = "Интенсификация, конверсия объёма"
+			phase.VolumeLevel = "medium"
+		case progression.BlockRealization:
+			phase.Focus = "Пиковый объём"
+			phase.VolumeLevel = "moderate"
+		}
+
+		phases = append(phases, phase)
+	}
+
+	return phases
+}
+
+// initWorkCapacities инициализирует work capacity для мышечных групп
+func (g *HypertrophyGenerator) initWorkCapacities(priorities []string) map[string]*progression.WorkCapacity {
+	capacities := make(map[string]*progression.WorkCapacity)
+
+	// Основные мышечные группы
+	muscleGroups := []string{"chest", "back", "shoulders", "quads", "hamstrings", "glutes", "biceps", "triceps", "calves", "core"}
+
+	for _, mg := range muscleGroups {
+		wc := progression.NewWorkCapacity(mg)
+
+		// Увеличиваем capacity для приоритетных групп
+		for _, priority := range priorities {
+			if priority == mg {
+				wc.AdaptationFactor = 1.1 // +10% объёма
+				break
+			}
+		}
+
+		capacities[mg] = wc
+	}
+
+	return capacities
+}
+
+// generateAdvancedWeek генерирует неделю с расширенной прогрессией
+func (g *HypertrophyGenerator) generateAdvancedWeek(
+	weekNum, weekInBlock int,
+	block progression.CalculatedBlock,
+	dayTypes []string,
+	config HypertrophyConfig,
+	advancedProgs map[string]*progression.WeightProgression,
+	workCapacities map[string]*progression.WorkCapacity,
+) models.GeneratedWeek {
+	weekParams := block.WeeklyParams[weekInBlock-1]
+
+	// Определяем волновой множитель
+	waveMultiplier := g.getWaveMultiplier(weekNum)
+	waveWeekName := g.getWaveWeekName(weekNum)
+
+	week := models.GeneratedWeek{
+		WeekNum:          weekNum,
+		PhaseName:        fmt.Sprintf("%s (%s)", block.Config.NameRu, waveWeekName),
+		IsDeload:         weekParams.IsDeload,
+		IntensityPercent: weekParams.IntensityPercent * waveMultiplier,
+		VolumePercent:    weekParams.VolumeMultiplier * 100,
+		RPETarget:        g.getRPEForBlockType(block.Config.Type, weekParams.IsDeload),
+		WaveMultiplier:   waveMultiplier,
+	}
+
+	// Корректируем RPE для волновой периодизации
+	if waveMultiplier < 1.0 {
+		week.RPETarget -= 1.5
+	} else if waveMultiplier > 1.05 {
+		week.RPETarget += 0.5
+	}
+
+	// Генерируем дни с H/M/L паттерном
+	for dayNum, dayType := range dayTypes {
+		dayIntensity := progression.GetDayIntensity(dayNum+1, config.DaysPerWeek)
+		day := g.generateAdvancedDay(dayNum+1, dayType, weekNum, block, weekInBlock, dayIntensity, config, advancedProgs, workCapacities)
+		week.Days = append(week.Days, day)
+	}
+
+	return week
+}
+
+// generateAdvancedDay генерирует день с расширенной прогрессией
+func (g *HypertrophyGenerator) generateAdvancedDay(
+	dayNum int,
+	dayType string,
+	weekNum int,
+	block progression.CalculatedBlock,
+	weekInBlock int,
+	dayIntensity progression.DayIntensity,
+	config HypertrophyConfig,
+	advancedProgs map[string]*progression.WeightProgression,
+	workCapacities map[string]*progression.WorkCapacity,
+) models.GeneratedDay {
+	weekParams := block.WeeklyParams[weekInBlock-1]
+	isDeload := weekParams.IsDeload
+
+	day := models.GeneratedDay{
+		DayNum: dayNum,
+		Name:   g.getDayNameWithIntensity(dayType, dayNum, dayIntensity),
+		Type:   dayType,
+	}
+
+	// Получаем упражнения для дня с учётом баланса
+	difficulty := g.getDifficultyLevel()
+	exercises := g.selector.SelectBalancedExercisesForDay(
+		dayType,
+		g.client.AvailableEquip,
+		g.client.Constraints,
+		difficulty,
+	)
+
+	// Создаём стандартные прогрессии для TRX и гирь
+	trxProg := progression.NewTRXProgression(g.client.Weight, string(g.client.Experience))
+	kbProg := progression.NewKettlebellProgression(g.client.AvailableKBWeights, g.client.Gender, string(g.client.Experience))
+
+	// Конвертируем в GeneratedExercise
+	for orderNum, result := range exercises {
+		ex := g.convertToAdvancedExercise(
+			result,
+			orderNum+1,
+			weekNum,
+			block,
+			weekInBlock,
+			dayIntensity,
+			isDeload,
+			advancedProgs,
+			trxProg,
+			kbProg,
+			workCapacities,
+		)
+		day.Exercises = append(day.Exercises, ex)
+
+		// Собираем мышечные группы
+		for _, m := range result.Exercise.PrimaryMuscles {
+			day.MuscleGroups = append(day.MuscleGroups, m)
+		}
+	}
+
+	// Добавляем обязательные упражнения
+	day.Exercises = append(day.Exercises, g.getFinishingExercises(len(day.Exercises)+1, isDeload)...)
+
+	// Оценка длительности
+	totalSets := 0
+	for _, ex := range day.Exercises {
+		totalSets += ex.Sets
+	}
+	day.EstimatedDuration = totalSets * 3
+
+	return day
+}
+
+// convertToAdvancedExercise конвертирует результат подбора с расширенной прогрессией
+func (g *HypertrophyGenerator) convertToAdvancedExercise(
+	result SelectionResult,
+	orderNum, weekNum int,
+	block progression.CalculatedBlock,
+	weekInBlock int,
+	dayIntensity progression.DayIntensity,
+	isDeload bool,
+	advancedProgs map[string]*progression.WeightProgression,
+	trxProg *progression.TRXProgression,
+	kbProg *progression.KettlebellProgression,
+	workCapacities map[string]*progression.WorkCapacity,
+) models.GeneratedExercise {
+	ex := result.Exercise
+
+	genEx := models.GeneratedExercise{
+		OrderNum:     orderNum,
+		ExerciseID:   ex.ID,
+		ExerciseName: ex.NameRu,
+		MovementType: ex.MovementType,
+	}
+
+	if len(ex.PrimaryMuscles) > 0 {
+		genEx.MuscleGroup = ex.PrimaryMuscles[0]
+	}
+
+	// Определяем параметры в зависимости от типа оборудования
+	switch {
+	case containsEquipment(ex.Equipment, models.EquipmentTRX):
+		params := trxProg.GetHypertrophyParams(ex.TRXMinLevel, ex.TRXMaxLevel, weekNum, block.Weeks*len(block.WeeklyParams))
+		if isDeload {
+			params.Level = maxInt(params.Level-2, ex.TRXMinLevel)
+			params.Sets = 2
+		}
+		genEx.TRXLevel = params.Level
+		genEx.Reps = fmt.Sprintf("%d", params.Reps)
+		genEx.Sets = params.Sets
+		genEx.Tempo = params.Tempo
+		genEx.RestSeconds = params.RestSeconds
+
+	case containsEquipment(ex.Equipment, models.EquipmentKettlebell):
+		var params progression.KBParams
+		if ex.KettlebellType == models.KBTypeBallistic {
+			params = kbProg.GetBallisticParams(weekNum, block.Weeks*len(block.WeeklyParams))
+		} else {
+			params = kbProg.GetGrindParams(weekNum, block.Weeks*len(block.WeeklyParams), string(block.Config.Type))
+		}
+		if isDeload {
+			params.Sets = 2
+			params.Reps = 8
+		}
+		genEx.Weight = params.Weight
+		genEx.Reps = fmt.Sprintf("%d", params.Reps)
+		genEx.Sets = params.Sets
+		genEx.RestSeconds = params.RestSeconds
+
+	default:
+		// Штанга/гантели/тренажёр - используем расширенную прогрессию
+		var wp *progression.WeightProgression
+		for movement, prog := range advancedProgs {
+			if matchesMovement(ex, movement) {
+				wp = prog
+				break
+			}
+		}
+
+		if wp != nil {
+			params := wp.GetBlockParams(block, weekInBlock, dayIntensity)
+			if isDeload {
+				params.Sets = 2
+				params.Reps = 8
+				params.Intensity = params.Intensity * 0.8
+				params.Weight = wp.CalculateWeight(params.Intensity)
+			}
+			genEx.Weight = params.Weight
+			genEx.WeightPercent = params.Intensity
+			genEx.Reps = fmt.Sprintf("%d", params.Reps)
+			genEx.Sets = params.Sets
+			genEx.RestSeconds = params.RestSeconds
+			genEx.RPE = params.RPE
+		} else {
+			// Нет 1ПМ — используем MEV→MRV прогрессию
+			muscleGroup := "chest" // default
+			if len(ex.PrimaryMuscles) > 0 {
+				muscleGroup = string(ex.PrimaryMuscles[0])
+			}
+			genEx.Sets = g.getSetsFromVolumeLandmarks(muscleGroup, weekInBlock, block.Weeks, workCapacities)
+			genEx.Reps = g.getDefaultRepsRange(string(block.Config.Type), isDeload)
+			genEx.RestSeconds = 90
+			genEx.RPE = 7.5
+		}
+	}
+
+	// Добавляем альтернативу
+	if result.Alternative != nil {
+		alt := models.GeneratedExercise{
+			ExerciseID:   result.Alternative.ID,
+			ExerciseName: result.Alternative.NameRu,
+		}
+		genEx.Alternative = &alt
+	}
+
+	return genEx
+}
+
+// getSetsFromVolumeLandmarks рассчитывает подходы по volume landmarks (MEV→MRV)
+func (g *HypertrophyGenerator) getSetsFromVolumeLandmarks(
+	muscleGroup string,
+	weekInBlock, blockWeeks int,
+	workCapacities map[string]*progression.WorkCapacity,
+) int {
+	wc, ok := workCapacities[muscleGroup]
+	if !ok {
+		return 3 // default
+	}
+
+	// Прогрессия от MEV к MRV в течение блока
+	progress := float64(weekInBlock-1) / float64(blockWeeks-1)
+	if blockWeeks == 1 {
+		progress = 0.5
+	}
+
+	mev := wc.GetAdaptedVolume(progression.VolumeMEV)
+	mrv := wc.GetAdaptedVolume(progression.VolumeMRV)
+
+	// Интерполяция между MEV и MRV
+	volume := float64(mev) + float64(mrv-mev)*progress
+
+	// Делим на количество дней (обычно 2 дня на мышцу)
+	setsPerDay := int(volume / 2)
+	if setsPerDay < 2 {
+		setsPerDay = 2
+	}
+	if setsPerDay > 6 {
+		setsPerDay = 6
+	}
+
+	return setsPerDay
+}
+
+// getDayNameWithIntensity возвращает название дня с типом нагрузки
+func (g *HypertrophyGenerator) getDayNameWithIntensity(dayType string, dayNum int, dayIntensity progression.DayIntensity) string {
+	baseName := fmt.Sprintf("День %d — %s", dayNum, getDayTypeName(dayType))
+
+	intensityNames := map[progression.DayIntensity]string{
+		progression.DayHeavy:  "Тяжёлый",
+		progression.DayMedium: "Средний",
+		progression.DayLight:  "Лёгкий",
+	}
+
+	if name, ok := intensityNames[dayIntensity]; ok {
+		return fmt.Sprintf("%s (%s)", baseName, name)
+	}
+	return baseName
+}
+
+// getRPEForBlockType возвращает целевой RPE для типа блока
+func (g *HypertrophyGenerator) getRPEForBlockType(blockType progression.BlockType, isDeload bool) float64 {
+	if isDeload {
+		return 5.0
+	}
+	switch blockType {
+	case progression.BlockAccumulation:
+		return 7.5
+	case progression.BlockTransmutation:
+		return 8.5
+	case progression.BlockRealization:
+		return 8.0
+	default:
+		return 7.5
+	}
 }
 
 // definePhasesHypertrophy определяет фазы для гипертрофии
@@ -197,9 +605,9 @@ func (g *HypertrophyGenerator) generateDayHypertrophy(dayNum int, dayType string
 		Type:   dayType,
 	}
 
-	// Получаем упражнения для дня
+	// Получаем упражнения для дня с учётом баланса
 	difficulty := g.getDifficultyLevel()
-	exercises := g.selector.SelectExercisesForDay(
+	exercises := g.selector.SelectBalancedExercisesForDay(
 		dayType,
 		g.client.AvailableEquip,
 		g.client.Constraints,
@@ -565,12 +973,93 @@ func (g *HypertrophyGenerator) calculateStats(program *models.GeneratedProgram) 
 		stats.AvgWorkoutDur = (stats.TotalSets * 3) / stats.TotalWorkouts
 	}
 
+	// Рассчитываем баланс паттернов движения
+	stats.MovementBalance = models.CalculateProgramBalance(program)
+
 	return stats
 }
 
 func (g *HypertrophyGenerator) getSubstitutions() []models.Substitution {
 	// TODO: Собирать замены при генерации
 	return nil
+}
+
+// ensureWeekBalance проверяет и корректирует баланс недели
+func (g *HypertrophyGenerator) ensureWeekBalance(week *models.GeneratedWeek) {
+	optimizer := models.NewBalanceOptimizer(nil)
+
+	// Собираем все упражнения недели
+	var allExercises []models.GeneratedExercise
+	usedNames := make([]string, 0)
+	for _, day := range week.Days {
+		for _, ex := range day.Exercises {
+			allExercises = append(allExercises, ex)
+			usedNames = append(usedNames, ex.ExerciseName)
+		}
+	}
+
+	// Анализируем баланс
+	balance := models.CalculateBalance(allExercises)
+	if balance.OverallScore >= 85 {
+		return // Баланс уже хороший
+	}
+
+	// Получаем дефициты
+	deficits := optimizer.AnalyzeDeficits(balance)
+	if len(deficits) == 0 {
+		return
+	}
+
+	// Добавляем корректирующие упражнения в подходящие дни
+	for _, deficit := range deficits {
+		if deficit.Priority < 6 {
+			continue // Пропускаем низкоприоритетные
+		}
+
+		correctives := optimizer.GetCorrectiveExercises(deficit, usedNames)
+		if len(correctives) == 0 {
+			continue
+		}
+
+		// Находим лучший день для упражнения
+		dayIdx := g.findBestDayForCategory(week, deficit.Category)
+		if dayIdx < 0 || dayIdx >= len(week.Days) {
+			continue
+		}
+
+		// Добавляем упражнение
+		corrEx := correctives[0]
+		genEx := models.ConvertCorrectiveToGenerated(corrEx, len(week.Days[dayIdx].Exercises)+1)
+		week.Days[dayIdx].Exercises = append(week.Days[dayIdx].Exercises, genEx)
+		usedNames = append(usedNames, corrEx.NameRu)
+	}
+}
+
+// findBestDayForCategory находит лучший день для добавления упражнения
+func (g *HypertrophyGenerator) findBestDayForCategory(week *models.GeneratedWeek, category models.MovementCategory) int {
+	// Маппинг категорий на типы дней
+	preferredDays := map[models.MovementCategory][]string{
+		models.CategoryPush:         {"push", "upper", "fullbody"},
+		models.CategoryPull:         {"pull", "upper", "fullbody"},
+		models.CategoryQuadDominant: {"legs", "lower", "fullbody"},
+		models.CategoryHipDominant:  {"legs", "lower", "fullbody"},
+		models.CategoryCore:         {"legs", "lower", "fullbody", "upper"},
+	}
+
+	preferred, ok := preferredDays[category]
+	if !ok {
+		return 0
+	}
+
+	for _, pref := range preferred {
+		for i, day := range week.Days {
+			if day.Type == pref {
+				return i
+			}
+		}
+	}
+
+	return 0
 }
 
 // === Утилиты ===

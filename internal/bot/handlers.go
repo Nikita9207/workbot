@@ -183,6 +183,8 @@ func (b *Bot) handleMessage(message *tgbotapi.Message) {
 		b.handleStartProgress(chatID)
 	case "📊 Мой прогресс", "📊 My progress":
 		b.handleViewProgress(chatID)
+	case "🏋️ Прогресс программы", "🏋️ Program progress":
+		b.handleClientProgramProgress(chatID)
 	case "📈 Динамика веса", "📈 Weight dynamics":
 		b.handleWeightDynamics(chatID)
 	case "📏 Динамика замеров", "📏 Measurements dynamics":

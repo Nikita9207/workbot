@@ -1014,6 +1014,7 @@ func distributeExercisesToDays(exercises []models.Exercise, daysPerWeek int, int
 				workoutEx := models.WorkoutExerciseV2{
 					ExerciseName:  ex.Name,
 					MuscleGroup:   ex.MuscleGroup,
+					MovementType:  ex.MovementType,
 					Sets:          sets,
 					Reps:          reps,
 					WeightPercent: weightPercent,
@@ -1451,6 +1452,7 @@ func convertPlanToGSheets(plan *models.TrainingPlan) gsheets.ProgramData {
 					OrderNum:      i + 1,
 					Name:          ex.ExerciseName,
 					MuscleGroup:   ex.MuscleGroup,
+					MovementType:  ex.MovementType,
 					Sets:          ex.Sets,
 					Reps:          ex.Reps,
 					WeightPercent: ex.WeightPercent,

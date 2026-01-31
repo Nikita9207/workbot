@@ -163,6 +163,10 @@ func (b *Bot) handleCallbackQuery(callback *tgbotapi.CallbackQuery) {
 	case strings.HasPrefix(data, "workout_"):
 		b.handleWorkoutCallback(callback)
 		return
+
+	case strings.HasPrefix(data, "prog_"):
+		b.handleProgramCallback(callback)
+		return
 	}
 }
 

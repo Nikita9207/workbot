@@ -82,6 +82,353 @@ func (b *Bot) handleSendWorkoutToClient(clientID int, adminChatID int64) {
 	b.sendMessage(adminChatID, fmt.Sprintf("✅ Тренировка \"%s\" отправлена клиенту", workout.Name))
 }
 
+// showProgramProgress показывает прогресс по программе клиента (для тренера)
+func (b *Bot) showProgramProgress(clientID int, adminChatID int64) {
+	progress, err := b.repo.Program.GetProgramProgress(clientID)
+	if err != nil {
+		b.sendError(adminChatID, "Ошибка получения прогресса", err)
+		return
+	}
+
+	if progress == nil {
+		b.sendMessage(adminChatID, "У клиента нет активной программы")
+		return
+	}
+
+	// Получаем имя клиента
+	client, _ := b.repo.Client.GetByID(clientID)
+	clientName := "Клиент"
+	if client != nil {
+		clientName = fmt.Sprintf("%s %s", client.Name, client.Surname)
+	}
+
+	// Формируем прогресс-бар
+	progressBar := makeProgressBar(progress.ProgressPercent, 10)
+
+	// Формируем текст
+	var text strings.Builder
+	text.WriteString(fmt.Sprintf("📊 *Прогресс программы*\n\n"))
+	text.WriteString(fmt.Sprintf("👤 *Клиент:* %s\n", clientName))
+	text.WriteString(fmt.Sprintf("📋 *Программа:* %s\n", progress.ProgramName))
+	if progress.Goal != "" {
+		text.WriteString(fmt.Sprintf("🎯 *Цель:* %s\n", progress.Goal))
+	}
+	text.WriteString("\n")
+	text.WriteString(fmt.Sprintf("📅 *Неделя:* %d из %d\n", progress.CurrentWeek, progress.TotalWeeks))
+	text.WriteString(fmt.Sprintf("🏋️ *Тренировок:* %d в неделю\n", progress.DaysPerWeek))
+	text.WriteString("\n")
+	text.WriteString(fmt.Sprintf("*Статистика:*\n"))
+	text.WriteString(fmt.Sprintf("✅ Выполнено: %d\n", progress.CompletedCount))
+	text.WriteString(fmt.Sprintf("📤 Отправлено: %d\n", progress.SentCount))
+	text.WriteString(fmt.Sprintf("⏳ Ожидает: %d\n", progress.PendingCount))
+	if progress.SkippedCount > 0 {
+		text.WriteString(fmt.Sprintf("⏭️ Пропущено: %d\n", progress.SkippedCount))
+	}
+	text.WriteString("\n")
+	text.WriteString(fmt.Sprintf("*Прогресс:* %.0f%%\n", progress.ProgressPercent))
+	text.WriteString(progressBar)
+
+	if progress.NextWorkout != nil {
+		text.WriteString(fmt.Sprintf("\n\n📌 *Следующая:* %s (Нед.%d, День %d)",
+			progress.NextWorkout.Name, progress.NextWorkout.WeekNum, progress.NextWorkout.DayNum))
+	}
+
+	// Inline-кнопки для действий
+	var rows [][]tgbotapi.InlineKeyboardButton
+
+	if progress.NextWorkout != nil {
+		rows = append(rows, tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData(
+				"👁️ Превью тренировки",
+				fmt.Sprintf("prog_preview_%d", progress.NextWorkout.ID),
+			),
+		))
+		rows = append(rows, tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData(
+				"📤 Отправить тренировку",
+				fmt.Sprintf("prog_send_%d_%d", clientID, progress.NextWorkout.ID),
+			),
+		))
+	}
+
+	if progress.PendingCount > 0 {
+		rows = append(rows, tgbotapi.NewInlineKeyboardRow(
+			tgbotapi.NewInlineKeyboardButtonData(
+				fmt.Sprintf("📦 Отправить неделю %d", progress.CurrentWeek),
+				fmt.Sprintf("prog_send_week_%d_%d_%d", clientID, progress.ProgramID, progress.CurrentWeek),
+			),
+		))
+	}
+
+	rows = append(rows, tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData(
+			"🔔 Напомнить клиенту",
+			fmt.Sprintf("prog_remind_%d", clientID),
+		),
+	))
+
+	keyboard := tgbotapi.NewInlineKeyboardMarkup(rows...)
+
+	msg := tgbotapi.NewMessage(adminChatID, text.String())
+	msg.ParseMode = "Markdown"
+	msg.ReplyMarkup = keyboard
+
+	if _, err := b.api.Send(msg); err != nil {
+		log.Printf("Ошибка отправки прогресса: %v", err)
+	}
+}
+
+// handleProgramCallback обрабатывает callback-запросы связанные с программой (для тренера)
+func (b *Bot) handleProgramCallback(callback *tgbotapi.CallbackQuery) {
+	chatID := callback.Message.Chat.ID
+	data := callback.Data
+
+	// Отвечаем на callback
+	callbackResponse := tgbotapi.NewCallback(callback.ID, "")
+	b.api.Request(callbackResponse)
+
+	switch {
+	case strings.HasPrefix(data, "prog_preview_"):
+		// Превью тренировки
+		workoutIDStr := strings.TrimPrefix(data, "prog_preview_")
+		workoutID, _ := strconv.Atoi(workoutIDStr)
+		b.showWorkoutPreview(chatID, workoutID, callback.Message.MessageID)
+
+	case strings.HasPrefix(data, "prog_send_week_"):
+		// Отправить всю неделю
+		parts := strings.Split(strings.TrimPrefix(data, "prog_send_week_"), "_")
+		if len(parts) == 3 {
+			clientID, _ := strconv.Atoi(parts[0])
+			programID, _ := strconv.Atoi(parts[1])
+			weekNum, _ := strconv.Atoi(parts[2])
+			b.sendWeekWorkouts(chatID, clientID, programID, weekNum)
+		}
+
+	case strings.HasPrefix(data, "prog_send_"):
+		// Отправить одну тренировку
+		parts := strings.Split(strings.TrimPrefix(data, "prog_send_"), "_")
+		if len(parts) == 2 {
+			clientID, _ := strconv.Atoi(parts[0])
+			workoutID, _ := strconv.Atoi(parts[1])
+			b.sendSpecificWorkout(chatID, clientID, workoutID)
+		}
+
+	case strings.HasPrefix(data, "prog_remind_"):
+		// Напомнить клиенту
+		clientIDStr := strings.TrimPrefix(data, "prog_remind_")
+		clientID, _ := strconv.Atoi(clientIDStr)
+		b.sendWorkoutReminder(chatID, clientID)
+
+	case strings.HasPrefix(data, "prog_back_"):
+		// Вернуться к прогрессу
+		clientIDStr := strings.TrimPrefix(data, "prog_back_")
+		clientID, _ := strconv.Atoi(clientIDStr)
+		b.showProgramProgress(clientID, chatID)
+	}
+}
+
+// showWorkoutPreview показывает превью тренировки перед отправкой
+func (b *Bot) showWorkoutPreview(chatID int64, workoutID int, messageID int) {
+	workout, err := b.repo.Program.GetWorkoutByID(workoutID)
+	if err != nil || workout == nil {
+		b.sendMessage(chatID, "Ошибка: тренировка не найдена")
+		return
+	}
+
+	// Получаем client_id для кнопки "назад"
+	clientID, _ := b.repo.Program.GetClientIDByWorkout(workoutID)
+
+	var text strings.Builder
+	text.WriteString(fmt.Sprintf("👁️ *Превью тренировки*\n\n"))
+	text.WriteString(fmt.Sprintf("📋 *%s*\n", workout.Name))
+	text.WriteString(fmt.Sprintf("📅 Неделя %d, День %d\n", workout.WeekNum, workout.DayNum))
+	text.WriteString(fmt.Sprintf("🏋️ Упражнений: %d\n\n", len(workout.Exercises)))
+
+	for i, ex := range workout.Exercises {
+		text.WriteString(fmt.Sprintf("*%d. %s*\n", i+1, ex.ExerciseName))
+		text.WriteString(fmt.Sprintf("   %d×%s", ex.Sets, ex.Reps))
+		if ex.Weight > 0 {
+			text.WriteString(fmt.Sprintf(" @ %.0fкг", ex.Weight))
+			if ex.WeightPercent > 0 {
+				text.WriteString(fmt.Sprintf(" (%.0f%%)", ex.WeightPercent))
+			}
+		}
+		if ex.RPE > 0 {
+			text.WriteString(fmt.Sprintf(" RPE %.1f", ex.RPE))
+		}
+		text.WriteString("\n")
+		if ex.RestSeconds > 0 {
+			text.WriteString(fmt.Sprintf("   ⏱️ Отдых: %d сек\n", ex.RestSeconds))
+		}
+		if ex.Notes != "" {
+			text.WriteString(fmt.Sprintf("   📝 %s\n", ex.Notes))
+		}
+	}
+
+	// Кнопки
+	var rows [][]tgbotapi.InlineKeyboardButton
+	rows = append(rows, tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData(
+			"📤 Отправить клиенту",
+			fmt.Sprintf("prog_send_%d_%d", clientID, workoutID),
+		),
+	))
+	rows = append(rows, tgbotapi.NewInlineKeyboardRow(
+		tgbotapi.NewInlineKeyboardButtonData(
+			"◀️ Назад к прогрессу",
+			fmt.Sprintf("prog_back_%d", clientID),
+		),
+	))
+
+	keyboard := tgbotapi.NewInlineKeyboardMarkup(rows...)
+
+	if messageID > 0 {
+		b.editMessage(chatID, messageID, text.String(), &keyboard)
+	} else {
+		msg := tgbotapi.NewMessage(chatID, text.String())
+		msg.ParseMode = "Markdown"
+		msg.ReplyMarkup = keyboard
+		b.api.Send(msg)
+	}
+}
+
+// sendWeekWorkouts отправляет все тренировки недели клиенту
+func (b *Bot) sendWeekWorkouts(adminChatID int64, clientID int, programID int, weekNum int) {
+	// Получаем telegram_id клиента
+	var telegramID int64
+	err := b.db.QueryRow("SELECT telegram_id FROM public.clients WHERE id = $1", clientID).Scan(&telegramID)
+	if err != nil || telegramID == 0 {
+		b.sendMessage(adminChatID, "Ошибка: клиент не найден или не имеет telegram_id")
+		return
+	}
+
+	// Получаем неотправленные тренировки недели
+	workouts, err := b.repo.Program.GetPendingWorkoutsForWeek(programID, weekNum)
+	if err != nil {
+		b.sendError(adminChatID, "Ошибка получения тренировок", err)
+		return
+	}
+
+	if len(workouts) == 0 {
+		b.sendMessage(adminChatID, fmt.Sprintf("Нет неотправленных тренировок на неделе %d", weekNum))
+		return
+	}
+
+	// Отправляем каждую тренировку
+	sentCount := 0
+	for i := range workouts {
+		workout := &workouts[i]
+		b.sendWorkoutToClient(telegramID, workout)
+		if err := b.repo.Program.MarkWorkoutSent(workout.ID); err != nil {
+			log.Printf("Ошибка отметки тренировки %d: %v", workout.ID, err)
+		}
+		sentCount++
+		// Небольшая пауза между сообщениями
+		time.Sleep(500 * time.Millisecond)
+	}
+
+	b.sendMessage(adminChatID, fmt.Sprintf("✅ Отправлено %d тренировок (Неделя %d)", sentCount, weekNum))
+
+	// Показываем обновлённый прогресс
+	b.showProgramProgress(clientID, adminChatID)
+}
+
+// sendSpecificWorkout отправляет конкретную тренировку клиенту
+func (b *Bot) sendSpecificWorkout(adminChatID int64, clientID int, workoutID int) {
+	// Получаем telegram_id клиента
+	var telegramID int64
+	err := b.db.QueryRow("SELECT telegram_id FROM public.clients WHERE id = $1", clientID).Scan(&telegramID)
+	if err != nil || telegramID == 0 {
+		b.sendMessage(adminChatID, "Ошибка: клиент не найден или не имеет telegram_id")
+		return
+	}
+
+	// Получаем тренировку
+	workout, err := b.repo.Program.GetWorkoutByID(workoutID)
+	if err != nil || workout == nil {
+		b.sendError(adminChatID, "Ошибка получения тренировки", err)
+		return
+	}
+
+	// Отправляем клиенту
+	b.sendWorkoutToClient(telegramID, workout)
+
+	// Отмечаем как отправленную
+	if err := b.repo.Program.MarkWorkoutSent(workout.ID); err != nil {
+		log.Printf("Ошибка отметки тренировки как отправленной: %v", err)
+	}
+
+	b.sendMessage(adminChatID, fmt.Sprintf("✅ Тренировка \"%s\" отправлена клиенту", workout.Name))
+
+	// Показываем обновлённый прогресс
+	b.showProgramProgress(clientID, adminChatID)
+}
+
+// sendWorkoutReminder отправляет напоминание клиенту о тренировке
+func (b *Bot) sendWorkoutReminder(adminChatID int64, clientID int) {
+	// Получаем telegram_id клиента
+	var telegramID int64
+	var name string
+	err := b.db.QueryRow("SELECT telegram_id, name FROM public.clients WHERE id = $1", clientID).Scan(&telegramID, &name)
+	if err != nil || telegramID == 0 {
+		b.sendMessage(adminChatID, "Ошибка: клиент не найден или не имеет telegram_id")
+		return
+	}
+
+	// Получаем прогресс
+	progress, err := b.repo.Program.GetProgramProgress(clientID)
+	if err != nil || progress == nil {
+		b.sendMessage(adminChatID, "Ошибка получения прогресса программы")
+		return
+	}
+
+	// Формируем напоминание
+	var text strings.Builder
+	text.WriteString(fmt.Sprintf("👋 Привет, %s!\n\n", name))
+
+	if progress.SentCount > 0 && progress.NextWorkout != nil && progress.NextWorkout.Status == "sent" {
+		// Есть отправленная, но не выполненная тренировка
+		text.WriteString("🏋️ У тебя есть запланированная тренировка!\n\n")
+		text.WriteString(fmt.Sprintf("📋 *%s*\n", progress.NextWorkout.Name))
+		text.WriteString(fmt.Sprintf("Неделя %d, День %d\n\n", progress.NextWorkout.WeekNum, progress.NextWorkout.DayNum))
+		text.WriteString("Напиши /workouts чтобы начать 💪")
+	} else if progress.PendingCount > 0 {
+		// Есть неотправленные тренировки
+		text.WriteString("📅 Готов к следующей тренировке?\n\n")
+		text.WriteString(fmt.Sprintf("Прогресс программы: %.0f%% (%d/%d)\n\n",
+			progress.ProgressPercent, progress.CompletedCount, progress.TotalWorkouts))
+		text.WriteString("Напиши /workouts чтобы получить тренировку 💪")
+	} else {
+		text.WriteString("🎉 Все тренировки программы выполнены!\n")
+		text.WriteString("Отличная работа! 🏆")
+	}
+
+	msg := tgbotapi.NewMessage(telegramID, text.String())
+	msg.ParseMode = "Markdown"
+
+	if _, err := b.api.Send(msg); err != nil {
+		log.Printf("Ошибка отправки напоминания: %v", err)
+		b.sendMessage(adminChatID, "❌ Ошибка отправки напоминания")
+		return
+	}
+
+	b.sendMessage(adminChatID, fmt.Sprintf("✅ Напоминание отправлено клиенту %s", name))
+}
+
+// makeProgressBar создаёт текстовый прогресс-бар
+func makeProgressBar(percent float64, width int) string {
+	filled := int(percent / 100 * float64(width))
+	if filled > width {
+		filled = width
+	}
+	if filled < 0 {
+		filled = 0
+	}
+
+	bar := strings.Repeat("▓", filled) + strings.Repeat("░", width-filled)
+	return fmt.Sprintf("[%s]", bar)
+}
+
 // sendWorkoutToClient отправляет тренировку клиенту с inline-кнопками
 func (b *Bot) sendWorkoutToClient(chatID int64, workout *models.Workout) {
 	// Рассчитываем примерную длительность (2.5 мин на упражнение)
@@ -523,6 +870,10 @@ func (b *Bot) saveWorkoutRPE(chatID int64, rpe int, messageID int) {
 		log.Printf("Ошибка завершения тренировки: %v", err)
 	}
 
+	// Отправляем уведомление тренеру
+	duration := int(time.Since(session.StartTime).Minutes())
+	b.notifyTrainerWorkoutCompleted(session.WorkoutID, chatID, duration, rpe, feeling)
+
 	// Очищаем сессию
 	clearWorkoutSession(chatID)
 	clearState(chatID)
@@ -532,6 +883,97 @@ func (b *Bot) saveWorkoutRPE(chatID int64, rpe int, messageID int) {
 
 	// Восстанавливаем главное меню
 	b.restoreMainMenu(chatID)
+}
+
+// notifyTrainerWorkoutCompleted отправляет тренеру уведомление о завершении тренировки
+func (b *Bot) notifyTrainerWorkoutCompleted(workoutID int, clientChatID int64, duration, rpe int, feeling string) {
+	// Получаем тренера (первого админа)
+	trainerID, err := b.repo.Admin.GetFirst()
+	if err != nil {
+		log.Printf("Ошибка получения тренера: %v", err)
+		return
+	}
+
+	// Получаем данные тренировки
+	workout, err := b.repo.Program.GetWorkoutByID(workoutID)
+	if err != nil || workout == nil {
+		log.Printf("Ошибка получения тренировки: %v", err)
+		return
+	}
+
+	// Получаем статистику (тоннаж, выполнение)
+	stats, err := b.repo.Program.GetWorkoutStats(workoutID)
+	if err != nil {
+		log.Printf("Ошибка получения статистики: %v", err)
+		return
+	}
+
+	// Получаем имя клиента
+	clientID, _ := b.repo.Program.GetClientIDByWorkout(workoutID)
+	client, _ := b.repo.Client.GetByID(clientID)
+	clientName := "Клиент"
+	if client != nil {
+		clientName = fmt.Sprintf("%s %s", client.Name, client.Surname)
+	}
+
+	// Формируем сообщение
+	feelingEmoji := map[string]string{
+		"great": "💪",
+		"good":  "👍",
+		"tired": "😓",
+		"bad":   "😞",
+	}
+
+	// Индикатор выполнения плана
+	complianceIndicator := "✅"
+	if stats.ComplianceRate < 100 {
+		complianceIndicator = "⚠️"
+	}
+	if stats.ComplianceRate < 70 {
+		complianceIndicator = "❌"
+	}
+
+	// Форматируем тоннаж
+	tonnageStr := formatTonnage(stats.Tonnage)
+
+	text := fmt.Sprintf(`🏋️ *Тренировка завершена!*
+
+👤 *Клиент:* %s
+📋 *Тренировка:* %s (Неделя %d, День %d)
+
+📊 *Статистика:*
+• Тоннаж: *%s*
+• Выполнено: %d/%d упражнений %s
+• Выполнение плана: %.0f%%
+• Длительность: %d мин
+
+💭 *Обратная связь:*
+• RPE: %d/10
+• Самочувствие: %s`,
+		clientName,
+		workout.Name, workout.WeekNum, workout.DayNum,
+		tonnageStr,
+		stats.Completed, stats.TotalExercises, complianceIndicator,
+		stats.ComplianceRate,
+		duration,
+		rpe,
+		feelingEmoji[feeling],
+	)
+
+	msg := tgbotapi.NewMessage(trainerID, text)
+	msg.ParseMode = "Markdown"
+
+	if _, err := b.api.Send(msg); err != nil {
+		log.Printf("Ошибка отправки уведомления тренеру: %v", err)
+	}
+}
+
+// formatTonnage форматирует тоннаж в читаемый вид
+func formatTonnage(tonnage float64) string {
+	if tonnage >= 1000 {
+		return fmt.Sprintf("%.1f т", tonnage/1000)
+	}
+	return fmt.Sprintf("%.0f кг", tonnage)
 }
 
 // handleMyWorkouts показывает текущие тренировки клиента из программы

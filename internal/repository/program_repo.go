@@ -447,6 +447,171 @@ func (r *ProgramRepository) UpdateWorkoutFeedback(workoutID int, feedback string
 	return err
 }
 
+// GetProgramProgress возвращает прогресс по программе клиента
+func (r *ProgramRepository) GetProgramProgress(clientID int) (*ProgramProgress, error) {
+	// Получаем активную программу
+	program, err := r.GetActiveProgram(clientID)
+	if err != nil || program == nil {
+		return nil, err
+	}
+
+	progress := &ProgramProgress{
+		ProgramID:   program.ID,
+		ProgramName: program.Name,
+		Goal:        program.Goal,
+		TotalWeeks:  program.TotalWeeks,
+		CurrentWeek: program.CurrentWeek,
+		DaysPerWeek: program.DaysPerWeek,
+		StartDate:   program.StartDate,
+	}
+
+	// Считаем статистику по тренировкам
+	query := `
+		SELECT
+			COUNT(*) as total,
+			COUNT(*) FILTER (WHERE status = 'completed') as completed,
+			COUNT(*) FILTER (WHERE status = 'sent') as sent,
+			COUNT(*) FILTER (WHERE status = 'pending') as pending,
+			COUNT(*) FILTER (WHERE status = 'skipped') as skipped
+		FROM public.program_workouts
+		WHERE program_id = $1`
+
+	err = r.db.QueryRow(query, program.ID).Scan(
+		&progress.TotalWorkouts,
+		&progress.CompletedCount,
+		&progress.SentCount,
+		&progress.PendingCount,
+		&progress.SkippedCount,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	// Считаем процент выполнения
+	if progress.TotalWorkouts > 0 {
+		progress.ProgressPercent = float64(progress.CompletedCount) / float64(progress.TotalWorkouts) * 100
+	}
+
+	// Определяем текущую неделю по последней отправленной/выполненной тренировке
+	var currentWeek int
+	weekQuery := `
+		SELECT COALESCE(MAX(week_num), 1)
+		FROM public.program_workouts
+		WHERE program_id = $1 AND status IN ('sent', 'completed')`
+	if err := r.db.QueryRow(weekQuery, program.ID).Scan(&currentWeek); err == nil {
+		progress.CurrentWeek = currentWeek
+	}
+
+	// Получаем следующую тренировку
+	progress.NextWorkout, _ = r.GetNextPendingWorkout(clientID)
+
+	return progress, nil
+}
+
+// GetWorkoutsForWeek возвращает тренировки определённой недели программы
+func (r *ProgramRepository) GetWorkoutsForWeek(programID int, weekNum int) ([]models.Workout, error) {
+	query := `
+		SELECT id, program_id, week_num, day_num, order_in_week, name,
+		       planned_date, status, COALESCE(notes, ''), COALESCE(feedback, ''),
+		       completed_at, sent_at
+		FROM public.program_workouts
+		WHERE program_id = $1 AND week_num = $2
+		ORDER BY order_in_week`
+
+	rows, err := r.db.Query(query, programID, weekNum)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var workouts []models.Workout
+	for rows.Next() {
+		var w models.Workout
+		var plannedDate, completedAt, sentAt sql.NullTime
+		err := rows.Scan(
+			&w.ID, &w.ProgramID, &w.WeekNum, &w.DayNum, &w.OrderInWeek, &w.Name,
+			&plannedDate, &w.Status, &w.Notes, &w.Feedback,
+			&completedAt, &sentAt,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		if plannedDate.Valid {
+			w.Date = &plannedDate.Time
+		}
+		if completedAt.Valid {
+			w.CompletedAt = &completedAt.Time
+		}
+		if sentAt.Valid {
+			w.SentAt = &sentAt.Time
+		}
+
+		// Загружаем упражнения
+		exercises, err := r.GetExercisesByWorkout(w.ID)
+		if err != nil {
+			return nil, err
+		}
+		w.Exercises = exercises
+
+		workouts = append(workouts, w)
+	}
+
+	return workouts, nil
+}
+
+// GetPendingWorkoutsForWeek возвращает неотправленные тренировки недели
+func (r *ProgramRepository) GetPendingWorkoutsForWeek(programID int, weekNum int) ([]models.Workout, error) {
+	query := `
+		SELECT id, program_id, week_num, day_num, order_in_week, name,
+		       planned_date, status, COALESCE(notes, ''), COALESCE(feedback, ''),
+		       completed_at, sent_at
+		FROM public.program_workouts
+		WHERE program_id = $1 AND week_num = $2 AND status = 'pending'
+		ORDER BY order_in_week`
+
+	rows, err := r.db.Query(query, programID, weekNum)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var workouts []models.Workout
+	for rows.Next() {
+		var w models.Workout
+		var plannedDate, completedAt, sentAt sql.NullTime
+		err := rows.Scan(
+			&w.ID, &w.ProgramID, &w.WeekNum, &w.DayNum, &w.OrderInWeek, &w.Name,
+			&plannedDate, &w.Status, &w.Notes, &w.Feedback,
+			&completedAt, &sentAt,
+		)
+		if err != nil {
+			return nil, err
+		}
+
+		if plannedDate.Valid {
+			w.Date = &plannedDate.Time
+		}
+		if completedAt.Valid {
+			w.CompletedAt = &completedAt.Time
+		}
+		if sentAt.Valid {
+			w.SentAt = &sentAt.Time
+		}
+
+		// Загружаем упражнения
+		exercises, err := r.GetExercisesByWorkout(w.ID)
+		if err != nil {
+			return nil, err
+		}
+		w.Exercises = exercises
+
+		workouts = append(workouts, w)
+	}
+
+	return workouts, nil
+}
+
 // GetClientByTelegramID возвращает client_id по telegram_id
 func (r *ProgramRepository) GetClientByTelegramID(telegramID int64) (int, error) {
 	var clientID int
@@ -455,4 +620,98 @@ func (r *ProgramRepository) GetClientByTelegramID(telegramID int64) (int, error)
 		return 0, nil
 	}
 	return clientID, err
+}
+
+// GetClientIDByWorkout возвращает client_id по workout_id
+func (r *ProgramRepository) GetClientIDByWorkout(workoutID int) (int, error) {
+	var clientID int
+	query := `
+		SELECT tp.client_id
+		FROM public.program_workouts pw
+		JOIN public.training_programs tp ON pw.program_id = tp.id
+		WHERE pw.id = $1`
+	err := r.db.QueryRow(query, workoutID).Scan(&clientID)
+	if err == sql.ErrNoRows {
+		return 0, nil
+	}
+	return clientID, err
+}
+
+// GetWorkoutTonnage вычисляет тоннаж тренировки (сумма: вес × повторения × подходы)
+func (r *ProgramRepository) GetWorkoutTonnage(workoutID int) (float64, error) {
+	query := `
+		SELECT COALESCE(SUM(
+			COALESCE(actual_weight, weight, 0) *
+			COALESCE(actual_reps, NULLIF(REGEXP_REPLACE(reps, '-.*', ''), '')::int, 0) *
+			COALESCE(actual_sets, sets, 0)
+		), 0)
+		FROM public.workout_exercises
+		WHERE workout_id = $1 AND (completed = true OR actual_sets > 0)`
+
+	var tonnage float64
+	err := r.db.QueryRow(query, workoutID).Scan(&tonnage)
+	return tonnage, err
+}
+
+// WorkoutStats статистика выполненной тренировки
+type WorkoutStats struct {
+	Tonnage        float64 // Общий тоннаж (кг)
+	TotalExercises int     // Всего упражнений
+	Completed      int     // Выполнено
+	Skipped        int     // Пропущено
+	ComplianceRate float64 // Процент выполнения
+}
+
+// ProgramProgress прогресс по программе тренировок
+type ProgramProgress struct {
+	ProgramID      int
+	ProgramName    string
+	Goal           string
+	TotalWeeks     int
+	CurrentWeek    int
+	DaysPerWeek    int
+	TotalWorkouts  int
+	CompletedCount int
+	SentCount      int
+	PendingCount   int
+	SkippedCount   int
+	ProgressPercent float64
+	StartDate      time.Time
+	NextWorkout    *models.Workout
+}
+
+func (r *ProgramRepository) GetWorkoutStats(workoutID int) (*WorkoutStats, error) {
+	stats := &WorkoutStats{}
+
+	// Считаем тоннаж и статистику в одном запросе
+	query := `
+		SELECT
+			COUNT(*) as total,
+			COUNT(*) FILTER (WHERE completed = true) as completed,
+			COUNT(*) FILTER (WHERE completed = false AND actual_sets = 0) as skipped,
+			COALESCE(SUM(
+				CASE WHEN completed = true OR actual_sets > 0 THEN
+					COALESCE(actual_weight, weight, 0) *
+					COALESCE(NULLIF(actual_reps, 0), NULLIF(REGEXP_REPLACE(reps, '-.*', ''), '')::int, 0) *
+					COALESCE(NULLIF(actual_sets, 0), sets, 0)
+				ELSE 0 END
+			), 0) as tonnage
+		FROM public.workout_exercises
+		WHERE workout_id = $1`
+
+	err := r.db.QueryRow(query, workoutID).Scan(
+		&stats.TotalExercises,
+		&stats.Completed,
+		&stats.Skipped,
+		&stats.Tonnage,
+	)
+	if err != nil {
+		return nil, err
+	}
+
+	if stats.TotalExercises > 0 {
+		stats.ComplianceRate = float64(stats.Completed) / float64(stats.TotalExercises) * 100
+	}
+
+	return stats, nil
 }

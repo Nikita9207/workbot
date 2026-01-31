@@ -237,7 +237,104 @@ func (f *TelegramFormatter) formatStatistics(stats models.ProgramStats) string {
 		}
 	}
 
+	// Баланс паттернов движения
+	if stats.MovementBalance != nil {
+		sb.WriteString(f.formatMovementBalance(stats.MovementBalance))
+	}
+
 	return sb.String()
+}
+
+// formatMovementBalance форматирует баланс паттернов движения
+func (f *TelegramFormatter) formatMovementBalance(b *models.MovementBalance) string {
+	var sb strings.Builder
+
+	sb.WriteString("\n━━━━━━━━━━━━━━━━━━━━━\n")
+	sb.WriteString("БАЛАНС ПАТТЕРНОВ\n")
+	sb.WriteString("━━━━━━━━━━━━━━━━━━━━━\n")
+
+	// Push/Pull
+	if b.PushSets > 0 || b.PullSets > 0 {
+		sb.WriteString(fmt.Sprintf("Push/Pull: %d/%d ", b.PushSets, b.PullSets))
+		if b.PullSets > 0 {
+			sb.WriteString(fmt.Sprintf("(%.2f:1) %s\n", b.PushPullRatio, getStatusEmoji(b.PushPullStatus)))
+		} else {
+			sb.WriteString("(∞) ⚠️\n")
+		}
+	}
+
+	// Quad/Hip
+	if b.QuadSets > 0 || b.HipSets > 0 {
+		sb.WriteString(fmt.Sprintf("Quad/Hip: %d/%d ", b.QuadSets, b.HipSets))
+		if b.HipSets > 0 {
+			sb.WriteString(fmt.Sprintf("(%.2f:1) %s\n", b.QuadHipRatio, getStatusEmoji(b.QuadHipStatus)))
+		} else {
+			sb.WriteString("(∞) ⚠️\n")
+		}
+	}
+
+	// Horiz/Vert Push
+	if b.HorizontalPushSets > 0 || b.VerticalPushSets > 0 {
+		sb.WriteString(fmt.Sprintf("H/V Push: %d/%d\n", b.HorizontalPushSets, b.VerticalPushSets))
+	}
+
+	// Horiz/Vert Pull
+	if b.HorizontalPullSets > 0 || b.VerticalPullSets > 0 {
+		sb.WriteString(fmt.Sprintf("H/V Pull: %d/%d\n", b.HorizontalPullSets, b.VerticalPullSets))
+	}
+
+	// Bi/Uni
+	if b.BilateralLegSets > 0 || b.UnilateralLegSets > 0 {
+		sb.WriteString(fmt.Sprintf("Bi/Uni (ноги): %d/%d\n", b.BilateralLegSets, b.UnilateralLegSets))
+	}
+
+	// Core
+	if b.CoreSets > 0 {
+		sb.WriteString(fmt.Sprintf("Core: %d сетов\n", b.CoreSets))
+	}
+
+	// Оценка
+	sb.WriteString(fmt.Sprintf("\nОценка: %d/100 %s\n", b.OverallScore, getAssessmentEmoji(b.Assessment)))
+
+	// Рекомендации
+	if len(b.Recommendations) > 0 {
+		sb.WriteString("\nРекомендации:\n")
+		for _, rec := range b.Recommendations {
+			sb.WriteString(fmt.Sprintf("• %s\n", rec))
+		}
+	}
+
+	return sb.String()
+}
+
+// getStatusEmoji возвращает эмодзи для статуса баланса
+func getStatusEmoji(status string) string {
+	switch status {
+	case "balanced":
+		return "✅"
+	case "slightly_push_heavy", "slightly_pull_heavy", "slightly_quad_heavy", "slightly_hip_heavy":
+		return "⚠️"
+	case "push_heavy", "pull_heavy", "quad_heavy", "hip_heavy":
+		return "❌"
+	default:
+		return ""
+	}
+}
+
+// getAssessmentEmoji возвращает эмодзи для общей оценки
+func getAssessmentEmoji(assessment string) string {
+	switch assessment {
+	case "excellent":
+		return "🏆"
+	case "good":
+		return "👍"
+	case "needs_attention":
+		return "⚠️"
+	case "imbalanced":
+		return "❌"
+	default:
+		return ""
+	}
 }
 
 // formatSubstitutions форматирует замены
