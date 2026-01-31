@@ -222,7 +222,7 @@
             <!-- Stats Summary -->
             <div class="stats-grid">
                 <div class="stat-card">
-                    <div class="stat-number">82</div>
+                    <div class="stat-number">105</div>
                     <div class="stat-label">Выполнено задач</div>
                 </div>
                 <div class="stat-card">
@@ -230,11 +230,11 @@
                     <div class="stat-label">В процессе</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">13</div>
+                    <div class="stat-number">8</div>
                     <div class="stat-label">Запланировано</div>
                 </div>
                 <div class="stat-card">
-                    <div class="stat-number">86%</div>
+                    <div class="stat-number">93%</div>
                     <div class="stat-label">Общий прогресс</div>
                 </div>
             </div>
@@ -400,10 +400,18 @@
                         <li class="task-item done">
                             <div class="task-status done">✓</div>
                             <div class="task-content">
-                                <div class="task-name">Excel экспорт</div>
-                                <div class="task-desc">Многолистовые книги с форматированием</div>
+                                <div class="task-name">Excel экспорт (10 форматов)</div>
+                                <div class="task-desc">Программы, планы, журналы, дашборды, рабочие книги клиентов</div>
                             </div>
                             <span class="task-date">Готово</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">Excel File Watcher</div>
+                                <div class="task-desc">Отслеживание изменений в файлах, синхронизация</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
                         </li>
                         <li class="task-item done">
                             <div class="task-status done">✓</div>
@@ -544,6 +552,98 @@
                                 <div class="task-desc">Общая статистика, топ активных, неактивные, по периодам</div>
                             </div>
                             <span class="task-date">Янв 2025</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- CLI Tools -->
+                <div class="roadmap-section">
+                    <div class="roadmap-title">
+                        <span>🖥️ CLI Инструменты</span>
+                        <div class="progress-bar"><div class="progress-fill progress-green" style="width: 100%"></div></div>
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">plancli — интерактивный генератор</div>
+                                <div class="task-desc">CLI для создания планов с Ollama LLM и базой знаний</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">program_generator — автономный генератор</div>
+                                <div class="task-desc">Локальный генератор программ с Ollama</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">plgen — генератор PL программ</div>
+                                <div class="task-desc">Пауэрлифтинг программы из шаблонов</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">oauth_setup — настройка Google OAuth</div>
+                                <div class="task-desc">Интерактивная настройка OAuth2 для Google Sheets</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Analytics & Statistics -->
+                <div class="roadmap-section">
+                    <div class="roadmap-title">
+                        <span>📊 Аналитика и статистика</span>
+                        <div class="progress-bar"><div class="progress-fill progress-green" style="width: 100%"></div></div>
+                    </div>
+                    <ul class="task-list">
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">TrainingLog — логирование тренировок</div>
+                                <div class="task-desc">Сохранение каждого упражнения с весом, повторами, RPE</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">VolumeAnalytics — анализ объёма</div>
+                                <div class="task-desc">Недельная статистика объёма по мышечным группам</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">ExerciseProgress — прогресс упражнений</div>
+                                <div class="task-desc">История весов и повторений по каждому упражнению</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">Tonnage & 1PM Charts</div>
+                                <div class="task-desc">Графики тоннажа и прогресса 1ПМ</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">ClientStatistics — статистика клиентов</div>
+                                <div class="task-desc">Топ активных, неактивные, % посещаемости, по периодам</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
                         </li>
                     </ul>
                 </div>
@@ -810,7 +910,7 @@
                 <div class="roadmap-section">
                     <div class="roadmap-title">
                         <span>📊 Периодизация: Модели прогрессии</span>
-                        <div class="progress-bar"><div class="progress-fill progress-green" style="width: 74%"></div></div>
+                        <div class="progress-bar"><div class="progress-fill progress-green" style="width: 87%"></div></div>
                     </div>
                     <ul class="task-list">
                         <li class="task-item done">
@@ -845,6 +945,22 @@
                             </div>
                             <span class="task-date">Янв 2026</span>
                         </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">StepLoading — ступенчатая нагрузка</div>
+                                <div class="task-desc">Прогрессивное увеличение веса внутри блока</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">Прогрессия TRX / Гири / Кардио</div>
+                                <div class="task-desc">Специализированные модели для разного оборудования</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
                         <li class="task-item todo">
                             <div class="task-status todo">○</div>
                             <div class="task-content">
@@ -868,16 +984,16 @@
                 <div class="roadmap-section">
                     <div class="roadmap-title">
                         <span>⚖️ Периодизация: Управление нагрузкой</span>
-                        <div class="progress-bar"><div class="progress-fill progress-red" style="width: 0%"></div></div>
+                        <div class="progress-bar"><div class="progress-fill progress-green" style="width: 75%"></div></div>
                     </div>
                     <ul class="task-list">
-                        <li class="task-item todo">
-                            <div class="task-status todo">○</div>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
                             <div class="task-content">
                                 <div class="task-name">INOL (Intensity × Number of Lifts)</div>
                                 <div class="task-desc">Контроль нагрузки: &lt;2 низкая, 2-3 оптимум, &gt;4 высокая</div>
                             </div>
-                            <span class="task-date">Q2 2026</span>
+                            <span class="task-date">Янв 2026</span>
                         </li>
                         <li class="task-item todo">
                             <div class="task-status todo">○</div>
@@ -887,13 +1003,21 @@
                             </div>
                             <span class="task-date">Q2 2026</span>
                         </li>
-                        <li class="task-item todo">
-                            <div class="task-status todo">○</div>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
                             <div class="task-content">
                                 <div class="task-name">Fatigue accumulation model</div>
-                                <div class="task-desc">Накопление усталости по неделям, триггер deload</div>
+                                <div class="task-desc">Накопление усталости по неделям, триггер deload, ShouldDeload()</div>
                             </div>
-                            <span class="task-date">Q2 2026</span>
+                            <span class="task-date">Янв 2026</span>
+                        </li>
+                        <li class="task-item done">
+                            <div class="task-status done">✓</div>
+                            <div class="task-content">
+                                <div class="task-name">WorkCapacity — адаптивная ёмкость</div>
+                                <div class="task-desc">GetAdaptedVolume (MEV/MAV/MRV), IncreaseCapacity, DecreaseCapacity</div>
+                            </div>
+                            <span class="task-date">Янв 2026</span>
                         </li>
                         <li class="task-item todo">
                             <div class="task-status todo">○</div>
@@ -1703,6 +1827,29 @@ workbot/
         <div id="changelog" class="tab-content">
             <div class="section">
                 <h2>История изменений</h2>
+
+                <div class="changelog-item">
+                    <div class="changelog-date">📅 Февраль 2026 — v2.3.0</div>
+                    <div class="changelog-title">CLI инструменты, аналитика, Excel 10 форматов</div>
+                    <ul class="changelog-changes">
+                        <li>✅ plancli — интерактивный генератор планов с Ollama LLM</li>
+                        <li>✅ program_generator — автономный генератор программ</li>
+                        <li>✅ plgen — генератор PL программ из шаблонов</li>
+                        <li>✅ oauth_setup — настройка Google OAuth2</li>
+                        <li>✅ Excel экспорт: 10 форматов (программы, планы, журналы, дашборды)</li>
+                        <li>✅ Excel File Watcher — отслеживание изменений</li>
+                        <li>✅ TrainingLog — логирование тренировок</li>
+                        <li>✅ VolumeAnalytics — анализ объёма по мышечным группам</li>
+                        <li>✅ ExerciseProgress — история прогресса упражнений</li>
+                        <li>✅ Tonnage & 1PM Charts — графики тоннажа и 1ПМ</li>
+                        <li>✅ ClientStatistics — статистика клиентов для тренера</li>
+                        <li>✅ INOL расчёты — контроль нагрузки</li>
+                        <li>✅ FatigueAccumulation — модель накопления усталости</li>
+                        <li>✅ WorkCapacity — адаптивная ёмкость MEV/MAV/MRV</li>
+                        <li>✅ Прогрессия для TRX, гирь, кардио</li>
+                        <li>✅ Обновлена документация (105 выполнено, 93%)</li>
+                    </ul>
+                </div>
 
                 <div class="changelog-item">
                     <div class="changelog-date">📅 Январь 2026 — v2.2.0</div>
